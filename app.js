@@ -1014,8 +1014,8 @@ class MedicalQuizApp {
     const saveGptBtn = document.getElementById('save-gpt-btn');
     
     if (askGptBtn) {
-      askGptBtn.addEventListener('click', () => {
-        this.askChatGPT();
+      askGptBtn.addEventListener('click', async () => {
+        await this.askChatGPT();
       });
     }
     
@@ -1026,7 +1026,7 @@ class MedicalQuizApp {
     }
   }
 
-  askChatGPT() {
+  async askChatGPT() {
     // Użyj pytań z testu jeśli jesteśmy w trybie nauki
     const questions = this.currentMode === 'study' && this.testQuestions.length > 0 
       ? this.testQuestions 
@@ -1039,12 +1039,11 @@ class MedicalQuizApp {
     
     const q = questions[questionIndex];
     
-    // Sprawdź cache
-    const cacheKey = `chatgpt_${q.id}`;
-    const cachedResponse = localStorage.getItem(cacheKey);
+    // Sprawdź cache (Supabase + localStorage)
+    const cachedResponse = await this.loadFromSupabase(q.id) || localStorage.getItem(`chatgpt_${q.id}`);
     
     if (cachedResponse) {
-      this.showChatGPTResponse(JSON.parse(cachedResponse));
+      this.showChatGPTResponse(typeof cachedResponse === 'string' ? JSON.parse(cachedResponse) : cachedResponse);
       return;
     }
     
@@ -1174,6 +1173,9 @@ Odpowiedz w formacie:
     // Sprawdź czy już ma zapisaną odpowiedź (z Supabase lub localStorage)
     const existingResponse = await this.loadFromSupabase(q.id) || localStorage.getItem(cacheKey);
     
+    // Sprawdź czy użytkownik jest zalogowany
+    const isLoggedIn = this.user && this.user.id;
+    
     const modal = document.createElement('div');
     modal.style.cssText = `
       position: fixed;
@@ -1203,7 +1205,7 @@ Odpowiedz w formacie:
       <h3>💾 Zapisz odpowiedź ChatGPT</h3>
       <p><strong>Pytanie:</strong> ${q.question.substring(0, 100)}...</p>
       ${existingResponse ? '<p style="color: #28a745;"><strong>✅ Znaleziono zapisaną odpowiedź dla tego pytania</strong></p>' : ''}
-      <p style="color: #666; font-size: 14px; margin: 10px 0;">☁️ <strong>Zapis w chmurze:</strong> Odpowiedzi są zapisywane w Supabase i dostępne dla wszystkich użytkowników</p>
+      ${isLoggedIn ? '<p style="color: #007bff;"><strong>☁️ Zapis w chmurze:</strong> Odpowiedzi są zapisywane w Supabase i dostępne dla wszystkich użytkowników</p>' : '<p style="color: #ffc107;"><strong>📱 Zapis lokalny:</strong> Odpowiedzi są zapisywane lokalnie (nie jesteś zalogowany)</p>'}
       <p>Wklej tutaj pełną odpowiedź z ChatGPT:</p>
               <textarea id="gpt-response-text" style="width: 100%; height: 200px; padding: 10px; border: 1px solid #ccc; border-radius: 5px; font-family: 'Inter', sans-serif;" placeholder="Wklej tutaj odpowiedź z ChatGPT..."></textarea>
       <div style="margin-top: 15px; text-align: right;">
@@ -1244,22 +1246,32 @@ Odpowiedz w formacie:
         // Zapisz w Supabase (z fallback do localStorage)
         const saved = await this.saveToSupabase(q.id, responseData);
         
+        console.log('🔍 DEBUG save result:', {
+          saved: saved,
+          isLoggedIn: isLoggedIn,
+          questionId: q.id
+        });
+        
         // Przywróć przycisk
         saveBtn.textContent = originalText;
         saveBtn.disabled = false;
         
         // Pokaż odpowiednie potwierdzenie
         if (saved) {
-          alert('✅ Odpowiedź zapisana w chmurze! Dostępna dla wszystkich użytkowników.');
+          if (isLoggedIn) {
+            alert('✅ Odpowiedź zapisana w chmurze! Dostępna dla wszystkich użytkowników.');
+          } else {
+            alert('✅ Odpowiedź zapisana lokalnie (nie jesteś zalogowany)');
+          }
         } else {
           alert('✅ Odpowiedź zapisana lokalnie (błąd chmury)');
         }
         
+        // Odśwież przyciski ChatGPT
+        await this.checkAndUpdateChatGPTButtons(q.id);
+        
         // Zamknij modal
         document.body.removeChild(modal);
-        
-        // Odśwież wyświetlanie pytania żeby pokazać zapisaną odpowiedź
-        this.displayQuestion();
       } else {
         alert('Proszę wklej odpowiedź z ChatGPT');
       }
@@ -1467,21 +1479,24 @@ Odpowiedz w formacie:
       return false;
     }
     
+    if (!this.user || !this.user.id) {
+      console.log('📱 Użytkownik nie zalogowany - pomijam test połączenia');
+      return false;
+    }
+    
     try {
-      // Test połączenia z Supabase
-      const response = await fetch(`${this.supabaseConfig.url}/rest/v1/chatgpt_responses?select=count`, {
-        headers: {
-          'apikey': this.supabaseConfig.key,
-          'Authorization': `Bearer ${this.supabaseConfig.key}`
-        }
-      });
+      // Test połączenia z Supabase używając klienta
+      const { data, error } = await this.supabase
+        .from('chatgpt_responses')
+        .select('count')
+        .eq('user_id', this.user.id);
       
-      if (response.ok) {
+      if (error) {
+        console.warn('❌ Błąd połączenia z Supabase:', error);
+        return false;
+      } else {
         console.log('✅ Połączono z Supabase');
         return true;
-      } else {
-        console.warn('❌ Błąd połączenia z Supabase:', response.status);
-        return false;
       }
     } catch (error) {
       console.warn('❌ Błąd połączenia z Supabase:', error);
@@ -1497,22 +1512,41 @@ Odpowiedz w formacie:
       return true;
     }
     
+    if (!this.user || !this.user.id) {
+      console.log('📱 Użytkownik nie zalogowany - zapisuję lokalnie');
+      localStorage.setItem(`chatgpt_${questionId}`, JSON.stringify(responseData));
+      return true;
+    }
+    
+    console.log('🔍 DEBUG saveToSupabase:', {
+      questionId: questionId,
+      questionIdType: typeof questionId,
+      responseData: responseData,
+      userId: this.user.id
+    });
+    
     try {
-      const response = await fetch(`${this.supabaseConfig.url}/rest/v1/chatgpt_responses`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'apikey': this.supabaseConfig.key,
-          'Authorization': `Bearer ${this.supabaseConfig.key}`
-        },
-        body: JSON.stringify({
+      // Użyj upsert zamiast POST aby uniknąć błędów 409
+      const { data, error } = await this.supabase
+        .from('chatgpt_responses')
+        .upsert({
+          user_id: this.user.id,
           question_id: questionId,
           response: responseData.response,
           created_at: new Date().toISOString()
-        })
-      });
+        });
       
-      if (response.ok) {
+      if (error) {
+        console.warn('❌ Błąd zapisu w Supabase:', error);
+        console.log('🔍 Szczegóły błędu:', {
+          message: error.message,
+          details: error.details,
+          hint: error.hint
+        });
+        // Fallback do localStorage
+        localStorage.setItem(`chatgpt_${questionId}`, JSON.stringify(responseData));
+        return false;
+      } else {
         console.log('☁️ Zapisano w Supabase:', questionId);
         
         // Zwiększ licznik odpowiedzi ChatGPT dla testu
@@ -1521,11 +1555,6 @@ Odpowiedz w formacie:
         }
         
         return true;
-      } else {
-        console.warn('❌ Błąd zapisu w Supabase:', response.status);
-        // Fallback do localStorage
-        localStorage.setItem(`chatgpt_${questionId}`, JSON.stringify(responseData));
-        return false;
       }
     } catch (error) {
       console.warn('❌ Błąd zapisu w Supabase:', error);
@@ -1542,26 +1571,30 @@ Odpowiedz w formacie:
       return cached ? JSON.parse(cached) : null;
     }
     
+    if (!this.user || !this.user.id) {
+      // Fallback do localStorage
+      const cached = localStorage.getItem(`chatgpt_${questionId}`);
+      return cached ? JSON.parse(cached) : null;
+    }
+    
     try {
-      const response = await fetch(`${this.supabaseConfig.url}/rest/v1/chatgpt_responses?question_id=eq.${encodeURIComponent(questionId)}&order=created_at.desc&limit=1`, {
-        headers: {
-          'apikey': this.supabaseConfig.key,
-          'Authorization': `Bearer ${this.supabaseConfig.key}`
-        }
-      });
+      const { data, error } = await this.supabase
+        .from('chatgpt_responses')
+        .select('*')
+        .eq('question_id', questionId)
+        .eq('user_id', this.user.id)
+        .order('created_at', { ascending: false })
+        .limit(1);
       
-      if (response.ok) {
-        const data = await response.json();
-        if (data && data.length > 0) {
-          console.log('☁️ Załadowano z Supabase:', questionId);
-          return {
-            question: data[0].question_id,
-            response: data[0].response,
-            timestamp: new Date(data[0].created_at).getTime()
-          };
-        }
-      } else {
-        console.warn('❌ Błąd ładowania z Supabase:', response.status);
+      if (error) {
+        console.warn('❌ Błąd ładowania z Supabase:', error);
+      } else if (data && data.length > 0) {
+        console.log('☁️ Załadowano z Supabase:', questionId);
+        return {
+          question: data[0].question_id,
+          response: data[0].response,
+          timestamp: new Date(data[0].created_at).getTime()
+        };
       }
     } catch (error) {
       console.warn('❌ Błąd ładowania z Supabase:', error);
@@ -1918,16 +1951,14 @@ Odpowiedz w formacie:
     }
 
     try {
-      const response = await fetch(`${this.supabaseConfig.url}/rest/v1/test_stats?select=*&user_id=eq.${this.user.id}&test_id=eq.${testId}`, {
-        headers: {
-          'apikey': this.supabaseConfig.key,
-          'Authorization': `Bearer ${this.supabaseConfig.key}`,
-          'Content-Type': 'application/json'
-        }
-      });
+      const { data, error } = await this.supabase
+        .from('test_stats')
+        .select('*')
+        .eq('user_id', this.user.id)
+        .eq('test_id', testId);
 
-      if (!response.ok) {
-        console.log(`⚠️ Błąd pobierania statystyk dla testu ${testId}:`, response.status);
+      if (error) {
+        console.log(`⚠️ Błąd pobierania statystyk dla testu ${testId}:`, error);
         return {
           attempts: 0,
           accuracy: 0,
@@ -1935,8 +1966,6 @@ Odpowiedz w formacie:
           lastAttempt: null
         };
       }
-
-      const data = await response.json();
       
       if (data && data.length > 0) {
         const stats = data[0];
