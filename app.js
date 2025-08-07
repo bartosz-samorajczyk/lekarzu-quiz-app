@@ -1682,27 +1682,40 @@ Odpowiedz w formacie:
   }
 
   async loadTestStatsInBackground() {
-    if (!this.supabaseConfig.enabled || !this.user) {
+    if (!this.supabase || !this.user) {
+      console.log('❌ Brak Supabase lub użytkownika');
       return;
     }
 
     try {
       console.log('🔄 Ładuję statystyki testów w tle...');
-      const summary = await this.getTestSummary();
+      
+      // Sprawdź czy tabela test_summary istnieje
+      const { data: summary, error } = await this.supabase
+        .from('test_summary')
+        .select('*')
+        .eq('user_id', this.user.id);
+      
+      if (error) {
+        console.log('❌ Błąd pobierania test_summary:', error);
+        return;
+      }
+      
+      console.log('📊 Pobrane dane:', summary);
       
       // Zaktualizuj tylko testy które mają historię
-      Object.keys(summary).forEach(testId => {
-        const stats = summary[testId];
-        const attemptsElement = document.getElementById(`attempts-${testId}`);
-        const accuracyElement = document.getElementById(`accuracy-${testId}`);
+      summary.forEach(item => {
+        const attemptsElement = document.getElementById(`attempts-${item.test_id}`);
+        const accuracyElement = document.getElementById(`accuracy-${item.test_id}`);
         
         if (attemptsElement && accuracyElement) {
-          attemptsElement.textContent = stats.attempts;
-          accuracyElement.textContent = `${stats.accuracy}%`;
+          attemptsElement.textContent = item.total_attempts || 0;
+          accuracyElement.textContent = `${item.accuracy_percentage || 0}%`;
+          console.log(`✅ Zaktualizowano ${item.test_id}: ${item.total_attempts} prób, ${item.accuracy_percentage}%`);
         }
       });
       
-      console.log(`✅ Załadowano statystyki dla ${Object.keys(summary).length} testów`);
+      console.log(`✅ Załadowano statystyki dla ${summary.length} testów`);
     } catch (error) {
       console.log('❌ Błąd ładowania statystyk w tle:', error);
     }
@@ -1752,25 +1765,21 @@ Odpowiedz w formacie:
   }
 
   async getTestSummary() {
-    if (!this.supabaseConfig.enabled || !this.user) {
+    if (!this.supabase || !this.user) {
       return {};
     }
 
     try {
-      const response = await fetch(`${this.supabaseConfig.url}/rest/v1/test_summary?select=*&user_id=eq.${this.user.id}`, {
-        headers: {
-          'apikey': this.supabaseConfig.key,
-          'Authorization': `Bearer ${this.supabaseConfig.key}`,
-          'Content-Type': 'application/json'
-        }
-      });
+      const { data, error } = await this.supabase
+        .from('test_summary')
+        .select('*')
+        .eq('user_id', this.user.id);
 
-      if (!response.ok) {
-        console.log(`⚠️ Błąd pobierania test_summary:`, response.status);
+      if (error) {
+        console.log(`⚠️ Błąd pobierania test_summary:`, error);
         return {};
       }
 
-      const data = await response.json();
       const summary = {};
       
       data.forEach(item => {
