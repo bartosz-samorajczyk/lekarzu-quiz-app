@@ -1706,8 +1706,15 @@ Odpowiedz w formacie:
         .eq('test_id', testId)
         .single();
       
-      if (error && error.code !== 'PGRST116') { // PGRST116 = no rows returned
-        console.error('❌ Błąd pobierania statystyk testu:', error);
+      if (error) {
+        console.log(`⚠️ Błąd pobierania statystyk dla testu ${testId}:`, error.message);
+        // Fallback do domyślnych statystyk
+        return {
+          attempts: 0,
+          accuracy: 0,
+          chatgptResponses: 0,
+          lastAttempt: null
+        };
       }
       
       if (data) {
@@ -1731,7 +1738,7 @@ Odpowiedz w formacie:
         lastAttempt: null
       };
     } catch (error) {
-      console.error('❌ Błąd pobierania statystyk testu:', error);
+      console.log(`⚠️ Wyjątek przy pobieraniu statystyk dla testu ${testId}:`, error.message);
       return {
         attempts: 0,
         accuracy: 0,
