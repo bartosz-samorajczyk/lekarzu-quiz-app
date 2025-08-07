@@ -55,6 +55,7 @@ class MedicalQuizApp {
   }
   
   async init() {
+    console.log('=== INIT START ===');
     console.log('Inicjalizacja aplikacji...');
     
     // Załaduj pytania z questionDB (ES6 modules)
@@ -114,15 +115,21 @@ class MedicalQuizApp {
     });
     
     // Wyświetl odpowiedni widok
+    console.log('=== INIT - SPRAWDZANIE TRYBU ===');
+    console.log('currentMode:', this.currentMode);
     if (this.currentMode === 'test-selection') {
+      console.log('=== INIT - POKAZUJĘ WYBÓR TESTÓW ===');
       this.showTestSelection();
     } else if (this.currentMode === 'study') {
+      console.log('=== INIT - TRYB NAUKI - NIE WYWOŁUJĘ DISPLAYQUESTION ===');
       // W trybie nauki displayQuestion jest wywoływane przez startTest
       // Nie wywołuj ponownie
     } else {
+      console.log('=== INIT - TRYB DOMYŚLNY - WYWOŁUJĘ DISPLAYQUESTION ===');
       await this.displayQuestion();
       this.updateStats();
     }
+    console.log('=== INIT END ===');
   }
 
   createUI() {
@@ -1961,6 +1968,7 @@ Odpowiedz w formacie:
 
 
   async startTest(testId) {
+    console.log('=== START TEST START ===');
     console.log(`Rozpoczynam test: ${testId}`);
     
     // Załaduj pytania z wybranego testu
@@ -2000,8 +2008,10 @@ Odpowiedz w formacie:
     this.bindEvents();
     
     // Wyświetl pierwsze pytanie
+    console.log('=== START TEST - WYWOŁUJĘ DISPLAYQUESTION ===');
     this.displayQuestion();
     this.updateStats();
+    console.log('=== START TEST END ===');
     
     // Update header text
     this.updateHeaderText();
