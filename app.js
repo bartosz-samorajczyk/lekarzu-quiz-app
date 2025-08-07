@@ -1551,7 +1551,7 @@ Odpowiedz w formacie:
         
         // Zwiększ licznik odpowiedzi ChatGPT dla testu
         if (this.currentTest) {
-          this.updateTestStats(this.currentTest, 'chatgpt');
+          this.updateTestStats(this.currentTest, null);
         }
         
         return true;
@@ -2032,7 +2032,7 @@ Odpowiedz w formacie:
     });
     
     // Zwiększ licznik prób testu
-    this.updateTestStats(testId, 'attempt');
+    this.updateTestStats(testId, null);
     
     // Stwórz UI do nauki
     this.createUI();
