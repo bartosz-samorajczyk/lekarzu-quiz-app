@@ -215,6 +215,10 @@
     padding: 0;
     height: 100vh;
     position: relative;
+    background: var(--light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   
   /* Header */
@@ -691,32 +695,26 @@
   
   /* Login Page */
   .login-card {
-    background: var(--light-secondary);
+    background: transparent;
     border-radius: var(--radius-xl);
     padding: var(--spacing-xl);
-    margin: 0 auto;
     max-width: 400px;
-    box-shadow: var(--shadow-lg);
     text-align: center;
     animation: fadeIn 0.5s ease-out;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
   }
   
   .login-content h1 {
     color: var(--text-primary);
-    font-size: 24px;
+    font-size: 28px;
     font-weight: 700;
-    margin-bottom: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
   }
   
   .login-content p {
     color: var(--text-secondary);
-    font-size: 14px;
-    margin-bottom: var(--spacing-lg);
-    line-height: 1.5;
+    font-size: 16px;
+    margin-bottom: var(--spacing-xl);
+    line-height: 1.6;
   }
   
   .login-btn {
@@ -725,8 +723,8 @@
     justify-content: center;
     gap: var(--spacing-md);
     width: 100%;
-    padding: var(--spacing-md);
-    font-size: 14px;
+    padding: var(--spacing-lg);
+    font-size: 16px;
     font-weight: 600;
   }
   
