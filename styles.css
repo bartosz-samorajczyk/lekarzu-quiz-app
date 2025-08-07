@@ -98,17 +98,14 @@
     padding: 8px;
     margin-bottom: 10px;
     font-size: 12px;
+    display: table;
+    width: 100%;
   }
   
   .test-stats .stat-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    display: table-row;
     margin-bottom: 4px;
     font-size: 12px;
-    max-width: 120px;
-    margin-left: auto;
-    margin-right: auto;
   }
   
   .test-stats .stat-row:last-child {
@@ -116,18 +113,20 @@
   }
   
   .test-stats .stat-label {
+    display: table-cell;
     color: #666;
     font-weight: 500;
     text-align: right;
-    flex: 1;
+    padding-right: 8px;
+    width: 50%;
   }
   
   .test-stats .stat-value {
+    display: table-cell;
     color: var(--primary);
     font-weight: bold;
     text-align: center;
-    flex: 0 0 auto;
-    margin-left: 8px;
+    width: 50%;
   }
   
   .subtitle {
