@@ -1123,7 +1123,7 @@ Proszę wyjaśnij:
 5. Podaj praktyczny przykład kliniczny
 6. Wyjaśnij dlaczego każda z pozostałych odpowiedzi jest niepoprawna
 7. Wskaż najczęstsze błędy studentów przy tym pytaniu
-8. Podaj link do polskiego źródła medycznego (np. PZWL, Elsevier, Medycyna Praktyczna)
+8. Podaj link do polskiego źródła medycznego (np. PZWL, Elsevier, Medycyna Praktyczna) - podaj tylko URL bez dodatkowego tekstu
 
 Odpowiedz w formacie:
 **Tłumaczenie pytania:**
@@ -1161,7 +1161,7 @@ Odpowiedz w formacie:
 - [błąd 2]
 
 **Źródła:**
-- [link do polskiego źródła]`;
+- [URL do polskiego źródła medycznego - tylko link bez dodatkowego tekstu]`;
   }
   
   async showSaveChatGPTModal() {
