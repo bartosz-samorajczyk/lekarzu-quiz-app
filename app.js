@@ -513,9 +513,6 @@ class MedicalQuizApp {
     // Reset answer shown state
     this.isAnswerShown = false;
     
-    // Sprawdź czy pytanie ma odpowiedź ChatGPT i zaktualizuj przyciski
-    await this.checkAndUpdateChatGPTButtons(q.id);
-    
     // Update stats
     this.updateStats();
     
