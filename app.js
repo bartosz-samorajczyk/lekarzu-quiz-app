@@ -1545,8 +1545,6 @@ Odpowiedz w formacie:
           question_id: questionId,
           response: responseData.response,
           created_at: new Date().toISOString()
-        }, {
-          onConflict: 'user_id,question_id'
         });
       
       if (error) {
