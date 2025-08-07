@@ -1516,16 +1516,16 @@ Odpowiedz w formacie:
                 </div>
                 <div class="test-stats">
                   <div class="stat-row">
-                    <span class="stat-label">Próby:</span>
-                    <span class="stat-value">${test.attempts || 0}</span>
+                    <div class="stat-label">Próby:</div>
+                    <div class="stat-value">${test.attempts || 0}</div>
                   </div>
                   <div class="stat-row">
-                    <span class="stat-label">Dokładność:</span>
-                    <span class="stat-value">${test.accuracy || 0}%</span>
+                    <div class="stat-label">Dokładność:</div>
+                    <div class="stat-value">${test.accuracy || 0}%</div>
                   </div>
                   <div class="stat-row">
-                    <span class="stat-label">ChatGPT:</span>
-                    <span class="stat-value">${this.getTestChatGPTCoverage(test.id, testCounts)}%</span>
+                    <div class="stat-label">ChatGPT:</div>
+                    <div class="stat-value">${this.getTestChatGPTCoverage(test.id, testCounts)}%</div>
                   </div>
                 </div>
                 <button class="btn btn-primary test-select-btn" data-test="${test.id}">
