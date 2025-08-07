@@ -1576,7 +1576,7 @@ Odpowiedz w formacie:
   }
 
   async getAllTestChatGPTCoverage() {
-    // PRAWDZIWIE SENIORSKIE ROZWIĄZANIE: Użyj już załadowanej bazy pytań!
+    // PRAWDZIWIE SENIORSKIE ROZWIĄZANIE: Sprawdź tylko testy z próbami!
     if (this.supabaseConfig.enabled) {
       try {
         const controller = new AbortController();
@@ -1597,22 +1597,42 @@ Odpowiedz w formacie:
           const data = await response.json();
           console.log('📋 Wszystkie question_id z Supabase:', data.map(item => item.question_id));
           
-          // PRAWDZIWIE SENIORSKIE: Sprawdź w głównej bazie pytań (już załadowanej!)
+          // PRAWDZIWIE SENIORSKIE: Sprawdź tylko testy które mają próby (czyli były robione)
           const testCounts = {};
+          const tests = this.getAvailableTests();
           
-          for (const item of data) {
-            const questionId = item.question_id;
-            // Usuń prefix q_ jeśli istnieje
-            const cleanId = questionId.startsWith('q_') ? questionId.replace('q_', '') : questionId;
-            
-            // Znajdź pytanie w głównej bazie
-            const question = this.questions.find(q => q.id === cleanId);
-            if (question && question.test) {
-              const testId = question.test;
-              testCounts[testId] = (testCounts[testId] || 0) + 1;
-              console.log(`✅ Pytanie ${cleanId} → test ${testId}`);
-            } else {
-              console.log(`❌ Pytanie ${cleanId} nie znalezione w głównej bazie`);
+          // Filtruj tylko testy z próbami
+          const testsWithAttempts = tests.filter(test => {
+            const stats = this.getTestStats(test.id);
+            return stats.attempts > 0;
+          });
+          
+          console.log(`🎯 Sprawdzam tylko ${testsWithAttempts.length} testów z próbami z ${tests.length} dostępnych`);
+          
+          for (const test of testsWithAttempts) {
+            try {
+              await this.loadTestQuestions(test.id);
+              
+              // Sprawdź które pytania z Supabase są w tym teście
+              let count = 0;
+              for (const item of data) {
+                const questionId = item.question_id;
+                const cleanId = questionId.startsWith('q_') ? questionId.replace('q_', '') : questionId;
+                
+                const found = this.testQuestions.find(q => q.id === cleanId);
+                if (found) {
+                  count++;
+                  console.log(`✅ Pytanie ${cleanId} znalezione w teście ${test.id}`);
+                }
+              }
+              
+              if (count > 0) {
+                testCounts[test.id] = count;
+                console.log(`📊 Test ${test.id}: ${count} odpowiedzi ChatGPT`);
+              }
+              
+            } catch (error) {
+              console.log(`❌ Nie udało się załadować testu: ${test.id}`, error);
             }
           }
           
