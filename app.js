@@ -663,10 +663,11 @@ class MedicalQuizApp {
     }
     this.sessionStats.accuracy = Math.round((this.sessionStats.correct / this.sessionStats.total) * 100);
     
-    // Zapisz odpowiedź do Supabase
+    // TYMCZASOWO: Wyłącz zapis do Supabase
     if (this.currentTest) {
-      await this.saveUserAnswer(q.id, this.currentTest, selectedIndex, isCorrect);
-      await this.updateTestStats(this.currentTest, isCorrect);
+      console.log('🚫 Tymczasowo wyłączony zapis odpowiedzi do Supabase');
+      // await this.saveUserAnswer(q.id, this.currentTest, selectedIndex, isCorrect);
+      // await this.updateTestStats(this.currentTest, isCorrect);
     }
     
         this.updateStats();
@@ -748,9 +749,10 @@ class MedicalQuizApp {
     
     const q = questions[questionIndex];
     
-    // Zapisz do Supabase
+    // TYMCZASOWO: Wyłącz zapis do Supabase
     if (this.currentTest) {
-      await this.markQuestionAsStudied(q.id, this.currentTest);
+      console.log('🚫 Tymczasowo wyłączony zapis postępu nauki do Supabase');
+      // await this.markQuestionAsStudied(q.id, this.currentTest);
     }
     
     // Reset button state
@@ -1676,171 +1678,38 @@ Odpowiedz w formacie:
       { id: '2005-study', name: '2005 Study', year: '2005', questionCount: 200, date: '2005' }
     ];
     
-    // Dodaj statystyki dla każdego testu
-    const testsWithStats = [];
-    for (const test of testList) {
-      const testStats = await this.getTestStats(test.id);
-      testsWithStats.push({
-        ...test,
-        ...testStats
-      });
-    }
-    return testsWithStats;
+    // TYMCZASOWO: Wyłącz pobieranie statystyk Supabase
+    console.log('🚫 Tymczasowo wyłączone pobieranie statystyk dla testów');
+    return testList.map(test => ({
+      ...test,
+      attempts: 0,
+      accuracy: 0,
+      chatgptResponses: 0,
+      lastAttempt: null
+    }));
   }
 
   async getTestStats(testId) {
-    if (!this.user || !this.supabase) {
-      return {
-        attempts: 0,
-        accuracy: 0,
-        chatgptResponses: 0,
-        lastAttempt: null
-      };
-    }
-    
-    try {
-      // Pobierz statystyki z Supabase
-      const { data, error } = await this.supabase
-        .from('test_stats')
-        .select('*')
-        .eq('user_id', this.user.id)
-        .eq('test_id', testId)
-        .single();
-      
-      if (error) {
-        console.log(`⚠️ Błąd pobierania statystyk dla testu ${testId}:`, error.message);
-        // Fallback do domyślnych statystyk
-        return {
-          attempts: 0,
-          accuracy: 0,
-          chatgptResponses: 0,
-          lastAttempt: null
-        };
-      }
-      
-      if (data) {
-        const accuracy = data.total_attempts > 0 
-          ? Math.round((data.correct_answers / data.total_attempts) * 100) 
-          : 0;
-        
-        return {
-          attempts: data.total_attempts || 0,
-          accuracy: accuracy,
-          chatgptResponses: 0, // To będzie liczone osobno
-          lastAttempt: data.last_attempted
-        };
-      }
-      
-      // Domyślne statystyki
-      return {
-        attempts: 0,
-        accuracy: 0,
-        chatgptResponses: 0,
-        lastAttempt: null
-      };
-    } catch (error) {
-      console.log(`⚠️ Wyjątek przy pobieraniu statystyk dla testu ${testId}:`, error.message);
-      return {
-        attempts: 0,
-        accuracy: 0,
-        chatgptResponses: 0,
-        lastAttempt: null
-      };
-    }
+    // TYMCZASOWO: Wyłącz całkowicie statystyki Supabase
+    console.log(`🚫 Tymczasowo wyłączone statystyki dla testu ${testId}`);
+    return {
+      attempts: 0,
+      accuracy: 0,
+      chatgptResponses: 0,
+      lastAttempt: null
+    };
   }
 
   async getAllTestChatGPTCoverage() {
-    // PRAWDZIWIE SENIORSKIE ROZWIĄZANIE: Sprawdź tylko testy z próbami!
-    if (this.supabaseConfig.enabled) {
-      try {
-        const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 5000);
-        
-        const response = await fetch(`${this.supabaseConfig.url}/rest/v1/chatgpt_responses?select=question_id`, {
-          headers: {
-            'apikey': this.supabaseConfig.key,
-            'Authorization': `Bearer ${this.supabaseConfig.key}`,
-            'Content-Type': 'application/json'
-          },
-          signal: controller.signal
-        });
-        
-        clearTimeout(timeoutId);
-        
-        if (response.ok) {
-          const data = await response.json();
-          console.log('📋 Wszystkie question_id z Supabase:', data.map(item => item.question_id));
-          
-          // PRAWDZIWIE SENIORSKIE: Sprawdź tylko testy które mają próby (czyli były robione)
-          const testCounts = {};
-          const tests = await this.getAvailableTests();
-          
-          // Filtruj tylko testy z próbami
-          const testsWithAttempts = [];
-          for (const test of tests) {
-            const stats = await this.getTestStats(test.id);
-            if (stats.attempts > 0) {
-              testsWithAttempts.push(test);
-            }
-          }
-          
-          console.log(`🎯 Sprawdzam tylko ${testsWithAttempts.length} testów z próbami z ${tests.length} dostępnych`);
-          
-          for (const test of testsWithAttempts) {
-            try {
-              await this.loadTestQuestions(test.id);
-              
-              // Sprawdź które pytania z Supabase są w tym teście
-              let count = 0;
-              for (const item of data) {
-                const questionId = item.question_id;
-                const cleanId = questionId.startsWith('q_') ? questionId.replace('q_', '') : questionId;
-                
-                const found = this.testQuestions.find(q => q.id === cleanId);
-                if (found) {
-                  count++;
-                  console.log(`✅ Pytanie ${cleanId} znalezione w teście ${test.id}`);
-                }
-              }
-              
-              if (count > 0) {
-                testCounts[test.id] = count;
-                console.log(`📊 Test ${test.id}: ${count} odpowiedzi ChatGPT`);
-              }
-              
-            } catch (error) {
-              console.log(`❌ Nie udało się załadować testu: ${test.id}`, error);
-            }
-          }
-          
-          console.log('📊 Końcowe statystyki testów:', testCounts);
-          return testCounts;
-        }
-      } catch (error) {
-        console.log('❌ Błąd pobierania z Supabase:', error);
-      }
-    }
-    
-    // Fallback do localStorage
-    const tests = await this.getAvailableTests();
-    const testCounts = {};
-    for (const test of tests) {
-      const testStats = await this.getTestStats(test.id);
-      testCounts[test.id] = testStats.chatgptResponses || 0;
-    }
-    
-    return testCounts;
+    // TYMCZASOWO: Wyłącz całkowicie sprawdzanie pokrycia ChatGPT
+    console.log('🚫 Tymczasowo wyłączone sprawdzanie pokrycia ChatGPT');
+    return {};
   }
 
   async getTestChatGPTCoverage(testId, testCounts = {}) {
-    // Pobierz liczbę pytań w teście
-    const tests = await this.getAvailableTests();
-    const test = tests.find(t => t.id === testId);
-    if (!test) return 0;
-    
-    // Użyj podanych statystyk lub pobierz z localStorage
-    const chatgptCount = testCounts[testId] || 0;
-    return Math.round((chatgptCount / test.questionCount) * 100);
+    // TYMCZASOWO: Wyłącz całkowicie sprawdzanie pokrycia ChatGPT
+    console.log(`🚫 Tymczasowo wyłączone pokrycie ChatGPT dla testu ${testId}`);
+    return 0;
   }
 
   async startTest(testId) {
