@@ -1716,8 +1716,72 @@ Odpowiedz w formacie:
       });
       
       console.log(`✅ Załadowano statystyki dla ${summary.length} testów`);
+      
+      // Jeśli nie ma danych w test_summary, spróbuj wypełnić z test_stats
+      if (summary.length === 0) {
+        console.log('🔄 Brak danych w test_summary, próbuję wypełnić z test_stats...');
+        await this.populateTestSummaryFromStats();
+      }
     } catch (error) {
       console.log('❌ Błąd ładowania statystyk w tle:', error);
+    }
+  }
+
+  async populateTestSummaryFromStats() {
+    if (!this.supabase || !this.user) {
+      return;
+    }
+
+    try {
+      // Pobierz wszystkie statystyki testów użytkownika
+      const { data: testStats, error } = await this.supabase
+        .from('test_stats')
+        .select('*')
+        .eq('user_id', this.user.id);
+
+      if (error) {
+        console.log('❌ Błąd pobierania test_stats:', error);
+        return;
+      }
+
+      if (testStats.length === 0) {
+        console.log('ℹ️ Brak danych w test_stats');
+        return;
+      }
+
+      console.log(`📊 Znaleziono ${testStats.length} wpisów w test_stats`);
+
+      // Wypełnij test_summary
+      for (const stat of testStats) {
+        const accuracy = stat.total_attempts > 0 
+          ? Math.round((stat.correct_answers / stat.total_attempts) * 100) 
+          : 0;
+
+        const { error: insertError } = await this.supabase
+          .from('test_summary')
+          .upsert({
+            user_id: this.user.id,
+            test_id: stat.test_id,
+            total_attempts: stat.total_attempts,
+            correct_answers: stat.correct_answers,
+            accuracy_percentage: accuracy,
+            last_attempt: stat.last_attempted
+          });
+
+        if (insertError) {
+          console.log(`❌ Błąd wypełniania test_summary dla ${stat.test_id}:`, insertError);
+        } else {
+          console.log(`✅ Wypełniono test_summary dla ${stat.test_id}`);
+        }
+      }
+
+      // Odśwież statystyki
+      setTimeout(() => {
+        this.loadTestStatsInBackground();
+      }, 1000);
+
+    } catch (error) {
+      console.log('❌ Błąd wypełniania test_summary:', error);
     }
   }
 
