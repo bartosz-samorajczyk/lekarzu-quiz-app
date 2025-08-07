@@ -1287,6 +1287,7 @@ Odpowiedz w formacie:
   }
 
   showChatGPTResponse(responseData) {
+    console.log('=== SHOW CHATGPT RESPONSE START ===');
     // Znajdź lub utwórz sekcję na odpowiedź ChatGPT
     let gptSection = document.getElementById('chatgpt-response-section');
     if (!gptSection) {
@@ -1323,10 +1324,12 @@ Odpowiedz w formacie:
     showBtn.textContent = 'Pokaż odpowiedź ChatGPT';
     showBtn.style.cssText = 'margin-top: 10px; font-size: 14px; padding: 8px 16px;'; // Większy przycisk
     showBtn.addEventListener('click', () => {
+      console.log('=== SHOW BTN CLICK ===');
       gptSection.classList.remove('hidden');
       showBtn.remove();
     });
     gptSection.parentNode.insertBefore(showBtn, gptSection.nextSibling);
+    console.log('=== SHOW CHATGPT RESPONSE END ===');
     
     // Dodaj event listener do przycisku ukrywania
     const hideBtn = gptSection.querySelector('.hide-chatgpt-btn');
@@ -1573,8 +1576,9 @@ Odpowiedz w formacie:
   }
 
   async checkAndUpdateChatGPTButtons(questionId) {
+    console.log('=== CHECK AND UPDATE CHATGPT BUTTONS START ===');
+    console.log('🔍 Sprawdzam odpowiedź ChatGPT dla pytania:', questionId);
     try {
-      console.log('🔍 Sprawdzam odpowiedź ChatGPT dla pytania:', questionId);
       const responseData = await this.loadFromSupabase(questionId);
       console.log('📊 Odpowiedź ChatGPT:', responseData ? 'TAK' : 'NIE');
       
@@ -1604,6 +1608,7 @@ Odpowiedz w formacie:
     } catch (error) {
       console.error('❌ Błąd sprawdzania odpowiedzi ChatGPT:', error);
     }
+    console.log('=== CHECK AND UPDATE CHATGPT BUTTONS END ===');
   }
 
   async loadChatGPTResponse(questionId) {
