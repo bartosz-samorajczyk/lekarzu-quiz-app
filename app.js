@@ -442,7 +442,17 @@ class MedicalQuizApp {
   }
   
   selectAnswer(selectedIndex) {
-    const q = this.questions[this.currentQuestionIndex];
+    // Użyj pytań z testu jeśli jesteśmy w trybie nauki
+    const questions = this.currentMode === 'study' && this.testQuestions.length > 0 
+      ? this.testQuestions 
+      : this.questions;
+    
+    // Pobierz pytanie z losowej kolejności
+    const questionIndex = this.currentMode === 'study' && this.testQuestionOrder.length > 0
+      ? this.testQuestionOrder[this.currentIndex]
+      : this.currentIndex;
+    
+    const q = questions[questionIndex];
     const answers = q.answers;
     
     // Remove previous selections
@@ -486,7 +496,17 @@ class MedicalQuizApp {
   }
   
   showAnswer() {
-    const q = this.questions[this.currentQuestionIndex];
+    // Użyj pytań z testu jeśli jesteśmy w trybie nauki
+    const questions = this.currentMode === 'study' && this.testQuestions.length > 0 
+      ? this.testQuestions 
+      : this.questions;
+    
+    // Pobierz pytanie z losowej kolejności
+    const questionIndex = this.currentMode === 'study' && this.testQuestionOrder.length > 0
+      ? this.testQuestionOrder[this.currentIndex]
+      : this.currentIndex;
+    
+    const q = questions[questionIndex];
     this.isAnswerShown = true;
     
     // If user already selected an answer, just show the explanation
@@ -510,7 +530,17 @@ class MedicalQuizApp {
   }
   
   showAnswerExplanation() {
-    const q = this.questions[this.currentQuestionIndex];
+    // Użyj pytań z testu jeśli jesteśmy w trybie nauki
+    const questions = this.currentMode === 'study' && this.testQuestions.length > 0 
+      ? this.testQuestions 
+      : this.questions;
+    
+    // Pobierz pytanie z losowej kolejności
+    const questionIndex = this.currentMode === 'study' && this.testQuestionOrder.length > 0
+      ? this.testQuestionOrder[this.currentIndex]
+      : this.currentIndex;
+    
+    const q = questions[questionIndex];
     const answerSection = document.getElementById('answer-section');
     const answerContent = document.getElementById('answer-content');
     
@@ -529,7 +559,17 @@ class MedicalQuizApp {
   }
   
   markAsStudied() {
-    const q = this.questions[this.currentQuestionIndex];
+    // Użyj pytań z testu jeśli jesteśmy w trybie nauki
+    const questions = this.currentMode === 'study' && this.testQuestions.length > 0 
+      ? this.testQuestions 
+      : this.questions;
+    
+    // Pobierz pytanie z losowej kolejności
+    const questionIndex = this.currentMode === 'study' && this.testQuestionOrder.length > 0
+      ? this.testQuestionOrder[this.currentIndex]
+      : this.currentIndex;
+    
+    const q = questions[questionIndex];
     const progress = this.userProgress[q.id];
     
     progress.studied++;
@@ -642,7 +682,13 @@ class MedicalQuizApp {
   }
   
   goToRandomQuestion() {
-    this.currentQuestionIndex = Math.floor(Math.random() * this.questions.length);
+    if (this.currentMode === 'study' && this.testQuestions.length > 0) {
+      // W trybie testu - losowe pytanie z testu
+      this.currentIndex = Math.floor(Math.random() * this.testQuestions.length);
+    } else {
+      // Dla wszystkich pytań
+      this.currentIndex = Math.floor(Math.random() * this.questions.length);
+    }
     this.displayQuestion();
   }
   
