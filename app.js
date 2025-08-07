@@ -407,7 +407,8 @@ class MedicalQuizApp {
     // Zaktualizuj lastSeen
     this.userProgress[q.id].lastSeen = Date.now();
     this.userProgress[q.id].seen++;
-    this.saveProgress();
+    // TYMCZASOWO: Wyłącz zapis do localStorage
+    // this.saveProgress();
     
     // Display question
     console.log('Próbuję znaleźć element question-text...');
@@ -1750,10 +1751,18 @@ Odpowiedz w formacie:
           const questionId = item.question_id;
           const cleanId = questionId.startsWith('q_') ? questionId.replace('q_', '') : questionId;
           
-          // Sprawdź czy question_id pasuje do tego testu (bez ładowania pliku!)
-          // Używamy prostego sprawdzenia: czy question_id zawiera nazwę testu
-          if (cleanId.includes(test.id) || test.id.includes(cleanId)) {
-            count++;
+          // Sprawdź czy question_id pasuje do tego testu
+          // Musimy załadować pytania testu żeby sprawdzić mapping
+          try {
+            await this.loadTestQuestions(test.id);
+            
+            // Sprawdź czy question_id istnieje w pytaniach tego testu
+            const found = this.testQuestions.find(q => q.id === cleanId);
+            if (found) {
+              count++;
+            }
+          } catch (error) {
+            console.log(`❌ Nie udało się załadować testu: ${test.id}`, error);
           }
         }
         
