@@ -22,6 +22,13 @@ class MedicalQuizApp {
       startTime: Date.now()
     };
     
+    // Konfiguracja Supabase
+    this.supabaseConfig = {
+      url: 'https://YOUR_PROJECT_ID.supabase.co', // ZASTĄP swoim URL
+      key: 'YOUR_ANON_KEY', // ZASTĄP swoim kluczem
+      enabled: true
+    };
+
     // Tymczasowo wyłączamy chmurę - localStorage + eksport/import
     this.cloudConfig = {
       enabled: false,
@@ -79,7 +86,14 @@ class MedicalQuizApp {
     this.createUI();
     this.bindEvents();
     
-    // Chmura tymczasowo wyłączona - używamy tylko localStorage
+    // Inicjalizuj Supabase
+    this.initSupabase().then(success => {
+      if (success) {
+        console.log('✅ Supabase gotowe');
+      } else {
+        console.log('📱 Używamy localStorage (Supabase niedostępne)');
+      }
+    });
     
     // Wyświetl pierwsze pytanie
     this.displayQuestion();
@@ -296,23 +310,8 @@ class MedicalQuizApp {
     // Reset answer shown state
     this.isAnswerShown = false;
     
-    // Sprawdź czy jest zapisana odpowiedź ChatGPT
-    const cacheKey = `chatgpt_${q.id}`;
-    const cachedResponse = localStorage.getItem(cacheKey);
-    if (cachedResponse) {
-      try {
-        const responseData = JSON.parse(cachedResponse);
-        this.showChatGPTResponse(responseData);
-      } catch (e) {
-        console.error('Błąd parsowania odpowiedzi ChatGPT:', e);
-      }
-    } else {
-      // Ukryj sekcję ChatGPT jeśli nie ma odpowiedzi
-      const gptSection = document.getElementById('chatgpt-response-section');
-      if (gptSection) {
-        gptSection.classList.add('hidden');
-      }
-    }
+    // Sprawdź czy jest zapisana odpowiedź ChatGPT (z Supabase lub localStorage)
+    this.loadChatGPTResponse(q.id);
     
     // Update stats
     this.updateStats();
@@ -734,8 +733,8 @@ class MedicalQuizApp {
       this.askChatGPT();
     });
     
-    document.getElementById('save-gpt-btn').addEventListener('click', () => {
-      this.showSaveChatGPTModal();
+    document.getElementById('save-gpt-btn').addEventListener('click', async () => {
+      await this.showSaveChatGPTModal();
     });
   }
 
@@ -860,12 +859,12 @@ Odpowiedz w formacie:
 - [link do polskiego źródła]`;
   }
   
-  showSaveChatGPTModal() {
+  async showSaveChatGPTModal() {
     const q = this.questions[this.currentQuestionIndex];
     const cacheKey = `chatgpt_${q.id}`;
     
-    // Sprawdź czy już ma zapisaną odpowiedź
-    const existingResponse = localStorage.getItem(cacheKey);
+    // Sprawdź czy już ma zapisaną odpowiedź (z Supabase lub localStorage)
+    const existingResponse = await this.loadFromSupabase(q.id) || localStorage.getItem(cacheKey);
     
     const modal = document.createElement('div');
     modal.style.cssText = `
@@ -895,8 +894,8 @@ Odpowiedz w formacie:
     modalContent.innerHTML = `
       <h3>💾 Zapisz odpowiedź ChatGPT</h3>
       <p><strong>Pytanie:</strong> ${q.question.substring(0, 100)}...</p>
-      ${existingResponse ? '<p style="color: #28a745;"><strong>✅ Masz już zapisaną odpowiedź dla tego pytania</strong></p>' : ''}
-      <p style="color: #666; font-size: 14px; margin: 10px 0;">💾 <strong>Zapis lokalny:</strong> Odpowiedzi są zapisywane w przeglądarce (bezpieczne i szybkie)</p>
+      ${existingResponse ? '<p style="color: #28a745;"><strong>✅ Znaleziono zapisaną odpowiedź dla tego pytania</strong></p>' : ''}
+      <p style="color: #666; font-size: 14px; margin: 10px 0;">☁️ <strong>Zapis w chmurze:</strong> Odpowiedzi są zapisywane w Supabase i dostępne dla wszystkich użytkowników</p>
       <p>Wklej tutaj pełną odpowiedź z ChatGPT:</p>
       <textarea id="gpt-response-text" style="width: 100%; height: 200px; padding: 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;" placeholder="Wklej tutaj odpowiedź z ChatGPT..."></textarea>
       <div style="margin-top: 15px; text-align: right;">
@@ -928,27 +927,24 @@ Odpowiedz w formacie:
           questionId: q.id
         };
         
-        // Zapisz lokalnie (zawsze)
-        localStorage.setItem(cacheKey, JSON.stringify(responseData));
-        
         // Pokaż informację o zapisywaniu
         const saveBtn = document.getElementById('save-response');
         const originalText = saveBtn.textContent;
         saveBtn.textContent = '💾 Zapisywanie...';
         saveBtn.disabled = true;
         
-        // Spróbuj zapisać w chmurze
-        const cloudSaved = await this.saveToCloud(q.id, responseData);
+        // Zapisz w Supabase (z fallback do localStorage)
+        const saved = await this.saveToSupabase(q.id, responseData);
         
         // Przywróć przycisk
         saveBtn.textContent = originalText;
         saveBtn.disabled = false;
         
         // Pokaż odpowiednie potwierdzenie
-        if (cloudSaved) {
-          alert('✅ Odpowiedź zapisana lokalnie!');
+        if (saved) {
+          alert('✅ Odpowiedź zapisana w chmurze! Dostępna dla wszystkich użytkowników.');
         } else {
-          alert('✅ Odpowiedź zapisana lokalnie!');
+          alert('✅ Odpowiedź zapisana lokalnie (błąd chmury)');
         }
         
         // Zamknij modal
@@ -1113,50 +1109,133 @@ Odpowiedz w formacie:
       .replace(/$/, '</p>');
   }
 
-  // ===== MOCKAPI.IO CLOUD STORAGE =====
+  // ===== SUPABASE CLOUD STORAGE =====
   
-  async initCloudStorage() {
+  async initSupabase() {
+    if (!this.supabaseConfig.enabled) {
+      console.log('📱 Supabase wyłączone - używamy localStorage');
+      return false;
+    }
+    
     try {
-      // MockAPI nie wymaga tworzenia - endpoint istnieje automatycznie
-      console.log('✅ Połączono z chmurową bazą danych MockAPI');
-      return true;
+      // Test połączenia z Supabase
+      const response = await fetch(`${this.supabaseConfig.url}/rest/v1/chatgpt_responses?select=count`, {
+        headers: {
+          'apikey': this.supabaseConfig.key,
+          'Authorization': `Bearer ${this.supabaseConfig.key}`
+        }
+      });
+      
+      if (response.ok) {
+        console.log('✅ Połączono z Supabase');
+        return true;
+      } else {
+        console.warn('❌ Błąd połączenia z Supabase:', response.status);
+        return false;
+      }
     } catch (error) {
-      console.warn('❌ Błąd połączenia z bazą chmurową:', error);
+      console.warn('❌ Błąd połączenia z Supabase:', error);
+      return false;
     }
-    return false;
   }
   
-  async saveToCloud(questionId, responseData) {
-    // Chmura tymczasowo wyłączona - zapisujemy tylko lokalnie
-    if (!this.cloudConfig.enabled) {
-      console.log('📱 Zapisano lokalnie (chmura wyłączona):', questionId);
-      return true; // Symulujemy sukces
+  async saveToSupabase(questionId, responseData) {
+    if (!this.supabaseConfig.enabled) {
+      // Fallback do localStorage
+      localStorage.setItem(`chatgpt_${questionId}`, JSON.stringify(responseData));
+      console.log('📱 Zapisano lokalnie (Supabase wyłączone):', questionId);
+      return true;
     }
     
-    // Tutaj będzie prawdziwa implementacja chmury w przyszłości
-    return false;
+    try {
+      const response = await fetch(`${this.supabaseConfig.url}/rest/v1/chatgpt_responses`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'apikey': this.supabaseConfig.key,
+          'Authorization': `Bearer ${this.supabaseConfig.key}`
+        },
+        body: JSON.stringify({
+          question_id: questionId,
+          response: responseData.response,
+          created_at: new Date().toISOString()
+        })
+      });
+      
+      if (response.ok) {
+        console.log('☁️ Zapisano w Supabase:', questionId);
+        return true;
+      } else {
+        console.warn('❌ Błąd zapisu w Supabase:', response.status);
+        // Fallback do localStorage
+        localStorage.setItem(`chatgpt_${questionId}`, JSON.stringify(responseData));
+        return false;
+      }
+    } catch (error) {
+      console.warn('❌ Błąd zapisu w Supabase:', error);
+      // Fallback do localStorage
+      localStorage.setItem(`chatgpt_${questionId}`, JSON.stringify(responseData));
+      return false;
+    }
   }
   
-  async loadFromCloud() {
-    // Chmura tymczasowo wyłączona
-    if (!this.cloudConfig.enabled) {
-      console.log('📱 Ładowanie z localStorage (chmura wyłączona)');
-      return null;
+  async loadFromSupabase(questionId) {
+    if (!this.supabaseConfig.enabled) {
+      // Fallback do localStorage
+      const cached = localStorage.getItem(`chatgpt_${questionId}`);
+      return cached ? JSON.parse(cached) : null;
     }
     
-    // Tutaj będzie prawdziwa implementacja chmury w przyszłości
-    return null;
+    try {
+      const response = await fetch(`${this.supabaseConfig.url}/rest/v1/chatgpt_responses?question_id=eq.${encodeURIComponent(questionId)}&order=created_at.desc&limit=1`, {
+        headers: {
+          'apikey': this.supabaseConfig.key,
+          'Authorization': `Bearer ${this.supabaseConfig.key}`
+        }
+      });
+      
+      if (response.ok) {
+        const data = await response.json();
+        if (data && data.length > 0) {
+          console.log('☁️ Załadowano z Supabase:', questionId);
+          return {
+            question: data[0].question_id,
+            response: data[0].response,
+            timestamp: new Date(data[0].created_at).getTime()
+          };
+        }
+      } else {
+        console.warn('❌ Błąd ładowania z Supabase:', response.status);
+      }
+    } catch (error) {
+      console.warn('❌ Błąd ładowania z Supabase:', error);
+    }
+    
+    // Fallback do localStorage
+    const cached = localStorage.getItem(`chatgpt_${questionId}`);
+    return cached ? JSON.parse(cached) : null;
   }
-  
-  async syncWithCloud() {
-    // Chmura tymczasowo wyłączona
-    if (!this.cloudConfig.enabled) {
-      console.log('📱 Synchronizacja wyłączona - używamy tylko localStorage');
-      return true; // Symulujemy sukces
+
+  async loadChatGPTResponse(questionId) {
+    try {
+      const responseData = await this.loadFromSupabase(questionId);
+      if (responseData) {
+        this.showChatGPTResponse(responseData);
+      } else {
+        // Ukryj sekcję ChatGPT jeśli nie ma odpowiedzi
+        const gptSection = document.getElementById('chatgpt-response-section');
+        if (gptSection) {
+          gptSection.classList.add('hidden');
+        }
+      }
+    } catch (error) {
+      console.error('Błąd ładowania odpowiedzi ChatGPT:', error);
+      // Ukryj sekcję ChatGPT w przypadku błędu
+      const gptSection = document.getElementById('chatgpt-response-section');
+      if (gptSection) {
+        gptSection.classList.add('hidden');
+      }
     }
-    
-    // Tutaj będzie prawdziwa implementacja chmury w przyszłości
-    return false;
   }
 
 }
