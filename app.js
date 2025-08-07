@@ -2021,9 +2021,9 @@ Odpowiedz w formacie:
             </button>
             
             <div class="login-info">
-              <p>🔒 Twoje dane są bezpieczne</p>
-              <p>☁️ Synchronizacja w chmurze</p>
-              <p>📱 Dostęp z każdego urządzenia</p>
+              <p>Twoje dane są bezpieczne</p>
+              <p>Synchronizacja w chmurze</p>
+              <p>Dostęp z każdego urządzenia</p>
             </div>
           </div>
         </div>
