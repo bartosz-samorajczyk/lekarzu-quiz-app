@@ -142,7 +142,7 @@ class MedicalQuizApp {
             <div class="header-stats">
               <div class="stat-item">
                 <span class="stat-label">Odpowiedzi</span>
-                <span class="stat-value" id="progress-stat">0/${this.questions.length}</span>
+                <span class="stat-value" id="progress-stat">0/0</span>
               </div>
               <div class="stat-item">
                 <span class="stat-label">Dokładność</span>
@@ -931,6 +931,15 @@ class MedicalQuizApp {
       sessionStat.textContent = `${this.sessionStats.accuracy}%`;
     }
     
+    // Progress stat (odpowiedzi w sesji / liczba pytań w teście)
+    const progressStat = document.getElementById('progress-stat');
+    if (progressStat) {
+      const totalQuestions = this.currentMode === 'study' && this.testQuestions.length > 0 
+        ? this.testQuestions.length 
+        : this.questions.length;
+      progressStat.textContent = `${this.sessionStats.total}/${totalQuestions}`;
+    }
+    
     // Update header text
     this.updateHeaderText();
   }
@@ -1556,6 +1565,12 @@ Odpowiedz w formacie:
   async showTestSelection() {
     console.log('Wyświetlam wybór testów...');
     
+    // Zatrzymaj timer statystyk jeśli jest aktywny
+    if (this.statsTimer) {
+      clearInterval(this.statsTimer);
+      this.statsTimer = null;
+    }
+    
     const app = document.getElementById('app');
     if (!app) return;
     
@@ -1895,6 +1910,11 @@ Odpowiedz w formacie:
     
     // Update header text
     this.updateHeaderText();
+    
+    // Uruchom timer dla statystyk (aktualizuj co sekundę)
+    this.statsTimer = setInterval(() => {
+      this.updateStats();
+    }, 1000);
   }
 
   async loadTestQuestions(testId) {
@@ -1998,6 +2018,11 @@ Odpowiedz w formacie:
   handleMenuAction(action) {
     switch (action) {
       case 'back-to-tests':
+        // Zatrzymaj timer statystyk jeśli jest aktywny
+        if (this.statsTimer) {
+          clearInterval(this.statsTimer);
+          this.statsTimer = null;
+        }
         this.showTestSelection();
         break;
       case 'settings':
