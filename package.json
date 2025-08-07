@@ -5,11 +5,7 @@
   "main": "app.js",
   "scripts": {
     "start": "python3 -m http.server 8001",
-    "translate": "node translate-questions.js",
-    "translate-batch": "node translate-questions.js --batch-size=25",
-    "translate-free": "node translate-free.js",
-    "generate-prompts": "node generate-prompts.js",
-    "merge-translations": "node merge-translations.js"
+    "dev": "python3 -m http.server 8001"
   },
   "keywords": ["medical", "quiz", "lek", "ldek"],
   "author": "Gosia",

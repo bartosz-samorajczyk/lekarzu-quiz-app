@@ -1,6 +1,6 @@
-# Lekarzu Quiz App
+# 🏥 Lekarzu Quiz App
 
-Aplikacja do nauki do egzaminu LEK/LDEK dla Gosi.
+**Profesjonalna aplikacja do nauki do egzaminu LEK/LDEK**
 
 ## 🚀 Szybki start
 
@@ -12,118 +12,79 @@ npm start
 http://localhost:8001
 ```
 
-## 📝 Tłumaczenie pytań
-
-### 1. Ustaw klucz API OpenAI
-
-```bash
-export OPENAI_API_KEY="twój-klucz-api"
-```
-
-### 2. Uruchom tłumaczenie
-
-```bash
-# Tłumacz wszystkie pytania (partie po 50)
-npm run translate
-
-# Lub tłumacz mniejszymi partiami (25 pytań)
-npm run translate-batch
-```
-
-### 3. Jak to działa
-
-- **Partie**: Pytania są tłumaczone w partiach po 50 (lub 25) sztuk
-- **Cache**: Tłumaczenia są zapisywane w `data/translations.json`
-- **Pauzy**: 5 sekund między partiami (żeby nie przekroczyć limitów API)
-- **Retry**: Automatyczne ponowne próby przy błędach
-- **Progress**: Pokazuje postęp tłumaczenia
-
-### 4. Format tłumaczeń
-
-```json
-{
-  "0": {
-    "question_pl": "36-letni mężczyzna tymczasowo zdiagnozowany z gruźlicą nerkową...",
-    "answers_pl": [
-      "A. Zaszczepienie zwierząt laboratoryjnych",
-      "B. Serologiczna identyfikacja czynnika sprawczego",
-      "C. Badanie toksyczności",
-      "D. Typowanie fagowe uzyskanej hodowli",
-      "E. Test skórny alergiczny"
-    ],
-    "answers_lat": [
-      "A. Inoculatio animalium laboratoriorum",
-      "B. Identificatio serologica agentis causalis",
-      "C. Testatio toxigenicitatis",
-      "D. Typing phage culturae obtentae",
-      "E. Test cutaneus allergiae"
-    ]
-  }
-}
-```
-
 ## 🎯 Funkcje aplikacji
 
-- ✅ **Losowe pytanie startowe** - za każdym razem inne pytanie
-- ✅ **Tłumaczenia automatyczne** - polskie + łacińskie
-- ✅ **ChatGPT integration** - bez API key (copy/paste)
-- ✅ **Progress tracking** - localStorage
-- ✅ **Priority system** - ważne pytania
-- ✅ **Responsive design** - mobile + desktop
+### ✅ **Główne funkcje:**
+- **4789 pytań** z 28 testów (2005-2024)
+- **Angielski first** - pytania po angielsku (jak na egzaminie)
+- **Polskie tłumaczenia** - na żądanie z ChatGPT
+- **Wybór testów** - nowe testy pierwsze
+- **Losowa kolejność** - pytania w teście mieszane
+- **Progress tracking** - statystyki sesji i historii
+
+### ✅ **ChatGPT Integration:**
+- **Bez API key** - copy/paste z ChatGPT Plus
+- **Cloud storage** - odpowiedzi w Supabase
+- **Cache system** - szybkie ładowanie
+- **Wspólna baza** - dla wszystkich użytkowników
+
+### ✅ **User Experience:**
+- **Google OAuth** - bezpieczne logowanie
+- **Apple-style design** - minimalistyczny, nowoczesny
+- **Responsive** - mobile + desktop
+- **PWA ready** - instalacja na urządzeniach
+- **Performance optimized** - lazy loading
 
 ## 📊 Statystyki
 
-- **Pytania**: ~3000-5000
-- **Testy**: 28 (2006-2024)
-- **Tłumaczenia**: Automatyczne przez ChatGPT
-- **Cache**: localStorage + pliki JSON
+- **Pytania**: 4789
+- **Testy**: 28 (2005-2024)
+- **Użytkownicy**: Cloud authentication
+- **Storage**: Supabase (PostgreSQL)
+- **Deployment**: Vercel
 
 ## 🔧 Technologie
 
 - **Frontend**: Vanilla JavaScript ES6+
-- **Styling**: CSS3
-- **Data**: JSON
-- **Translation**: OpenAI GPT-4
-- **Server**: Python HTTP Server
+- **Backend**: Supabase (PostgreSQL, Auth, RLS)
+- **Styling**: CSS3 (Apple-style)
+- **Deployment**: Vercel + GitHub
+- **Authentication**: Google OAuth
 
-## 📁 Struktura
+## 📁 Struktura projektu
 
 ```
 /lekarzu-quiz-app
-├── app.js              # Główna logika
-├── index.html          # Entry point
-├── styles.css          # Style
-├── translate-questions.js  # Skrypt tłumaczeń
+├── app.js                    # Główna logika aplikacji
+├── index.html               # Entry point
+├── styles.css               # Style (Apple-style)
+├── manifest.json            # PWA config
+├── supabase-tables.sql      # Schemat bazy danych
+├── test-summary-setup.sql   # Setup tabeli cache
 ├── data/
-│   ├── questions-db.js     # Baza pytań
-│   ├── translations.json   # Tłumaczenia (generowane)
-│   └── tests/              # Pliki testów
-└── package.json
+│   ├── questions-db.js      # Baza pytań (5.2MB)
+│   ├── questions-analyzed.json # Metadane
+│   └── tests/               # 28 plików testów
+└── assets/
+    ├── lekarzu-quiz-app-logo.png
+    ├── favicon-32x32.png
+    ├── apple-touch-icon.png
+    └── android-chrome-192x192.png
 ```
 
-## 🎮 Workflow nauki
+## 🚀 Deployment
 
-1. **Widzi pytanie** (po angielsku)
-2. **Widzi opcje** (A, B, C, D, E)
-3. **Kliknie opcję** → zielone/czerwone
-4. **"Przetłumacz odpowiedzi"** → polskie + łacińskie
-5. **"Zapytaj ChatGPT"** → pełne wyjaśnienie
-6. **"Nauczyłam się"** → następne pytanie
+Aplikacja jest wdrożona na **Vercel** i dostępna pod adresem:
+**https://lekarzu-quiz-app.vercel.app**
 
-## 💡 Tips
+## 👥 Dla kogo?
 
-- **Tłumaczenia**: Uruchom `npm run translate` raz, potem będą dostępne offline
-- **ChatGPT**: Użyj copy/paste - nie potrzebujesz API key
-- **Progress**: Automatycznie zapisuje się w przeglądarce
-- **Mobile**: Responsive design, ale głównie dla desktop
+**Gosia** - studentka medycyny przygotowująca się do egzaminu LEK/LDEK
 
-## 🚫 Ograniczenia
+## 📝 Licencja
 
-- Tłumaczenia wymagają OpenAI API key
-- ChatGPT integration przez copy/paste (nie iframe)
-- Brak backend - wszystko w localStorage
-- Tylko pytania angielskie (jak na egzaminie)
+MIT License - projekt edukacyjny
 
-## 🎯 Cel
+---
 
-Pomóc Gosi zdać egzamin LEK/LDEK! 🏥📚 
+**🎯 Cel: Zdać egzamin LEK/LDEK!** 

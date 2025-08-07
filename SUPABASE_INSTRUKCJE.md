@@ -1,81 +1,70 @@
 # 🚀 Instrukcja konfiguracji Supabase
 
-## **KROK 1: Skonfiguruj tabelę w Supabase**
+## **KROK 1: Utwórz tabele w Supabase**
 
 1. **Zaloguj się** na https://supabase.com
 2. **Wybierz projekt:** `lekarzu-quiz-app`
-3. **Idź do:** "Table Editor" (lewy panel)
-4. **Kliknij:** "New table"
-5. **Wypełnij:**
-   - Name: `chatgpt_responses`
-   - **ZAZNACZ:** "Enable Row Level Security (RLS)"
-6. **Dodaj kolumny:**
-   ```
-   id: uuid (Primary Key, auto-generate)
-   question_id: text (not null)
-   response: text (not null)
-   created_at: timestamp (default: now())
-   updated_at: timestamp (default: now())
-   ```
-7. **Kliknij:** "Save"
+3. **Idź do:** "SQL Editor" (lewy panel)
+4. **Kliknij:** "New query"
+5. **Wklej kod z pliku `supabase-tables.sql`**
+6. **Kliknij:** "Run"
+
+**To utworzy wszystkie potrzebne tabele:**
+- `user_answers` - odpowiedzi użytkowników
+- `study_progress` - postęp nauki
+- `test_stats` - statystyki testów
+- `test_summary` - cache statystyk
+- `chatgpt_responses` - odpowiedzi ChatGPT
 
 ---
 
-## **KROK 2: Pobierz klucze API**
+## **KROK 2: Dodaj dane testowe (opcjonalnie)**
 
-1. **W Supabase idź do:** "Settings" → "API"
-2. **Skopiuj:**
-   - **Project URL** (wygląda jak: `https://xxx.supabase.co`)
-   - **anon public key** (wygląda jak: `eyJ...`)
+1. **W SQL Editor wklej kod z `test-summary-setup.sql`**
+2. **Zastąp `YOUR_USER_ID` swoim user_id**
+3. **Kliknij:** "Run"
+
+**To doda przykładowe statystyki dla testów.**
 
 ---
 
-## **KROK 3: Zaktualizuj kod aplikacji**
+## **KROK 3: Sprawdź konfigurację**
 
-**W pliku `app.js` znajdź linię 25-30 i zastąp:**
+**W pliku `app.js` sprawdź czy masz:**
 
 ```javascript
 // Konfiguracja Supabase
 this.supabaseConfig = {
-  url: 'https://YOUR_PROJECT_ID.supabase.co', // ZASTĄP swoim URL
-  key: 'YOUR_ANON_KEY', // ZASTĄP swoim kluczem
+  url: 'https://jxjapiimjkoubdbsfeid.supabase.co',
+  key: 'twój-klucz-here',
   enabled: true
 };
 ```
 
-**Twoje rzeczywiste wartości:**
-- URL: `https://lekarzu-quiz-app.supabase.co` (lub podobny)
-- Key: `eyJ...` (twój anon key z Supabase)
+**Klucze znajdziesz w:** Settings → API
 
 ---
 
-## **KROK 4: Wgraj zmiany na GitHub**
-
-```bash
-git add .
-git commit -m "Dodano integrację z Supabase"
-git push
-```
-
----
-
-## **KROK 5: Sprawdź działanie**
+## **KROK 4: Sprawdź działanie**
 
 1. **Otwórz aplikację** na Vercel
-2. **Kliknij:** "💾 Zapisz odpowiedź ChatGPT"
-3. **Wklej odpowiedź** z ChatGPT
-4. **Kliknij:** "💾 Zapisz"
-5. **Powinieneś zobaczyć:** "✅ Odpowiedź zapisana w chmurze! Dostępna dla wszystkich użytkowników."
+2. **Zaloguj się** przez Google
+3. **Wybierz test** i odpowiedz na pytanie
+4. **Sprawdź czy statystyki się aktualizują**
 
 ---
 
 ## **✅ GOTOWE!**
 
-Teraz wszystkie odpowiedzi ChatGPT będą zapisywane w Supabase i dostępne dla wszystkich użytkowników aplikacji!
+**Teraz aplikacja ma:**
+- ☁️ **Cloud storage** - wszystkie dane w Supabase
+- 🔐 **Authentication** - Google OAuth
+- 📊 **Progress tracking** - statystyki i postęp
+- 🤖 **ChatGPT cache** - wspólna baza odpowiedzi
+- ⚡ **Performance** - lazy loading i cache
 
 **Korzyści:**
-- ☁️ Wspólna baza dla wszystkich użytkowników
-- 💾 Automatyczny fallback do localStorage
-- 🔒 Bezpieczne (anon key)
 - 🆓 Darmowe (do 500MB)
+- 🔒 Bezpieczne (RLS)
 - ⚡ Szybkie
+- 📱 Multi-device
