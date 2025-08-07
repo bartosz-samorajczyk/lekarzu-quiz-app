@@ -1594,15 +1594,15 @@ Odpowiedz w formacie:
     this.updateHeaderText();
   }
 
-  async renderTests(tests, testCounts) {
+    async renderTests(tests, testCounts) {
     const testGrid = document.getElementById('test-grid');
     if (!testGrid) return;
-    
+
     let testHTML = '';
     for (const test of tests) {
-      // TYMCZASOWO: Wyłącz statystyki Supabase
-      const chatgptCoverage = 0; // await this.getTestChatGPTCoverage(test.id, testCounts);
-      
+      // Pobierz prawdziwe pokrycie ChatGPT
+      const chatgptCoverage = await this.getTestChatGPTCoverage(test.id, testCounts);
+
       testHTML += `
         <div class="test-card" data-test="${test.id}">
           <div class="test-header">
@@ -1633,9 +1633,9 @@ Odpowiedz w formacie:
         </div>
       `;
     }
-    
+
     testGrid.innerHTML = testHTML;
-    
+
     // Dodaj event listeners do przycisków testów
     document.querySelectorAll('.test-select-btn').forEach(btn => {
       btn.addEventListener('click', (e) => {
@@ -1701,15 +1701,94 @@ Odpowiedz w formacie:
   }
 
   async getAllTestChatGPTCoverage() {
-    // TYMCZASOWO: Wyłącz całkowicie sprawdzanie pokrycia ChatGPT
-    console.log('🚫 Tymczasowo wyłączone sprawdzanie pokrycia ChatGPT');
-    return {};
+    console.log('🎯 Sprawdzam pokrycie ChatGPT dla wszystkich testów...');
+    
+    if (!this.supabaseConfig.enabled) {
+      console.log('❌ Supabase wyłączone');
+      return {};
+    }
+    
+    try {
+      // 1. Pobierz wszystkie question_id z chatgpt_responses (JEDNO zapytanie)
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 5000);
+      
+      const response = await fetch(`${this.supabaseConfig.url}/rest/v1/chatgpt_responses?select=question_id`, {
+        headers: {
+          'apikey': this.supabaseConfig.key,
+          'Authorization': `Bearer ${this.supabaseConfig.key}`,
+          'Content-Type': 'application/json'
+        },
+        signal: controller.signal
+      });
+      
+      clearTimeout(timeoutId);
+      
+      if (!response.ok) {
+        console.log('❌ Błąd pobierania z Supabase:', response.status);
+        return {};
+      }
+      
+      const data = await response.json();
+      console.log(`📋 Znaleziono ${data.length} odpowiedzi ChatGPT w bazie`);
+      
+      if (data.length === 0) {
+        console.log('📊 Brak odpowiedzi ChatGPT - wszystkie testy mają 0%');
+        return {};
+      }
+      
+      // 2. Pobierz wszystkie testy
+      const tests = await this.getAvailableTests();
+      const testCounts = {};
+      
+      // 3. Sprawdź tylko testy które mają wpisy w bazie
+      for (const test of tests) {
+        try {
+          // Załaduj pytania testu
+          await this.loadTestQuestions(test.id);
+          
+          // Sprawdź które pytania z Supabase są w tym teście
+          let count = 0;
+          for (const item of data) {
+            const questionId = item.question_id;
+            const cleanId = questionId.startsWith('q_') ? questionId.replace('q_', '') : questionId;
+            
+            const found = this.testQuestions.find(q => q.id === cleanId);
+            if (found) {
+              count++;
+            }
+          }
+          
+          // Zapisz tylko jeśli są jakieś wpisy
+          if (count > 0) {
+            testCounts[test.id] = count;
+            console.log(`📊 Test ${test.id}: ${count} odpowiedzi ChatGPT`);
+          }
+          // Jeśli count = 0, nie dodajemy do testCounts (domyślnie 0)
+          
+        } catch (error) {
+          console.log(`❌ Nie udało się załadować testu: ${test.id}`, error);
+        }
+      }
+      
+      console.log('📊 Końcowe statystyki testów:', testCounts);
+      return testCounts;
+      
+    } catch (error) {
+      console.log('❌ Błąd pobierania z Supabase:', error);
+      return {};
+    }
   }
 
   async getTestChatGPTCoverage(testId, testCounts = {}) {
-    // TYMCZASOWO: Wyłącz całkowicie sprawdzanie pokrycia ChatGPT
-    console.log(`🚫 Tymczasowo wyłączone pokrycie ChatGPT dla testu ${testId}`);
-    return 0;
+    // Pobierz liczbę pytań w teście
+    const tests = await this.getAvailableTests();
+    const test = tests.find(t => t.id === testId);
+    if (!test) return 0;
+    
+    // Użyj podanych statystyk (z getAllTestChatGPTCoverage)
+    const chatgptCount = testCounts[testId] || 0;
+    return Math.round((chatgptCount / test.questionCount) * 100);
   }
 
   async startTest(testId) {
