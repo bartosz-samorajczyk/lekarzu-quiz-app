@@ -1590,6 +1590,7 @@ Odpowiedz w formacie:
     
     // Update header text
     this.updateHeaderText();
+  }
 
   async renderTests(tests, testCounts) {
     const testGrid = document.getElementById('test-grid');
