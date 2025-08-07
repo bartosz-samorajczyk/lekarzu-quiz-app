@@ -217,9 +217,8 @@
     position: relative;
     background: var(--light);
     display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
   }
   
   /* Header */
@@ -686,6 +685,26 @@
     .header-text .stat-value {
       font-size: 16px;
     }
+    
+    /* Login page mobile */
+    .login-content h1 {
+      font-size: 24px;
+      margin-bottom: var(--spacing-sm);
+    }
+    
+    .login-content p {
+      font-size: 14px;
+      margin-bottom: var(--spacing-lg);
+    }
+    
+    .login-btn {
+      padding: var(--spacing-md);
+      font-size: 14px;
+    }
+    
+    .login-card {
+      padding: var(--spacing-md);
+    }
   }
   
   /* Animations */
@@ -698,28 +717,24 @@
   .login-card {
     background: transparent;
     border-radius: var(--radius-xl);
-    padding: var(--spacing-xl);
+    padding: var(--spacing-lg);
     max-width: 500px;
     width: 90%;
     text-align: center;
     animation: fadeIn 0.5s ease-out;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
   }
   
   .login-content h1 {
     color: var(--text-primary);
-    font-size: 32px;
+    font-size: 28px;
     font-weight: 700;
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
   }
   
   .login-content p {
     color: var(--text-secondary);
-    font-size: 18px;
-    margin-bottom: var(--spacing-2xl);
+    font-size: 16px;
+    margin-bottom: var(--spacing-xl);
     line-height: 1.6;
   }
   
@@ -729,8 +744,8 @@
     justify-content: center;
     gap: var(--spacing-md);
     width: 100%;
-    padding: var(--spacing-xl);
-    font-size: 18px;
+    padding: var(--spacing-lg);
+    font-size: 16px;
     font-weight: 600;
   }
   

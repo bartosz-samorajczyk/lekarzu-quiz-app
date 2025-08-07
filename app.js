@@ -2021,9 +2021,7 @@ Odpowiedz w formacie:
             </button>
           </div>
         </div>
-        <footer style="text-align: center; padding: var(--spacing-md); color: var(--text-secondary); font-size: 14px; background: var(--light-secondary); border-radius: var(--radius-lg) var(--radius-lg) 0 0; box-shadow: var(--shadow-sm);">
-          © <span id="current-year"></span> Samorajczyk.com
-        </footer>
+
       </div>
     `;
     
@@ -2033,8 +2031,7 @@ Odpowiedz w formacie:
       loginBtn.addEventListener('click', () => this.signInWithGoogle());
     }
     
-    // Update copyright year
-    document.getElementById('current-year').textContent = new Date().getFullYear();
+
   }
 
 }
