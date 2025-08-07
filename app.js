@@ -145,7 +145,7 @@ class MedicalQuizApp {
                 <span class="stat-value" id="progress-stat">0/0</span>
               </div>
               <div class="stat-item">
-                <span class="stat-label">Średni wynik</span>
+                <span class="stat-label">Śr. wynik</span>
                 <span class="stat-value" id="session-stat">0%</span>
               </div>
               <div class="stat-item">
@@ -1656,7 +1656,7 @@ Odpowiedz w formacie:
               <div class="stat-value" id="attempts-${test.id}">${attemptsDisplay}</div>
             </div>
                                       <div class="stat-row">
-                            <div class="stat-label">Średni wynik:</div>
+                            <div class="stat-label">Śr. wynik:</div>
                             <div class="stat-value" id="accuracy-${test.id}">${accuracyDisplay}</div>
                           </div>
           </div>
