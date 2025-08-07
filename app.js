@@ -1731,44 +1731,38 @@ Odpowiedz w formacie:
       
       const data = await response.json();
       console.log(`📋 Znaleziono ${data.length} odpowiedzi ChatGPT w bazie`);
+      console.log('🔍 Przykładowe question_id:', data.slice(0, 3).map(item => item.question_id));
       
       if (data.length === 0) {
         console.log('📊 Brak odpowiedzi ChatGPT - wszystkie testy mają 0%');
         return {};
       }
       
-      // 2. Pobierz wszystkie testy
-      const tests = await this.getAvailableTests();
+      // 2. Sprawdź które testy mają wpisy w bazie (BEZ ładowania plików!)
       const testCounts = {};
+      const tests = await this.getAvailableTests();
       
       // 3. Sprawdź tylko testy które mają wpisy w bazie
       for (const test of tests) {
-        try {
-          // Załaduj pytania testu
-          await this.loadTestQuestions(test.id);
+        // Sprawdź czy którykolwiek z question_id z bazy pasuje do tego testu
+        let count = 0;
+        for (const item of data) {
+          const questionId = item.question_id;
+          const cleanId = questionId.startsWith('q_') ? questionId.replace('q_', '') : questionId;
           
-          // Sprawdź które pytania z Supabase są w tym teście
-          let count = 0;
-          for (const item of data) {
-            const questionId = item.question_id;
-            const cleanId = questionId.startsWith('q_') ? questionId.replace('q_', '') : questionId;
-            
-            const found = this.testQuestions.find(q => q.id === cleanId);
-            if (found) {
-              count++;
-            }
+          // Sprawdź czy question_id pasuje do tego testu (bez ładowania pliku!)
+          // Używamy prostego sprawdzenia: czy question_id zawiera nazwę testu
+          if (cleanId.includes(test.id) || test.id.includes(cleanId)) {
+            count++;
           }
-          
-          // Zapisz tylko jeśli są jakieś wpisy
-          if (count > 0) {
-            testCounts[test.id] = count;
-            console.log(`📊 Test ${test.id}: ${count} odpowiedzi ChatGPT`);
-          }
-          // Jeśli count = 0, nie dodajemy do testCounts (domyślnie 0)
-          
-        } catch (error) {
-          console.log(`❌ Nie udało się załadować testu: ${test.id}`, error);
         }
+        
+        // Zapisz tylko jeśli są jakieś wpisy
+        if (count > 0) {
+          testCounts[test.id] = count;
+          console.log(`📊 Test ${test.id}: ${count} odpowiedzi ChatGPT`);
+        }
+        // Jeśli count = 0, nie dodajemy do testCounts (domyślnie 0)
       }
       
       console.log('📊 Końcowe statystyki testów:', testCounts);
