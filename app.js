@@ -342,6 +342,29 @@ class MedicalQuizApp {
         console.error('❌ Błąd aktualizacji statystyk testu:', error);
         return false;
       }
+
+      // Oblicz dokładność
+      const accuracy = currentStats.total_attempts > 0 
+        ? Math.round((currentStats.correct_answers / currentStats.total_attempts) * 100) 
+        : 0;
+
+      // Zaktualizuj test_summary
+      const { error: summaryError } = await this.supabase
+        .from('test_summary')
+        .upsert({
+          user_id: this.user.id,
+          test_id: testId,
+          total_attempts: currentStats.total_attempts,
+          correct_answers: currentStats.correct_answers,
+          accuracy_percentage: accuracy,
+          last_attempt: currentStats.last_attempted
+        });
+      
+      if (summaryError) {
+        console.error('❌ Błąd aktualizacji test_summary:', summaryError);
+      } else {
+        console.log('✅ Test summary zaktualizowane');
+      }
       
       console.log('✅ Statystyki testu zaktualizowane');
       return true;
@@ -1613,6 +1636,9 @@ Odpowiedz w formacie:
 
     let testHTML = '';
     for (const test of tests) {
+      // Pokaż "..." jeśli statystyki nie są jeszcze załadowane
+      const attemptsDisplay = test.attempts === null ? '...' : test.attempts;
+      const accuracyDisplay = test.accuracy === null ? '...' : `${test.accuracy}%`;
 
       testHTML += `
         <div class="test-card" data-test="${test.id}">
@@ -1627,11 +1653,11 @@ Odpowiedz w formacie:
           <div class="test-stats">
             <div class="stat-row">
               <div class="stat-label">Próby:</div>
-              <div class="stat-value">${test.attempts}</div>
+              <div class="stat-value" id="attempts-${test.id}">${attemptsDisplay}</div>
             </div>
             <div class="stat-row">
               <div class="stat-label">Dokładność:</div>
-              <div class="stat-value">${test.accuracy}%</div>
+              <div class="stat-value" id="accuracy-${test.id}">${accuracyDisplay}</div>
             </div>
           </div>
           <button class="btn btn-primary test-select-btn" data-test="${test.id}">
@@ -1650,6 +1676,36 @@ Odpowiedz w formacie:
         this.startTest(testId);
       });
     });
+
+    // Załaduj statystyki w tle
+    this.loadTestStatsInBackground();
+  }
+
+  async loadTestStatsInBackground() {
+    if (!this.supabaseConfig.enabled || !this.user) {
+      return;
+    }
+
+    try {
+      console.log('🔄 Ładuję statystyki testów w tle...');
+      const summary = await this.getTestSummary();
+      
+      // Zaktualizuj tylko testy które mają historię
+      Object.keys(summary).forEach(testId => {
+        const stats = summary[testId];
+        const attemptsElement = document.getElementById(`attempts-${testId}`);
+        const accuracyElement = document.getElementById(`accuracy-${testId}`);
+        
+        if (attemptsElement && accuracyElement) {
+          attemptsElement.textContent = stats.attempts;
+          accuracyElement.textContent = `${stats.accuracy}%`;
+        }
+      });
+      
+      console.log(`✅ Załadowano statystyki dla ${Object.keys(summary).length} testów`);
+    } catch (error) {
+      console.log('❌ Błąd ładowania statystyk w tle:', error);
+    }
   }
 
   async getAvailableTests() {
@@ -1675,6 +1731,7 @@ Odpowiedz w formacie:
       { id: '2015-study', name: '2015 Study', year: '2015', questionCount: 200, date: '2015' },
       { id: '2014-study', name: '2014 Study', year: '2014', questionCount: 200, date: '2014' },
       { id: '2013-study', name: '2013 Study', year: '2013', questionCount: 200, date: '2013' },
+      { id: '2022-feb', name: '2022 February', year: '2022', questionCount: 150, date: '2022-02' },
       { id: '2012-study', name: '2012 Study', year: '2012', questionCount: 200, date: '2012' },
       { id: '2011-study', name: '2011 Study', year: '2011', questionCount: 200, date: '2011' },
       { id: '2010-study', name: '2010 Study', year: '2010', questionCount: 200, date: '2010' },
@@ -1685,14 +1742,50 @@ Odpowiedz w formacie:
       { id: '2005-study', name: '2005 Study', year: '2005', questionCount: 200, date: '2005' }
     ];
     
-    // TYMCZASOWO: Wyłącz pobieranie statystyk na starcie dla szybkości
-    // Statystyki będą pobierane tylko gdy użytkownik kliknie na test
+    // Zwróć podstawowe dane testów (bez statystyk)
     return testList.map(test => ({
       ...test,
-      attempts: 0,
-      accuracy: 0,
+      attempts: null, // null = nie załadowano jeszcze
+      accuracy: null,
       lastAttempt: null
     }));
+  }
+
+  async getTestSummary() {
+    if (!this.supabaseConfig.enabled || !this.user) {
+      return {};
+    }
+
+    try {
+      const response = await fetch(`${this.supabaseConfig.url}/rest/v1/test_summary?select=*&user_id=eq.${this.user.id}`, {
+        headers: {
+          'apikey': this.supabaseConfig.key,
+          'Authorization': `Bearer ${this.supabaseConfig.key}`,
+          'Content-Type': 'application/json'
+        }
+      });
+
+      if (!response.ok) {
+        console.log(`⚠️ Błąd pobierania test_summary:`, response.status);
+        return {};
+      }
+
+      const data = await response.json();
+      const summary = {};
+      
+      data.forEach(item => {
+        summary[item.test_id] = {
+          attempts: item.total_attempts || 0,
+          accuracy: item.accuracy_percentage || 0,
+          lastAttempt: item.last_attempt
+        };
+      });
+      
+      return summary;
+    } catch (error) {
+      console.log(`❌ Błąd pobierania test_summary:`, error);
+      return {};
+    }
   }
 
   async getTestStats(testId) {
