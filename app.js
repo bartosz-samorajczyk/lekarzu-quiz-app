@@ -116,6 +116,9 @@ class MedicalQuizApp {
     // Wyświetl odpowiedni widok
     if (this.currentMode === 'test-selection') {
       this.showTestSelection();
+    } else if (this.currentMode === 'study') {
+      // W trybie nauki displayQuestion jest wywoływane przez startTest
+      // Nie wywołuj ponownie
     } else {
       await this.displayQuestion();
       this.updateStats();
