@@ -6,6 +6,81 @@
     box-sizing: border-box;
   }
   
+  /* Test Selection Styles */
+  .test-selection {
+    margin-top: 20px;
+  }
+  
+  .test-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+  }
+  
+  .test-card {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: var(--shadow);
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: 2px solid transparent;
+  }
+  
+  .test-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    border-color: var(--primary);
+  }
+  
+  .test-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  
+  .test-header h3 {
+    color: var(--primary);
+    font-size: 18px;
+    margin: 0;
+  }
+  
+  .test-year {
+    background: var(--primary);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: bold;
+  }
+  
+  .test-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: #666;
+  }
+  
+  .test-select-btn {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  .subtitle {
+    color: #666;
+    font-size: 16px;
+    margin-top: 10px;
+  }
+  
+  .badge.test {
+    background: var(--info);
+    color: white;
+  }
+  
   :root {
     --primary: #4a9b8e;
     --primary-dark: #3a8577;

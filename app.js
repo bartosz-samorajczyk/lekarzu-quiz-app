@@ -14,13 +14,18 @@ class MedicalQuizApp {
     this.currentQuestion = null;
     this.currentIndex = 0;
     this.userProgress = this.loadProgress();
-    this.currentMode = 'study';
+    this.currentMode = 'test-selection'; // Zmienione: domyślnie wybór testu
     this.isAnswerShown = false;
     this.sessionStats = {
       studied: 0,
       correct: 0,
       startTime: Date.now()
     };
+    
+    // Nowe: informacje o aktualnym teście
+    this.currentTest = null;
+    this.testQuestions = [];
+    this.testQuestionOrder = []; // Losowa kolejność pytań w teście
     
     // Konfiguracja Supabase
     this.supabaseConfig = {
@@ -74,13 +79,8 @@ class MedicalQuizApp {
       console.log(`Utworzono testowe pytanie`);
     }
     
-    
     // Załaduj postęp użytkownika
     this.loadProgress();
-    
-    // Ustaw losowe pytanie jako pierwsze
-    this.currentQuestionIndex = Math.floor(Math.random() * this.questions.length);
-    console.log(`Losowe pytanie startowe: ${this.currentQuestionIndex}`);
     
     // Stwórz UI
     this.createUI();
@@ -95,12 +95,14 @@ class MedicalQuizApp {
       }
     });
     
-    // Wyświetl pierwsze pytanie
-    this.displayQuestion();
-    
-    // Aktualizuj statystyki
-    this.updateStats();
-    this.updateGlobalStats();
+    // Wyświetl odpowiedni widok
+    if (this.currentMode === 'test-selection') {
+      this.showTestSelection();
+    } else {
+      this.displayQuestion();
+      this.updateStats();
+      this.updateGlobalStats();
+    }
   }
 
   createUI() {
@@ -131,9 +133,6 @@ class MedicalQuizApp {
             </div>
           </div>
         </header>
-        
-        <!-- Question Stats -->
-        <div class="question-stats" id="question-stats"></div>
         
         <!-- Main Card -->
         <div class="main-card">
@@ -177,11 +176,8 @@ class MedicalQuizApp {
         
         <!-- Quick Actions -->
         <div class="quick-actions">
+          <button class="btn-icon" id="back-to-tests-btn" title="Powrót do wyboru testów">🏠</button>
           <button class="btn-icon" id="random-btn" title="Losowe pytanie">🎲</button>
-          <button class="btn-icon" id="priority-btn" title="Najważniejsze pytania">⭐</button>
-          <button class="btn-icon" id="new-btn" title="Nowe pytania">🆕</button>
-          <button class="btn-icon" id="hard-btn" title="Trudne pytania">💪</button>
-
         </div>
       </div>
     `;
@@ -220,10 +216,21 @@ class MedicalQuizApp {
   
   displayQuestion() {
     console.log('=== DISPLAY QUESTION START ===');
-    console.log('currentQuestionIndex:', this.currentQuestionIndex);
-    const q = this.questions[this.currentQuestionIndex];
+    console.log('currentIndex:', this.currentIndex);
+    
+    // Użyj pytań z testu jeśli jesteśmy w trybie nauki
+    const questions = this.currentMode === 'study' && this.testQuestions.length > 0 
+      ? this.testQuestions 
+      : this.questions;
+    
+    // Pobierz pytanie z losowej kolejności
+    const questionIndex = this.currentMode === 'study' && this.testQuestionOrder.length > 0
+      ? this.testQuestionOrder[this.currentIndex]
+      : this.currentIndex;
+    
+    const q = questions[questionIndex];
     if (!q) {
-      console.error('Brak pytania dla indeksu:', this.currentQuestionIndex);
+      console.error('Brak pytania dla indeksu:', questionIndex);
       return;
     }
     console.log('Pytanie znalezione:', q.question.substring(0, 100) + '...');
@@ -274,15 +281,16 @@ class MedicalQuizApp {
     // Display question number
     const questionNumberElement = document.getElementById('question-number');
     if (questionNumberElement) {
-      questionNumberElement.textContent = `#${this.currentQuestionIndex + 1}`;
+      questionNumberElement.textContent = `#${this.currentIndex + 1}`;
     }
     
     // Display badges
     const badgesContainer = document.getElementById('question-badges');
     if (badgesContainer) {
       const progress = this.userProgress[q.id];
+      const testInfo = this.currentTest ? `<span class="badge test">Test: ${this.currentTest}</span>` : '';
       badgesContainer.innerHTML = `
-        <span class="badge priority">Priorytet: ${q.priority || 1}</span>
+        ${testInfo}
         <span class="badge studied">Uczone: ${progress.studied}</span>
         <span class="badge last-result">Ostatni: ${progress.lastResult || 'Brak'}</span>
         <span class="badge avg-result">Średni: ${progress.avgResult}</span>
@@ -537,14 +545,29 @@ class MedicalQuizApp {
   }
   
   nextQuestion() {
-    // Inteligentne losowanie z priorytetami
-    this.currentQuestionIndex = this.getNextQuestionIndex();
+    // W trybie testu używamy prostego przechodzenia
+    if (this.currentMode === 'study' && this.testQuestions.length > 0) {
+      this.currentIndex = this.getNextQuestionIndex();
+    } else {
+      // Inteligentne losowanie z priorytetami dla wszystkich pytań
+      this.currentIndex = this.getNextQuestionIndex();
+    }
     this.displayQuestion();
   }
   
   getNextQuestionIndex() {
-    // Oblicz wagi dla każdego pytania
-    const weights = this.questions.map((q, index) => {
+    // W trybie testu używamy prostego przechodzenia
+    if (this.currentMode === 'study' && this.testQuestions.length > 0) {
+      const totalQuestions = this.testQuestions.length;
+      if (this.currentIndex >= totalQuestions - 1) {
+        return 0; // Wróć na początek
+      }
+      return this.currentIndex + 1;
+    }
+    
+    // Dla wszystkich pytań używamy inteligentnego losowania
+    const questions = this.questions;
+    const weights = questions.map((q, index) => {
       const progress = this.userProgress[q.id] || { seen: 0, studied: 0, lastResult: null, avgResult: 0 };
       
       // Podstawowa waga = priorytet pytania (1-10)
@@ -566,7 +589,7 @@ class MedicalQuizApp {
       }
       
       // Bonus za spaced repetition (im dłużej nie powtarzane, tym większy bonus)
-      if (progress.lastSeen) { // Changed from lastStudied to lastSeen
+      if (progress.lastSeen) {
         const daysSinceLastStudy = (Date.now() - progress.lastSeen) / (1000 * 60 * 60 * 24);
         if (daysSinceLastStudy > 7) {
           weight += Math.min(daysSinceLastStudy * 2, 40); // Maksymalnie 40 punktów bonusu
@@ -600,10 +623,20 @@ class MedicalQuizApp {
   }
   
   prevQuestion() {
-    if (this.currentQuestionIndex > 0) {
-      this.currentQuestionIndex--;
+    if (this.currentMode === 'study' && this.testQuestions.length > 0) {
+      // W trybie testu
+      if (this.currentIndex > 0) {
+        this.currentIndex--;
+      } else {
+        this.currentIndex = this.testQuestions.length - 1;
+      }
     } else {
-      this.currentQuestionIndex = this.questions.length - 1;
+      // Dla wszystkich pytań
+      if (this.currentIndex > 0) {
+        this.currentIndex--;
+      } else {
+        this.currentIndex = this.questions.length - 1;
+      }
     }
     this.displayQuestion();
   }
@@ -679,7 +712,10 @@ class MedicalQuizApp {
     const studied = Object.values(this.userProgress).filter(p => p.studied > 0).length;
     const progressStat = document.getElementById('progress-stat');
     if (progressStat) {
-      progressStat.textContent = `${studied}/${this.questions.length}`;
+      const totalQuestions = this.currentMode === 'study' && this.testQuestions.length > 0 
+        ? this.testQuestions.length 
+        : this.questions.length;
+      progressStat.textContent = `${studied}/${totalQuestions}`;
     }
     
     // Update timer every second
@@ -702,14 +738,10 @@ class MedicalQuizApp {
     
     // Quick actions
     const randomBtn = document.getElementById('random-btn');
-    const priorityBtn = document.getElementById('priority-btn');
-    const newBtn = document.getElementById('new-btn');
-    const hardBtn = document.getElementById('hard-btn');
+    const backToTestsBtn = document.getElementById('back-to-tests-btn');
     
     if (randomBtn) randomBtn.addEventListener('click', () => this.goToRandomQuestion());
-    if (priorityBtn) priorityBtn.addEventListener('click', () => this.goToPriorityQuestions());
-    if (newBtn) newBtn.addEventListener('click', () => this.goToNewQuestions());
-    if (hardBtn) hardBtn.addEventListener('click', () => this.goToHardQuestions());
+    if (backToTestsBtn) backToTestsBtn.addEventListener('click', () => this.showTestSelection());
     
     // Translations
 
@@ -739,7 +771,17 @@ class MedicalQuizApp {
   }
 
   askChatGPT() {
-    const q = this.questions[this.currentQuestionIndex];
+    // Użyj pytań z testu jeśli jesteśmy w trybie nauki
+    const questions = this.currentMode === 'study' && this.testQuestions.length > 0 
+      ? this.testQuestions 
+      : this.questions;
+    
+    // Pobierz pytanie z losowej kolejności
+    const questionIndex = this.currentMode === 'study' && this.testQuestionOrder.length > 0
+      ? this.testQuestionOrder[this.currentIndex]
+      : this.currentIndex;
+    
+    const q = questions[questionIndex];
     
     // Sprawdź cache
     const cacheKey = `chatgpt_${q.id}`;
@@ -860,7 +902,17 @@ Odpowiedz w formacie:
   }
   
   async showSaveChatGPTModal() {
-    const q = this.questions[this.currentQuestionIndex];
+    // Użyj pytań z testu jeśli jesteśmy w trybie nauki
+    const questions = this.currentMode === 'study' && this.testQuestions.length > 0 
+      ? this.testQuestions 
+      : this.questions;
+    
+    // Pobierz pytanie z losowej kolejności
+    const questionIndex = this.currentMode === 'study' && this.testQuestionOrder.length > 0
+      ? this.testQuestionOrder[this.currentIndex]
+      : this.currentIndex;
+    
+    const q = questions[questionIndex];
     const cacheKey = `chatgpt_${q.id}`;
     
     // Sprawdź czy już ma zapisaną odpowiedź (z Supabase lub localStorage)
@@ -1236,6 +1288,171 @@ Odpowiedz w formacie:
         gptSection.classList.add('hidden');
       }
     }
+  }
+
+  // Nowe funkcje do obsługi testów
+  showTestSelection() {
+    console.log('Wyświetlam wybór testów...');
+    
+    const app = document.getElementById('app');
+    if (!app) return;
+    
+    // Pobierz listę testów z metadanych
+    const tests = this.getAvailableTests();
+    
+    app.innerHTML = `
+      <div class="container">
+        <!-- Header -->
+        <header class="header">
+          <h1>Medical Quiz Pro</h1>
+          <p class="subtitle">Wybierz test do nauki</p>
+        </header>
+        
+        <!-- Test Selection -->
+        <div class="test-selection">
+          <div class="test-grid">
+            ${tests.map(test => `
+              <div class="test-card" data-test="${test.id}">
+                <div class="test-header">
+                  <h3>${test.name}</h3>
+                  <span class="test-year">${test.year}</span>
+                </div>
+                <div class="test-info">
+                  <span class="test-questions">${test.questionCount} pytań</span>
+                  <span class="test-date">${test.date}</span>
+                </div>
+                <button class="btn btn-primary test-select-btn" data-test="${test.id}">
+                  Rozpocznij test
+                </button>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      </div>
+    `;
+    
+    // Dodaj event listeners do przycisków testów
+    document.querySelectorAll('.test-select-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const testId = e.target.dataset.test;
+        this.startTest(testId);
+      });
+    });
+  }
+
+  getAvailableTests() {
+    // Lista testów w kolejności od najnowszych
+    const testList = [
+      { id: 'updated-new', name: 'Updated New', year: '2025', questionCount: 54, date: '2025-08-02' },
+      { id: '2024-june', name: '2024 June', year: '2024', questionCount: 150, date: '2024-06' },
+      { id: '2024-feb', name: '2024 February', year: '2024', questionCount: 150, date: '2024-02' },
+      { id: '2023-june', name: '2023 June', year: '2023', questionCount: 150, date: '2023-06' },
+      { id: '2022-feb', name: '2022 February', year: '2022', questionCount: 150, date: '2022-02' },
+      { id: '2021-may', name: '2021 May', year: '2021', questionCount: 150, date: '2021-05' },
+      { id: '2021-feb', name: '2021 February', year: '2021', questionCount: 150, date: '2021-02' },
+      { id: '2021-day2', name: '2021 Day 2', year: '2021', questionCount: 150, date: '2021' },
+      { id: '2021-day1', name: '2021 Day 1', year: '2021', questionCount: 150, date: '2021' },
+      { id: '2020-feb', name: '2020 February', year: '2020', questionCount: 139, date: '2020-02' },
+      { id: '2020-30', name: '2020 30th', year: '2020', questionCount: 150, date: '2020' },
+      { id: '2020-29', name: '2020 29th', year: '2020', questionCount: 150, date: '2020' },
+      { id: '2020-2nd', name: '2020 2nd', year: '2020', questionCount: 150, date: '2020' },
+      { id: '2019-study', name: '2019 Study', year: '2019', questionCount: 150, date: '2019' },
+      { id: '2018-study', name: '2018 Study', year: '2018', questionCount: 200, date: '2018' },
+      { id: '2017-study', name: '2017 Study', year: '2017', questionCount: 200, date: '2017' },
+      { id: '2016-study', name: '2016 Study', year: '2016', questionCount: 200, date: '2016' },
+      { id: '2015-study', name: '2015 Study', year: '2015', questionCount: 200, date: '2015' },
+      { id: '2014-study', name: '2014 Study', year: '2014', questionCount: 200, date: '2014' },
+      { id: '2013-study', name: '2013 Study', year: '2013', questionCount: 200, date: '2013' },
+      { id: '2012-study', name: '2012 Study', year: '2012', questionCount: 200, date: '2012' },
+      { id: '2011-study', name: '2011 Study', year: '2011', questionCount: 200, date: '2011' },
+      { id: '2010-study', name: '2010 Study', year: '2010', questionCount: 200, date: '2010' },
+      { id: '2009-study', name: '2009 Study', year: '2009', questionCount: 200, date: '2009' },
+      { id: '2008-study', name: '2008 Study', year: '2008', questionCount: 200, date: '2008' },
+      { id: '2007-study', name: '2007 Study', year: '2007', questionCount: 200, date: '2007' },
+      { id: '2006-study', name: '2006 Study', year: '2006', questionCount: 200, date: '2006' },
+      { id: '2005-study', name: '2005 Study', year: '2005', questionCount: 200, date: '2005' }
+    ];
+    
+    return testList;
+  }
+
+  async startTest(testId) {
+    console.log(`Rozpoczynam test: ${testId}`);
+    
+    // Załaduj pytania z wybranego testu
+    await this.loadTestQuestions(testId);
+    
+    // Wygeneruj losową kolejność pytań
+    this.generateTestQuestionOrder();
+    
+    // Przełącz na tryb nauki
+    this.currentMode = 'study';
+    this.currentTest = testId;
+    this.currentIndex = 0;
+    
+    // Stwórz UI do nauki
+    this.createUI();
+    this.bindEvents();
+    
+    // Wyświetl pierwsze pytanie
+    this.displayQuestion();
+    this.updateStats();
+    this.updateGlobalStats();
+  }
+
+  async loadTestQuestions(testId) {
+    try {
+      // Załaduj pytania z pliku testu
+      const response = await fetch(`./data/tests/${testId}_2025-08-02_150q.json`);
+      if (!response.ok) {
+        // Spróbuj inne warianty nazw plików
+        const variants = [
+          `${testId}_2025-08-02_54q.json`,
+          `${testId}_2025-08-02_139q_v8.json`,
+          `${testId}_2025-08-04_150q_v6.json`,
+          `${testId}_2025-08-04_150q_v7.json`,
+          `${testId}_2025-08-04_150q_v8.json`,
+          `${testId}_2025-08-05_200q_v8.json`
+        ];
+        
+        let loaded = false;
+        for (const variant of variants) {
+          const variantResponse = await fetch(`./data/tests/${variant}`);
+          if (variantResponse.ok) {
+            const testData = await variantResponse.json();
+            this.testQuestions = testData.questions;
+            loaded = true;
+            break;
+          }
+        }
+        
+        if (!loaded) {
+          throw new Error(`Nie można załadować testu: ${testId}`);
+        }
+      } else {
+        const testData = await response.json();
+        this.testQuestions = testData.questions;
+      }
+      
+      console.log(`Załadowano ${this.testQuestions.length} pytań z testu ${testId}`);
+    } catch (error) {
+      console.error('Błąd ładowania testu:', error);
+      // Fallback do wszystkich pytań
+      this.testQuestions = this.questions;
+    }
+  }
+
+  generateTestQuestionOrder() {
+    // Wygeneruj losową kolejność pytań dla tej sesji
+    this.testQuestionOrder = Array.from({ length: this.testQuestions.length }, (_, i) => i);
+    
+    // Fisher-Yates shuffle
+    for (let i = this.testQuestionOrder.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [this.testQuestionOrder[i], this.testQuestionOrder[j]] = [this.testQuestionOrder[j], this.testQuestionOrder[i]];
+    }
+    
+    console.log('Wygenerowano losową kolejność pytań:', this.testQuestionOrder);
   }
 
 }
