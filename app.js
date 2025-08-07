@@ -664,11 +664,10 @@ class MedicalQuizApp {
     }
     this.sessionStats.accuracy = Math.round((this.sessionStats.correct / this.sessionStats.total) * 100);
     
-    // TYMCZASOWO: Wyłącz zapis do Supabase
+    // Zapisz odpowiedź do Supabase
     if (this.currentTest) {
-      console.log('🚫 Tymczasowo wyłączony zapis odpowiedzi do Supabase');
-      // await this.saveUserAnswer(q.id, this.currentTest, selectedIndex, isCorrect);
-      // await this.updateTestStats(this.currentTest, isCorrect);
+      await this.saveUserAnswer(q.id, this.currentTest, selectedIndex, isCorrect);
+      await this.updateTestStats(this.currentTest, isCorrect);
     }
     
         this.updateStats();
@@ -750,10 +749,9 @@ class MedicalQuizApp {
     
     const q = questions[questionIndex];
     
-    // TYMCZASOWO: Wyłącz zapis do Supabase
+    // Zapisz postęp nauki do Supabase
     if (this.currentTest) {
-      console.log('🚫 Tymczasowo wyłączony zapis postępu nauki do Supabase');
-      // await this.markQuestionAsStudied(q.id, this.currentTest);
+      await this.markQuestionAsStudied(q.id, this.currentTest);
     }
     
     // Reset button state
@@ -1619,11 +1617,11 @@ Odpowiedz w formacie:
           <div class="test-stats">
             <div class="stat-row">
               <div class="stat-label">Próby:</div>
-              <div class="stat-value">0</div>
+              <div class="stat-value">${test.attempts}</div>
             </div>
             <div class="stat-row">
               <div class="stat-label">Dokładność:</div>
-              <div class="stat-value">0%</div>
+              <div class="stat-value">${test.accuracy}%</div>
             </div>
             <div class="stat-row">
               <div class="stat-label">ChatGPT:</div>
@@ -1681,26 +1679,79 @@ Odpowiedz w formacie:
       { id: '2005-study', name: '2005 Study', year: '2005', questionCount: 200, date: '2005' }
     ];
     
-    // TYMCZASOWO: Wyłącz pobieranie statystyk Supabase
-    console.log('🚫 Tymczasowo wyłączone pobieranie statystyk dla testów');
-    return testList.map(test => ({
-      ...test,
-      attempts: 0,
-      accuracy: 0,
-      chatgptResponses: 0,
-      lastAttempt: null
-    }));
+    // Pobierz statystyki dla każdego testu
+    const testsWithStats = [];
+    for (const test of testList) {
+      const stats = await this.getTestStats(test.id);
+      testsWithStats.push({
+        ...test,
+        attempts: stats.attempts,
+        accuracy: stats.accuracy,
+        chatgptResponses: stats.chatgptResponses,
+        lastAttempt: stats.lastAttempt
+      });
+    }
+    return testsWithStats;
   }
 
   async getTestStats(testId) {
-    // TYMCZASOWO: Wyłącz całkowicie statystyki Supabase
-    console.log(`🚫 Tymczasowo wyłączone statystyki dla testu ${testId}`);
-    return {
-      attempts: 0,
-      accuracy: 0,
-      chatgptResponses: 0,
-      lastAttempt: null
-    };
+    if (!this.supabaseConfig.enabled) {
+      return {
+        attempts: 0,
+        accuracy: 0,
+        chatgptResponses: 0,
+        lastAttempt: null
+      };
+    }
+
+    try {
+      const response = await fetch(`${this.supabaseConfig.url}/rest/v1/test_stats?select=*&user_id=eq.${this.userId}&test_id=eq.${testId}`, {
+        headers: {
+          'apikey': this.supabaseConfig.key,
+          'Authorization': `Bearer ${this.supabaseConfig.key}`,
+          'Content-Type': 'application/json'
+        }
+      });
+
+      if (!response.ok) {
+        console.log(`⚠️ Błąd pobierania statystyk dla testu ${testId}:`, response.status);
+        return {
+          attempts: 0,
+          accuracy: 0,
+          chatgptResponses: 0,
+          lastAttempt: null
+        };
+      }
+
+      const data = await response.json();
+      
+      if (data && data.length > 0) {
+        const stats = data[0];
+        const accuracy = stats.total_attempts > 0 ? Math.round((stats.correct_answers / stats.total_attempts) * 100) : 0;
+        
+        return {
+          attempts: stats.total_attempts || 0,
+          accuracy: accuracy,
+          chatgptResponses: 0, // Tymczasowo 0, będzie sprawdzane osobno
+          lastAttempt: stats.last_attempt || null
+        };
+      } else {
+        return {
+          attempts: 0,
+          accuracy: 0,
+          chatgptResponses: 0,
+          lastAttempt: null
+        };
+      }
+    } catch (error) {
+      console.log(`❌ Błąd pobierania statystyk dla testu ${testId}:`, error);
+      return {
+        attempts: 0,
+        accuracy: 0,
+        chatgptResponses: 0,
+        lastAttempt: null
+      };
+    }
   }
 
   async getAllTestChatGPTCoverage() {
