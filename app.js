@@ -1705,7 +1705,7 @@ Odpowiedz w formacie:
     }
 
     try {
-      const response = await fetch(`${this.supabaseConfig.url}/rest/v1/test_stats?select=*&user_id=eq.${this.userId}&test_id=eq.${testId}`, {
+      const response = await fetch(`${this.supabaseConfig.url}/rest/v1/test_stats?select=*&user_id=eq.${this.user.id}&test_id=eq.${testId}`, {
         headers: {
           'apikey': this.supabaseConfig.key,
           'Authorization': `Bearer ${this.supabaseConfig.key}`,
