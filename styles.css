@@ -72,16 +72,17 @@
   
   .test-stats {
     background: #f8f9fa;
-    border-radius: 8px;
-    padding: 10px;
-    margin-bottom: 12px;
+    border-radius: 6px;
+    padding: 8px;
+    margin-bottom: 10px;
+    font-size: 12px;
   }
   
   .test-stats .stat-row {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 8px;
-    font-size: 14px;
+    margin-bottom: 4px;
+    font-size: 12px;
   }
   
   .test-stats .stat-row:last-child {

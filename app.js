@@ -119,7 +119,7 @@ class MedicalQuizApp {
       <div class="container">
         <!-- Header -->
         <header class="header">
-          <h1>Medical Quiz Pro</h1>
+          <h1>Lekarzu Quiz App</h1>
           <div class="header-stats">
             <div class="stat-item">
               <span class="stat-label">Odpowiedzi</span>
@@ -553,9 +553,6 @@ class MedicalQuizApp {
     
     this.saveProgress();
     this.updateStats();
-    
-    // Pokaż przycisk "Następne pytanie"
-    document.getElementById('mark-studied-btn').classList.remove('hidden');
   }
   
   showAnswer() {
@@ -1156,7 +1153,7 @@ Odpowiedz w formacie:
         <h4 style="margin: 0; color: #28a745;">🤖 Odpowiedź ChatGPT</h4>
         <div style="display: flex; align-items: center; gap: 10px;">
           <small style="color: #6c757d;">Zapisano: ${new Date(responseData.timestamp || responseData.savedAt).toLocaleString('pl-PL')}</small>
-          <button class="btn-icon hide-chatgpt-btn" title="Ukryj odpowiedź" style="background: none; border: none; cursor: pointer; font-size: 16px;">👁️</button>
+          <button class="btn btn-secondary hide-chatgpt-btn" style="font-size: 12px; padding: 4px 8px;">Ukryj odpowiedź</button>
         </div>
       </div>
       <div style="white-space: pre-wrap; line-height: 1.6; font-size: 14px;">${responseData.response}</div>
@@ -1167,6 +1164,16 @@ Odpowiedz w formacie:
     if (hideBtn) {
       hideBtn.addEventListener('click', () => {
         gptSection.classList.add('hidden');
+        // Dodaj przycisk "Pokaż odpowiedź ChatGPT"
+        const showBtn = document.createElement('button');
+        showBtn.className = 'btn btn-secondary show-chatgpt-btn';
+        showBtn.textContent = 'Pokaż odpowiedź ChatGPT';
+        showBtn.style.cssText = 'margin-top: 10px; font-size: 12px; padding: 4px 8px;';
+        showBtn.addEventListener('click', () => {
+          gptSection.classList.remove('hidden');
+          showBtn.remove();
+        });
+        gptSection.parentNode.insertBefore(showBtn, gptSection.nextSibling);
       });
     }
     
@@ -1205,13 +1212,19 @@ Odpowiedz w formacie:
             <textarea id="chatgpt-response" placeholder="Wklej tutaj odpowiedź z ChatGPT..." rows="8"></textarea>
             
             <div class="chatgpt-actions">
-              <button class="btn btn-primary" id="save-response">💾 Zapisz odpowiedź</button>
+              <button class="btn btn-primary" id="save-response">✏️ Edytuj odpowiedź</button>
               <button class="btn btn-secondary" id="clear-response">🗑️ Wyczyść</button>
             </div>
           </div>
         </div>
       </div>
     `;
+    
+    // Ukryj sekcję wklejania na początku
+    const chatgptSteps = modal.querySelector('.chatgpt-steps');
+    if (chatgptSteps) {
+      chatgptSteps.style.display = 'none';
+    }
     
     document.body.appendChild(modal);
     
@@ -1231,6 +1244,8 @@ Odpowiedz w formacie:
     // Open ChatGPT
     modal.querySelector('#open-chatgpt').onclick = () => {
       window.open('https://chat.openai.com', '_blank');
+      // Pokaż sekcję wklejania odpowiedzi
+      modal.querySelector('.chatgpt-steps').style.display = 'block';
     };
     
     // Save response
@@ -1426,7 +1441,7 @@ Odpowiedz w formacie:
       <div class="container">
         <!-- Header -->
         <header class="header">
-          <h1>Medical Quiz Pro</h1>
+          <h1>Lekarzu Quiz App</h1>
           <p class="subtitle">Wybierz test do nauki</p>
         </header>
         
@@ -1454,7 +1469,7 @@ Odpowiedz w formacie:
                   </div>
                   <div class="stat-row">
                     <span class="stat-label">ChatGPT:</span>
-                    <span class="stat-value">${test.chatgptResponses || 0} (${this.getTestChatGPTCoverage(test.id)}%)</span>
+                    <span class="stat-value">${this.getTestChatGPTCoverage(test.id)}%</span>
                   </div>
                 </div>
                 <button class="btn btn-primary test-select-btn" data-test="${test.id}">
