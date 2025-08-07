@@ -1564,8 +1564,9 @@ Odpowiedz w formacie:
     // Pobierz listę testów z metadanych
     const tests = await this.getAvailableTests();
     
-    // Pobierz statystyki ChatGPT dla wszystkich testów jednym zapytaniem
-    const testCounts = await this.getAllTestChatGPTCoverage();
+    // TYMCZASOWO: Wyłącz sprawdzanie ChatGPT coverage na starcie
+    // const testCounts = await this.getAllTestChatGPTCoverage();
+    const testCounts = {};
     
     app.innerHTML = `
       <div class="container">
@@ -1601,8 +1602,9 @@ Odpowiedz w formacie:
 
     let testHTML = '';
     for (const test of tests) {
-      // Pobierz prawdziwe pokrycie ChatGPT
-      const chatgptCoverage = await this.getTestChatGPTCoverage(test.id, testCounts);
+      // TYMCZASOWO: Wyłącz sprawdzanie ChatGPT coverage
+      // const chatgptCoverage = await this.getTestChatGPTCoverage(test.id, testCounts);
+      const chatgptCoverage = 0;
 
       testHTML += `
         <div class="test-card" data-test="${test.id}">
