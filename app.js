@@ -274,6 +274,8 @@ class MedicalQuizApp {
           selected_answer: selectedAnswer,
           is_correct: isCorrect,
           answered_at: new Date().toISOString()
+        }, {
+          onConflict: 'user_id,question_id,test_id'
         });
       
       if (error) {
@@ -301,6 +303,8 @@ class MedicalQuizApp {
           test_id: testId,
           is_studied: true,
           studied_at: new Date().toISOString()
+        }, {
+          onConflict: 'user_id,question_id,test_id'
         });
       
       if (error) {
@@ -346,7 +350,9 @@ class MedicalQuizApp {
       // Zapisz zaktualizowane statystyki
       const { error } = await this.supabase
         .from('test_stats')
-        .upsert(currentStats);
+        .upsert(currentStats, {
+          onConflict: 'user_id,test_id'
+        });
       
       if (error) {
         console.error('❌ Błąd aktualizacji statystyk testu:', error);
@@ -368,6 +374,8 @@ class MedicalQuizApp {
           correct_answers: currentStats.correct_answers,
           accuracy_percentage: accuracy,
           last_attempt: currentStats.last_attempted
+        }, {
+          onConflict: 'user_id,test_id'
         });
       
       if (summaryError) {
@@ -1534,6 +1542,8 @@ Odpowiedz w formacie:
           question_id: questionId,
           response: responseData.response,
           created_at: new Date().toISOString()
+        }, {
+          onConflict: 'user_id,question_id'
         });
       
       if (error) {
