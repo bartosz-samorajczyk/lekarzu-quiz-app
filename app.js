@@ -1327,6 +1327,18 @@ Odpowiedz w formacie:
       <div style="white-space: pre-wrap; line-height: 1.6; font-size: 14px;">${responseData.response}</div>
     `;
     
+    // Domyślnie ukryj sekcję i pokaż przycisk
+    gptSection.classList.add('hidden');
+    const showBtn = document.createElement('button');
+    showBtn.className = 'btn btn-secondary show-chatgpt-btn';
+    showBtn.textContent = 'Pokaż odpowiedź ChatGPT';
+    showBtn.style.cssText = 'margin-top: 10px; font-size: 14px; padding: 8px 16px;'; // Większy przycisk
+    showBtn.addEventListener('click', () => {
+      gptSection.classList.remove('hidden');
+      showBtn.remove();
+    });
+    gptSection.parentNode.insertBefore(showBtn, gptSection.nextSibling);
+    
     // Dodaj event listener do przycisku ukrywania
     const hideBtn = gptSection.querySelector('.hide-chatgpt-btn');
     if (hideBtn) {
@@ -1336,7 +1348,7 @@ Odpowiedz w formacie:
         const showBtn = document.createElement('button');
         showBtn.className = 'btn btn-secondary show-chatgpt-btn';
         showBtn.textContent = 'Pokaż odpowiedź ChatGPT';
-        showBtn.style.cssText = 'margin-top: 10px; font-size: 12px; padding: 4px 8px;';
+        showBtn.style.cssText = 'margin-top: 10px; font-size: 14px; padding: 8px 16px;'; // Większy przycisk
         showBtn.addEventListener('click', () => {
           gptSection.classList.remove('hidden');
           showBtn.remove();
@@ -1344,8 +1356,6 @@ Odpowiedz w formacie:
         gptSection.parentNode.insertBefore(showBtn, gptSection.nextSibling);
       });
     }
-    
-    gptSection.classList.remove('hidden');
   }
 
   showChatGPTPrompt(prompt, cacheKey) {
