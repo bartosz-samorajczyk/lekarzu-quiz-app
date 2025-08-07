@@ -120,9 +120,18 @@ class MedicalQuizApp {
         <!-- Header -->
         <header class="header">
           <div class="fancy-banner">
-            <div class="banner-icon">🏥</div>
+            <div class="logo-container">
+              <div class="app-logo">
+                <div class="logo-icon">
+                  <div class="medical-cross">
+                    <div class="cross-vertical"></div>
+                    <div class="cross-horizontal"></div>
+                    <div class="cross-cut"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
             <div class="banner-content">
-              <h1 class="banner-title">Lekarzu Quiz App</h1>
               <p class="banner-subtitle">Profesjonalna nauka do egzaminu LEK/LDEK</p>
             </div>
             <div class="banner-decoration">
@@ -1478,9 +1487,18 @@ Odpowiedz w formacie:
         <!-- Header -->
         <header class="header">
           <div class="fancy-banner">
-            <div class="banner-icon">📚</div>
+            <div class="logo-container">
+              <div class="app-logo">
+                <div class="logo-icon">
+                  <div class="medical-cross">
+                    <div class="cross-vertical"></div>
+                    <div class="cross-horizontal"></div>
+                    <div class="cross-cut"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
             <div class="banner-content">
-              <h1 class="banner-title">Lekarzu Quiz App</h1>
               <p class="banner-subtitle">Wybierz test do nauki</p>
             </div>
             <div class="banner-decoration">
