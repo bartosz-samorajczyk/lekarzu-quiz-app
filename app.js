@@ -1130,17 +1130,19 @@ Odpowiedz w formacie:
 [przekład na polski]
 
 **Wszystkie odpowiedzi z tłumaczeniami:**
-- A. [nazwa angielska] - [tłumaczenie polskie] - [tłumaczenie łacińskie] ${correctAnswerLetter === 'A' ? '(POPRAWNA)' : ''}
-- B. [nazwa angielska] - [tłumaczenie polskie] - [tłumaczenie łacińskie] ${correctAnswerLetter === 'B' ? '(POPRAWNA)' : ''}
-- C. [nazwa angielska] - [tłumaczenie polskie] - [tłumaczenie łacińskie] ${correctAnswerLetter === 'C' ? '(POPRAWNA)' : ''}
-- D. [nazwa angielska] - [tłumaczenie polskie] - [tłumaczenie łacińskie] ${correctAnswerLetter === 'D' ? '(POPRAWNA)' : ''}
-- E. [nazwa angielska] - [tłumaczenie polskie] - [tłumaczenie łacińskie] ${correctAnswerLetter === 'E' ? '(POPRAWNA)' : ''}
+- A. [nazwa angielska] - [tłumaczenie polskie] - [tłumaczenie łacińskie]
+- B. [nazwa angielska] - [tłumaczenie polskie] - [tłumaczenie łacińskie]
+- C. [nazwa angielska] - [tłumaczenie polskie] - [tłumaczenie łacińskie]
+- D. [nazwa angielska] - [tłumaczenie polskie] - [tłumaczenie łacińskie]
+- E. [nazwa angielska] - [tłumaczenie polskie] - [tłumaczenie łacińskie]
 
 **Analiza pytania:**
 [wyjaśnienie]
 
+**Poprawna odpowiedź:**
+[poprawna odpowiedź]
+
 **Dlaczego ta odpowiedź jest poprawna:**
-**ODPOWIEDŹ ${correctAnswerLetter} JEST POPRAWNA:**
 [wyjaśnienie]
 
 **Kluczowe koncepty:**
