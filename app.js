@@ -13,7 +13,7 @@ class MedicalQuizApp {
     
     this.currentQuestion = null;
     this.currentIndex = 0;
-    this.userProgress = this.loadProgress();
+    this.userProgress = {};
     this.currentMode = 'test-selection'; // Zmienione: domyślnie wybór testu
     this.isAnswerShown = false;
     this.sessionStats = {
@@ -88,8 +88,7 @@ class MedicalQuizApp {
       console.log(`Utworzono testowe pytanie`);
     }
     
-    // Załaduj postęp użytkownika
-    this.loadProgress();
+
     
     // Stwórz UI
     // Inicjalizuj Supabase Auth
@@ -120,7 +119,6 @@ class MedicalQuizApp {
     } else {
       await this.displayQuestion();
       this.updateStats();
-      this.updateGlobalStats();
     }
   }
 
@@ -208,29 +206,149 @@ class MedicalQuizApp {
     `;
   }
   
-  loadProgress() {
-    const saved = localStorage.getItem('medical_quiz_progress');
-    if (saved) {
-      return JSON.parse(saved);
-    }
+  async loadUserAnswers(testId) {
+    if (!this.user || !this.supabase) return [];
     
-    const progress = {};
-    this.questions.forEach(q => {
-      progress[q.id] = {
-        seen: 0,
-        studied: 0,
-        lastSeen: null,
-        difficulty: 0, // 0-1, gdzie 1 = bardzo trudne
-        lastResult: null,
-        avgResult: null,
-        results: []
-      };
-    });
-    return progress;
+    try {
+      const { data, error } = await this.supabase
+        .from('user_answers')
+        .select('*')
+        .eq('user_id', this.user.id)
+        .eq('test_id', testId);
+      
+      if (error) {
+        console.error('❌ Błąd wczytywania odpowiedzi:', error);
+        return [];
+      }
+      
+      return data || [];
+    } catch (error) {
+      console.error('❌ Błąd wczytywania odpowiedzi:', error);
+      return [];
+    }
   }
   
-  saveProgress() {
-    localStorage.setItem('medical_quiz_progress', JSON.stringify(this.userProgress));
+  async loadStudyProgress(testId) {
+    if (!this.user || !this.supabase) return [];
+    
+    try {
+      const { data, error } = await this.supabase
+        .from('study_progress')
+        .select('*')
+        .eq('user_id', this.user.id)
+        .eq('test_id', testId)
+        .eq('is_studied', true);
+      
+      if (error) {
+        console.error('❌ Błąd wczytywania postępu nauki:', error);
+        return [];
+      }
+      
+      return data || [];
+    } catch (error) {
+      console.error('❌ Błąd wczytywania postępu nauki:', error);
+      return [];
+    }
+  }
+  
+  async saveUserAnswer(questionId, testId, selectedAnswer, isCorrect) {
+    if (!this.user || !this.supabase) return false;
+    
+    try {
+      const { data, error } = await this.supabase
+        .from('user_answers')
+        .upsert({
+          user_id: this.user.id,
+          question_id: questionId,
+          test_id: testId,
+          selected_answer: selectedAnswer,
+          is_correct: isCorrect,
+          answered_at: new Date().toISOString()
+        });
+      
+      if (error) {
+        console.error('❌ Błąd zapisu odpowiedzi:', error);
+        return false;
+      }
+      
+      console.log('✅ Odpowiedź zapisana w Supabase');
+      return true;
+    } catch (error) {
+      console.error('❌ Błąd zapisu odpowiedzi:', error);
+      return false;
+    }
+  }
+  
+  async markQuestionAsStudied(questionId, testId) {
+    if (!this.user || !this.supabase) return false;
+    
+    try {
+      const { data, error } = await this.supabase
+        .from('study_progress')
+        .upsert({
+          user_id: this.user.id,
+          question_id: questionId,
+          test_id: testId,
+          is_studied: true,
+          studied_at: new Date().toISOString()
+        });
+      
+      if (error) {
+        console.error('❌ Błąd zapisu postępu nauki:', error);
+        return false;
+      }
+      
+      console.log('✅ Pytanie oznaczone jako przestudiowane');
+      return true;
+    } catch (error) {
+      console.error('❌ Błąd zapisu postępu nauki:', error);
+      return false;
+    }
+  }
+  
+  async updateTestStats(testId, isCorrect = null) {
+    if (!this.user || !this.supabase) return false;
+    
+    try {
+      // Pobierz aktualne statystyki
+      const { data: existingStats } = await this.supabase
+        .from('test_stats')
+        .select('*')
+        .eq('user_id', this.user.id)
+        .eq('test_id', testId)
+        .single();
+      
+      const currentStats = existingStats || {
+        user_id: this.user.id,
+        test_id: testId,
+        total_attempts: 0,
+        correct_answers: 0,
+        total_questions: 0
+      };
+      
+      // Aktualizuj statystyki
+      currentStats.total_attempts++;
+      if (isCorrect !== null) {
+        if (isCorrect) currentStats.correct_answers++;
+      }
+      currentStats.last_attempted = new Date().toISOString();
+      
+      // Zapisz zaktualizowane statystyki
+      const { error } = await this.supabase
+        .from('test_stats')
+        .upsert(currentStats);
+      
+      if (error) {
+        console.error('❌ Błąd aktualizacji statystyk testu:', error);
+        return false;
+      }
+      
+      console.log('✅ Statystyki testu zaktualizowane');
+      return true;
+    } catch (error) {
+      console.error('❌ Błąd aktualizacji statystyk testu:', error);
+      return false;
+    }
   }
   
   loadNextQuestion() {
@@ -497,7 +615,7 @@ class MedicalQuizApp {
     });
   }
   
-  selectAnswer(selectedIndex) {
+  async selectAnswer(selectedIndex) {
     // Użyj pytań z testu jeśli jesteśmy w trybie nauki
     const questions = this.currentMode === 'study' && this.testQuestions.length > 0 
       ? this.testQuestions 
@@ -510,26 +628,6 @@ class MedicalQuizApp {
     
     const q = questions[questionIndex];
     const answers = q.answers;
-    
-    // Sprawdź czy pytanie już zostało odpowiedziane w tej sesji
-    if (!this.userProgress[q.id]) {
-      this.userProgress[q.id] = {
-        studied: 0,
-        sessionAnswers: [],
-        historicalAnswers: [],
-        historicalAccuracy: 0,
-        sessionAccuracy: 0,
-        answeredInSession: false
-      };
-    }
-    
-    const progress = this.userProgress[q.id];
-    
-    // Jeśli już odpowiedziano w tej sesji, nie licz ponownie
-    if (progress.answeredInSession) {
-      console.log('Pytanie już odpowiedziane w tej sesji');
-      return;
-    }
     
     // Remove previous selections
     document.querySelectorAll('.option-btn').forEach(btn => {
@@ -554,36 +652,7 @@ class MedicalQuizApp {
       });
     }
     
-    // Oznacz pytanie jako odpowiedziane w tej sesji
-    progress.answeredInSession = true;
-    
     const isCorrect = selectedAnswer.isCorrect;
-    
-    // Inicjalizuj statystyki pytania jeśli nie istnieją
-    if (!progress.sessionAnswers) progress.sessionAnswers = [];
-    if (!progress.historicalAnswers) progress.historicalAnswers = [];
-    
-    // Dodaj odpowiedź do historii
-    progress.historicalAnswers.push({
-      isCorrect: isCorrect,
-      timestamp: Date.now()
-    });
-    
-    // Dodaj odpowiedź do sesji
-    progress.sessionAnswers.push({
-      isCorrect: isCorrect,
-      timestamp: Date.now()
-    });
-    
-    // Oblicz statystyki pytania
-    const historicalCorrect = progress.historicalAnswers.filter(a => a.isCorrect).length;
-    const historicalTotal = progress.historicalAnswers.length;
-    const sessionCorrect = progress.sessionAnswers.filter(a => a.isCorrect).length;
-    const sessionTotal = progress.sessionAnswers.length;
-    
-    progress.historicalAccuracy = historicalTotal > 0 ? Math.round((historicalCorrect / historicalTotal) * 100) : 0;
-    progress.sessionAccuracy = sessionTotal > 0 ? Math.round((sessionCorrect / sessionTotal) * 100) : 0;
-    progress.lastResult = isCorrect ? 'Poprawna' : 'Błędna';
     
     // Update session stats
     this.sessionStats.total++;
@@ -594,14 +663,13 @@ class MedicalQuizApp {
     }
     this.sessionStats.accuracy = Math.round((this.sessionStats.correct / this.sessionStats.total) * 100);
     
-    // Aktualizuj dokładność testu
+    // Zapisz odpowiedź do Supabase
     if (this.currentTest) {
-      this.updateTestStats(this.currentTest, 'accuracy', this.sessionStats.accuracy);
+      await this.saveUserAnswer(q.id, this.currentTest, selectedIndex, isCorrect);
+      await this.updateTestStats(this.currentTest, isCorrect);
     }
     
-    this.saveProgress();
-    this.updateStats();
-    this.updateGlobalStats();
+        this.updateStats();
   }
   
   showAnswer() {
@@ -667,7 +735,7 @@ class MedicalQuizApp {
     answerSection.classList.remove('hidden');
   }
   
-  markAsStudied() {
+  async markAsStudied() {
     // Użyj pytań z testu jeśli jesteśmy w trybie nauki
     const questions = this.currentMode === 'study' && this.testQuestions.length > 0 
       ? this.testQuestions 
@@ -679,13 +747,14 @@ class MedicalQuizApp {
       : this.currentIndex;
     
     const q = questions[questionIndex];
-    const progress = this.userProgress[q.id];
     
-    // Zaznacz że pytanie było studiowane
-    progress.studied = (progress.studied || 0) + 1;
+    // Zapisz do Supabase
+    if (this.currentTest) {
+      await this.markQuestionAsStudied(q.id, this.currentTest);
+    }
     
     // Reset button state
-    document.getElementById('show-answer-btn').textContent = '👁️ Pokaż odpowiedź';
+    document.getElementById('show-answer-btn').textContent = 'Pokaż odpowiedź';
     document.getElementById('show-answer-btn').onclick = () => this.showAnswer();
     
     // Auto next question
@@ -865,18 +934,7 @@ class MedicalQuizApp {
     this.updateHeaderText();
   }
   
-  updateGlobalStats() {
-    const progressStat = document.getElementById('progress-stat');
-    if (progressStat) {
-      const totalQuestions = this.currentMode === 'study' && this.testQuestions.length > 0 
-        ? this.testQuestions.length 
-        : this.questions.length;
-      progressStat.textContent = `${this.sessionStats.total}/${totalQuestions}`;
-    }
-    
-    // Update timer every second
-    setInterval(() => this.updateStats(), 1000);
-  }
+
   
 
   
@@ -1501,7 +1559,7 @@ Odpowiedz w formacie:
     if (!app) return;
     
     // Pobierz listę testów z metadanych
-    const tests = this.getAvailableTests();
+    const tests = await this.getAvailableTests();
     
     // Pobierz statystyki ChatGPT dla wszystkich testów jednym zapytaniem
     const testCounts = await this.getAllTestChatGPTCoverage();
@@ -1520,40 +1578,59 @@ Odpowiedz w formacie:
         
         <!-- Test Selection -->
         <div class="test-selection">
-          <div class="test-grid">
-            ${tests.map(test => `
-              <div class="test-card" data-test="${test.id}">
-                <div class="test-header">
-                  <h3>${test.name}</h3>
-                  <span class="test-year">${test.year}</span>
-                </div>
-                <div class="test-info">
-                  <span class="test-questions">${test.questionCount} pytań</span>
-                  <span class="test-date">${test.date}</span>
-                </div>
-                <div class="test-stats">
-                  <div class="stat-row">
-                    <div class="stat-label">Próby:</div>
-                    <div class="stat-value">${test.attempts || 0}</div>
-                  </div>
-                  <div class="stat-row">
-                    <div class="stat-label">Dokładność:</div>
-                    <div class="stat-value">${test.accuracy || 0}%</div>
-                  </div>
-                  <div class="stat-row">
-                    <div class="stat-label">ChatGPT:</div>
-                    <div class="stat-value">${this.getTestChatGPTCoverage(test.id, testCounts)}%</div>
-                  </div>
-                </div>
-                <button class="btn btn-primary test-select-btn" data-test="${test.id}">
-                  Rozpocznij test
-                </button>
-              </div>
-            `).join('')}
+          <div class="test-grid" id="test-grid">
+            <!-- Testy będą dodane dynamicznie -->
           </div>
         </div>
       </div>
     `;
+    
+    // Dodaj testy dynamicznie
+    await this.renderTests(tests, testCounts);
+    
+    // Update header text
+    this.updateHeaderText();
+
+  async renderTests(tests, testCounts) {
+    const testGrid = document.getElementById('test-grid');
+    if (!testGrid) return;
+    
+    let testHTML = '';
+    for (const test of tests) {
+      const chatgptCoverage = await this.getTestChatGPTCoverage(test.id, testCounts);
+      
+      testHTML += `
+        <div class="test-card" data-test="${test.id}">
+          <div class="test-header">
+            <h3>${test.name}</h3>
+            <span class="test-year">${test.year}</span>
+          </div>
+          <div class="test-info">
+            <span class="test-questions">${test.questionCount} pytań</span>
+            <span class="test-date">${test.date}</span>
+          </div>
+          <div class="test-stats">
+            <div class="stat-row">
+              <div class="stat-label">Próby:</div>
+              <div class="stat-value">${test.attempts || 0}</div>
+            </div>
+            <div class="stat-row">
+              <div class="stat-label">Dokładność:</div>
+              <div class="stat-value">${test.accuracy || 0}%</div>
+            </div>
+            <div class="stat-row">
+              <div class="stat-label">ChatGPT:</div>
+              <div class="stat-value">${chatgptCoverage}%</div>
+            </div>
+          </div>
+          <button class="btn btn-primary test-select-btn" data-test="${test.id}">
+            Rozpocznij test
+          </button>
+        </div>
+      `;
+    }
+    
+    testGrid.innerHTML = testHTML;
     
     // Dodaj event listeners do przycisków testów
     document.querySelectorAll('.test-select-btn').forEach(btn => {
@@ -1562,13 +1639,9 @@ Odpowiedz w formacie:
         this.startTest(testId);
       });
     });
-    
-    // Update header text
-    this.updateHeaderText();
-
   }
 
-  getAvailableTests() {
+  async getAvailableTests() {
     // Lista testów w kolejności od najnowszych
     const testList = [
       { id: 'updated-new', name: 'Updated New', year: '2025', questionCount: 54, date: '2025-08-02' },
@@ -1602,29 +1675,69 @@ Odpowiedz w formacie:
     ];
     
     // Dodaj statystyki dla każdego testu
-    return testList.map(test => {
-      const testStats = this.getTestStats(test.id);
-      return {
+    const testsWithStats = [];
+    for (const test of testList) {
+      const testStats = await this.getTestStats(test.id);
+      testsWithStats.push({
         ...test,
         ...testStats
-      };
-    });
+      });
+    }
+    return testsWithStats;
   }
 
-  getTestStats(testId) {
-    // Pobierz statystyki testu z localStorage (tymczasowo)
-    const testStats = localStorage.getItem(`test_stats_${testId}`);
-    if (testStats) {
-      return JSON.parse(testStats);
+  async getTestStats(testId) {
+    if (!this.user || !this.supabase) {
+      return {
+        attempts: 0,
+        accuracy: 0,
+        chatgptResponses: 0,
+        lastAttempt: null
+      };
     }
     
-    // Domyślne statystyki
-    return {
-      attempts: 0,
-      accuracy: 0,
-      chatgptResponses: 0,
-      lastAttempt: null
-    };
+    try {
+      // Pobierz statystyki z Supabase
+      const { data, error } = await this.supabase
+        .from('test_stats')
+        .select('*')
+        .eq('user_id', this.user.id)
+        .eq('test_id', testId)
+        .single();
+      
+      if (error && error.code !== 'PGRST116') { // PGRST116 = no rows returned
+        console.error('❌ Błąd pobierania statystyk testu:', error);
+      }
+      
+      if (data) {
+        const accuracy = data.total_attempts > 0 
+          ? Math.round((data.correct_answers / data.total_attempts) * 100) 
+          : 0;
+        
+        return {
+          attempts: data.total_attempts || 0,
+          accuracy: accuracy,
+          chatgptResponses: 0, // To będzie liczone osobno
+          lastAttempt: data.last_attempted
+        };
+      }
+      
+      // Domyślne statystyki
+      return {
+        attempts: 0,
+        accuracy: 0,
+        chatgptResponses: 0,
+        lastAttempt: null
+      };
+    } catch (error) {
+      console.error('❌ Błąd pobierania statystyk testu:', error);
+      return {
+        attempts: 0,
+        accuracy: 0,
+        chatgptResponses: 0,
+        lastAttempt: null
+      };
+    }
   }
 
   async getAllTestChatGPTCoverage() {
@@ -1651,13 +1764,16 @@ Odpowiedz w formacie:
           
           // PRAWDZIWIE SENIORSKIE: Sprawdź tylko testy które mają próby (czyli były robione)
           const testCounts = {};
-          const tests = this.getAvailableTests();
+          const tests = await this.getAvailableTests();
           
           // Filtruj tylko testy z próbami
-          const testsWithAttempts = tests.filter(test => {
-            const stats = this.getTestStats(test.id);
-            return stats.attempts > 0;
-          });
+          const testsWithAttempts = [];
+          for (const test of tests) {
+            const stats = await this.getTestStats(test.id);
+            if (stats.attempts > 0) {
+              testsWithAttempts.push(test);
+            }
+          }
           
           console.log(`🎯 Sprawdzam tylko ${testsWithAttempts.length} testów z próbami z ${tests.length} dostępnych`);
           
@@ -1697,19 +1813,20 @@ Odpowiedz w formacie:
     }
     
     // Fallback do localStorage
-    const tests = this.getAvailableTests();
+    const tests = await this.getAvailableTests();
     const testCounts = {};
-    tests.forEach(test => {
-      const testStats = this.getTestStats(test.id);
+    for (const test of tests) {
+      const testStats = await this.getTestStats(test.id);
       testCounts[test.id] = testStats.chatgptResponses || 0;
-    });
+    }
     
     return testCounts;
   }
 
-  getTestChatGPTCoverage(testId, testCounts = {}) {
+  async getTestChatGPTCoverage(testId, testCounts = {}) {
     // Pobierz liczbę pytań w teście
-    const test = this.getAvailableTests().find(t => t.id === testId);
+    const tests = await this.getAvailableTests();
+    const test = tests.find(t => t.id === testId);
     if (!test) return 0;
     
     // Użyj podanych statystyk lub pobierz z localStorage
@@ -1759,7 +1876,6 @@ Odpowiedz w formacie:
     // Wyświetl pierwsze pytanie
     this.displayQuestion();
     this.updateStats();
-    this.updateGlobalStats();
     
     // Update header text
     this.updateHeaderText();
@@ -1820,25 +1936,7 @@ Odpowiedz w formacie:
     console.log('Wygenerowano losową kolejność pytań:', this.testQuestionOrder);
   }
 
-  updateTestStats(testId, type, value = null) {
-    const stats = this.getTestStats(testId);
-    
-    switch (type) {
-      case 'attempt':
-        stats.attempts = (stats.attempts || 0) + 1;
-        stats.lastAttempt = new Date().toISOString();
-        break;
-      case 'accuracy':
-        stats.accuracy = value;
-        break;
-      case 'chatgpt':
-        stats.chatgptResponses = (stats.chatgptResponses || 0) + 1;
-        break;
-    }
-    
-    // Zapisz w localStorage (tymczasowo)
-    localStorage.setItem(`test_stats_${testId}`, JSON.stringify(stats));
-  }
+
   
   showMenu() {
     // Stwórz menu dropdown
