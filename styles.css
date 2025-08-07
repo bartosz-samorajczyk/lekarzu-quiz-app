@@ -213,6 +213,84 @@
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
   
+  /* Fancy Banner Styles */
+  .fancy-banner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
+    position: relative;
+    padding: var(--spacing-lg);
+    background: linear-gradient(135deg, rgba(0, 122, 255, 0.1), rgba(92, 200, 250, 0.1));
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(0, 122, 255, 0.2);
+  }
+  
+  .banner-icon {
+    font-size: 3rem;
+    animation: float 3s ease-in-out infinite;
+    filter: drop-shadow(0 4px 8px rgba(0, 122, 255, 0.3));
+  }
+  
+  .banner-content {
+    text-align: center;
+  }
+  
+  .banner-title {
+    color: var(--primary);
+    margin: 0;
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    background: linear-gradient(135deg, var(--primary), var(--info));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 2px 4px rgba(0, 122, 255, 0.2));
+  }
+  
+  .banner-subtitle {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    margin: var(--spacing-xs) 0 0 0;
+    font-weight: 500;
+  }
+  
+  .banner-decoration {
+    display: flex;
+    gap: var(--spacing-xs);
+    position: absolute;
+    top: var(--spacing-md);
+    right: var(--spacing-md);
+  }
+  
+  .decoration-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--primary);
+    animation: pulse 2s ease-in-out infinite;
+  }
+  
+  .decoration-dot:nth-child(2) {
+    animation-delay: 0.3s;
+  }
+  
+  .decoration-dot:nth-child(3) {
+    animation-delay: 0.6s;
+  }
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+  
+  @keyframes pulse {
+    0%, 100% { opacity: 0.5; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.2); }
+  }
+  
   .header h1 {
     color: var(--primary);
     margin-bottom: var(--spacing-sm);
