@@ -121,7 +121,7 @@ class MedicalQuizApp {
         <header class="header">
           <div class="fancy-banner">
             <div class="logo-container">
-              <img src="assets/lekarzu-quiz-app-logo.jpeg" alt="Lekarzu Quiz App" class="app-logo">
+              <img src="assets/lekarzu-quiz-app-logo.png" alt="Lekarzu Quiz App" class="app-logo">
             </div>
             <div class="banner-content">
               <p class="banner-subtitle">Profesjonalna nauka do egzaminu LEK/LDEK</p>
@@ -169,22 +169,22 @@ class MedicalQuizApp {
         <!-- Controls -->
         <div class="controls">
           <button class="btn btn-secondary" id="prev-btn">
-            ← Poprzednie
+            Poprzednie
           </button>
           <button class="btn btn-primary hidden" id="show-answer-btn">
-            👁️ Pokaż odpowiedź
+            Pokaż odpowiedź
           </button>
           <button class="btn btn-success hidden" id="mark-studied-btn">
-            → Następne pytanie
+            Następne pytanie
           </button>
           <button class="btn btn-secondary" id="next-btn">
-            Następne →
+            Następne
           </button>
           <button class="btn btn-ai" id="ask-gpt-btn">
-            🤖 Zapytaj ChatGPT
+            Zapytaj ChatGPT
           </button>
           <button class="btn btn-success" id="save-gpt-btn">
-            💾 Zapisz odpowiedź ChatGPT
+            Zapisz odpowiedź ChatGPT
           </button>
         </div>
         
@@ -1478,7 +1478,7 @@ Odpowiedz w formacie:
         <header class="header">
           <div class="fancy-banner">
             <div class="logo-container">
-              <img src="assets/lekarzu-quiz-app-logo.jpeg" alt="Lekarzu Quiz App" class="app-logo">
+              <img src="assets/lekarzu-quiz-app-logo.png" alt="Lekarzu Quiz App" class="app-logo">
             </div>
             <div class="banner-content">
               <p class="banner-subtitle">Wybierz test do nauki</p>
@@ -1808,13 +1808,13 @@ Odpowiedz w formacie:
     const menuHtml = `
       <div class="menu-dropdown" id="menu-dropdown">
         <div class="menu-item" data-action="back-to-tests">
-          📚 Powrót do wyboru testów
+          Powrót do wyboru testów
         </div>
         <div class="menu-item" data-action="settings">
-          ⚙️ Ustawienia
+          Ustawienia
         </div>
         <div class="menu-item" data-action="stats">
-          📊 Statystyki
+          Statystyki
         </div>
       </div>
     `;
