@@ -69,6 +69,8 @@
     font-size: 16px;
     font-weight: bold;
     text-align: center;
+    display: block !important;
+    justify-content: center;
   }
   
   .test-stats {

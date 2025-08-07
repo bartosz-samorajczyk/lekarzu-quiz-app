@@ -14,6 +14,16 @@
             <h1 style="color: #4a9b8e;">Ładowanie...</h1>
         </div>
     </div>
+    
+    <!-- Stopka z copyright -->
+    <footer style="text-align: center; padding: 20px; color: #666; font-size: 14px; margin-top: 40px;">
+        © <span id="current-year"></span> Samorajczyk.com
+    </footer>
+    
+    <script>
+        // Ustaw aktualny rok w stopce
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
     <script type="module" src="data/questions-loader.js"></script>
     <script type="module" src="app.js"></script>
 </body>
