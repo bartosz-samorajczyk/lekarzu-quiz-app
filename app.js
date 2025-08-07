@@ -122,6 +122,9 @@ class MedicalQuizApp {
           <div class="logo-container">
             <img src="assets/lekarzu-quiz-app-logo.png" alt="Lekarzu Quiz App" class="app-logo" id="logo-clickable">
           </div>
+          <div class="header-text">
+            <span id="header-title">Wybierz pytanie</span>
+          </div>
           <div class="menu-dots">
             <div class="menu-dot"></div>
             <div class="menu-dot"></div>
@@ -357,6 +360,9 @@ class MedicalQuizApp {
     
     // Update stats
     this.updateStats();
+    
+    // Update header text based on mode
+    this.updateHeaderText();
   }
   
   getAnswerOptions(question) {
@@ -838,6 +844,9 @@ class MedicalQuizApp {
     if (sessionStat) {
       sessionStat.textContent = `${this.sessionStats.accuracy}%`;
     }
+    
+    // Update header text
+    this.updateHeaderText();
   }
   
   updateGlobalStats() {
@@ -1488,8 +1497,8 @@ Odpowiedz w formacie:
           <div class="logo-container">
             <img src="assets/lekarzu-quiz-app-logo.png" alt="Lekarzu Quiz App" class="app-logo" id="logo-clickable">
           </div>
-          <div class="page-subtitle">
-            <p>Wybierz test do nauki</p>
+          <div class="header-text">
+            <span id="header-title">Wybierz test do nauki</span>
           </div>
         </header>
         
@@ -1538,6 +1547,8 @@ Odpowiedz w formacie:
       });
     });
     
+    // Update header text
+    this.updateHeaderText();
 
   }
 
@@ -1733,6 +1744,9 @@ Odpowiedz w formacie:
     this.displayQuestion();
     this.updateStats();
     this.updateGlobalStats();
+    
+    // Update header text
+    this.updateHeaderText();
   }
 
   async loadTestQuestions(testId) {
@@ -1864,6 +1878,21 @@ Odpowiedz w formacie:
         // TODO: Dodać statystyki
         console.log('Statystyki - do implementacji');
         break;
+    }
+  }
+  
+  updateHeaderText() {
+    const headerTitle = document.getElementById('header-title');
+    if (headerTitle) {
+      if (this.currentMode === 'study' && this.currentTest) {
+        // W trybie pytania - pokaż statystyki sesji
+        const stats = this.sessionStats;
+        const accuracy = stats.total > 0 ? Math.round((stats.correct / stats.total) * 100) : 0;
+        headerTitle.textContent = `${stats.correct}/${stats.total} (${accuracy}%)`;
+      } else {
+        // W trybie wyboru testu
+        headerTitle.textContent = 'Wybierz test do nauki';
+      }
     }
   }
 

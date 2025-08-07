@@ -231,22 +231,19 @@
     transition: transform 0.2s;
   }
   
+  .header-text {
+    flex: 1;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--text-primary);
+  }
+  
   .app-logo:hover {
     transform: scale(1.05);
   }
   
-  .page-subtitle {
-    text-align: center;
-    margin-bottom: var(--spacing-lg);
-  }
-  
-  .page-subtitle p {
-    color: var(--text-secondary);
-    font-size: 1.2rem;
-    font-weight: 600;
-    letter-spacing: -0.2px;
-    margin: 0;
-  }
+
   
 
   
