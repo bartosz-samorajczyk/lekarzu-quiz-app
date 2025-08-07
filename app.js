@@ -1433,11 +1433,8 @@ Odpowiedz w formacie:
     // Pobierz listę testów z metadanych
     const tests = this.getAvailableTests();
     
-    // Pobierz statystyki ChatGPT dla wszystkich testów
-    const chatgptStats = {};
-    for (const test of tests) {
-      chatgptStats[test.id] = await this.getTestChatGPTCoverage(test.id);
-    }
+    // Pobierz statystyki ChatGPT dla wszystkich testów jednym zapytaniem
+    const testCounts = await this.getAllTestChatGPTCoverage();
     
     app.innerHTML = `
       <div class="container">
@@ -1471,7 +1468,7 @@ Odpowiedz w formacie:
                   </div>
                   <div class="stat-row">
                     <span class="stat-label">ChatGPT:</span>
-                    <span class="stat-value">${chatgptStats[test.id]}%</span>
+                    <span class="stat-value">${this.getTestChatGPTCoverage(test.id, testCounts)}%</span>
                   </div>
                 </div>
                 <button class="btn btn-primary test-select-btn" data-test="${test.id}">
@@ -1552,34 +1549,65 @@ Odpowiedz w formacie:
     };
   }
 
-  async getTestChatGPTCoverage(testId) {
+  async getAllTestChatGPTCoverage() {
+    // Pobierz wszystkie statystyki ChatGPT z Supabase jednym zapytaniem
+    if (this.supabaseConfig.enabled) {
+      try {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 5000); // 5 sekund timeout
+        
+        const response = await fetch(`${this.supabaseConfig.url}/rest/v1/chatgpt_responses?select=question_id`, {
+          headers: {
+            'apikey': this.supabaseConfig.key,
+            'Authorization': `Bearer ${this.supabaseConfig.key}`,
+            'Content-Type': 'application/json'
+          },
+          signal: controller.signal
+        });
+        
+        clearTimeout(timeoutId);
+        
+        if (response.ok) {
+          const data = await response.json();
+          
+          // Grupuj odpowiedzi według testów
+          const testCounts = {};
+          data.forEach(item => {
+            const questionId = item.question_id;
+            // Wyciągnij ID testu z question_id (np. q_updated-new_123 -> updated-new)
+            const match = questionId.match(/q_([^_]+)_/);
+            if (match) {
+              const testId = match[1];
+              testCounts[testId] = (testCounts[testId] || 0) + 1;
+            }
+          });
+          
+          return testCounts;
+        }
+              } catch (error) {
+          console.log('❌ Błąd pobierania statystyk ChatGPT z Supabase:', error);
+          console.log('🔧 Używam fallback do localStorage');
+        }
+    }
+    
+    // Fallback do localStorage
+    const tests = this.getAvailableTests();
+    const testCounts = {};
+    tests.forEach(test => {
+      const testStats = this.getTestStats(test.id);
+      testCounts[test.id] = testStats.chatgptResponses || 0;
+    });
+    
+    return testCounts;
+  }
+
+  getTestChatGPTCoverage(testId, testCounts = {}) {
     // Pobierz liczbę pytań w teście
     const test = this.getAvailableTests().find(t => t.id === testId);
     if (!test) return 0;
     
-    // Pobierz liczbę odpowiedzi ChatGPT z Supabase dla tego testu
-    if (this.supabaseConfig.enabled) {
-      try {
-        const response = await fetch(`${this.supabaseConfig.url}/rest/v1/chatgpt_responses?question_id=like.q_${testId}_%&select=count`, {
-          headers: {
-            'apikey': this.supabaseConfig.key,
-            'Authorization': `Bearer ${this.supabaseConfig.key}`
-          }
-        });
-        
-        if (response.ok) {
-          const data = await response.json();
-          const chatgptCount = data[0]?.count || 0;
-          return Math.round((chatgptCount / test.questionCount) * 100);
-        }
-      } catch (error) {
-        console.log('❌ Błąd pobierania statystyk ChatGPT z Supabase:', error);
-      }
-    }
-    
-    // Fallback do localStorage
-    const testStats = this.getTestStats(testId);
-    const chatgptCount = testStats.chatgptResponses || 0;
+    // Użyj podanych statystyk lub pobierz z localStorage
+    const chatgptCount = testCounts[testId] || 0;
     return Math.round((chatgptCount / test.questionCount) * 100);
   }
 
