@@ -1164,7 +1164,7 @@ Odpowiedz w formacie:
 - [błąd 2]
 
 **Źródła:**
-- [URL do polskiego źródła medycznego - tylko link bez dodatkowego tekstu]`;
+- [URL do polskiego źródła medycznego - tylko tekst linku bez aktywnego hiperłącza i bez dodatkowego tekstu]`;
   }
   
   async showSaveChatGPTModal() {
