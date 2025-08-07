@@ -179,7 +179,6 @@ class MedicalQuizApp {
         <!-- Quick Actions -->
         <div class="quick-actions">
           <button class="btn-icon" id="back-to-tests-btn" title="Powrót do wyboru testów">🏠</button>
-          <button class="btn-icon" id="random-btn" title="Losowe pytanie">🎲</button>
         </div>
       </div>
     `;
@@ -526,6 +525,11 @@ class MedicalQuizApp {
     }
     this.sessionStats.accuracy = Math.round((this.sessionStats.correct / this.sessionStats.total) * 100);
     
+    // Aktualizuj dokładność testu
+    if (this.currentTest) {
+      this.updateTestStats(this.currentTest, 'accuracy', this.sessionStats.accuracy);
+    }
+    
     this.saveProgress();
     this.updateStats();
     
@@ -792,7 +796,6 @@ class MedicalQuizApp {
   }
   
   updateGlobalStats() {
-    const studied = Object.values(this.userProgress).filter(p => p.studied > 0).length;
     const progressStat = document.getElementById('progress-stat');
     if (progressStat) {
       const totalQuestions = this.currentMode === 'study' && this.testQuestions.length > 0 
@@ -820,10 +823,8 @@ class MedicalQuizApp {
     if (prevBtn) prevBtn.addEventListener('click', () => this.prevQuestion());
     
     // Quick actions
-    const randomBtn = document.getElementById('random-btn');
     const backToTestsBtn = document.getElementById('back-to-tests-btn');
     
-    if (randomBtn) randomBtn.addEventListener('click', () => this.goToRandomQuestion());
     if (backToTestsBtn) backToTestsBtn.addEventListener('click', () => this.showTestSelection());
     
     // Translations
@@ -1132,10 +1133,21 @@ Odpowiedz w formacie:
     gptSection.innerHTML = `
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
         <h4 style="margin: 0; color: #28a745;">🤖 Odpowiedź ChatGPT</h4>
-        <small style="color: #6c757d;">Zapisano: ${new Date(responseData.savedAt).toLocaleString('pl-PL')}</small>
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <small style="color: #6c757d;">Zapisano: ${new Date(responseData.timestamp || responseData.savedAt).toLocaleString('pl-PL')}</small>
+          <button class="btn-icon hide-chatgpt-btn" title="Ukryj odpowiedź" style="background: none; border: none; cursor: pointer; font-size: 16px;">👁️</button>
+        </div>
       </div>
       <div style="white-space: pre-wrap; line-height: 1.6; font-size: 14px;">${responseData.response}</div>
     `;
+    
+    // Dodaj event listener do przycisku ukrywania
+    const hideBtn = gptSection.querySelector('.hide-chatgpt-btn');
+    if (hideBtn) {
+      hideBtn.addEventListener('click', () => {
+        gptSection.classList.add('hidden');
+      });
+    }
     
     gptSection.classList.remove('hidden');
   }
@@ -1299,6 +1311,12 @@ Odpowiedz w formacie:
       
       if (response.ok) {
         console.log('☁️ Zapisano w Supabase:', questionId);
+        
+        // Zwiększ licznik odpowiedzi ChatGPT dla testu
+        if (this.currentTest) {
+          this.updateTestStats(this.currentTest, 'chatgpt');
+        }
+        
         return true;
       } else {
         console.warn('❌ Błąd zapisu w Supabase:', response.status);
@@ -1404,6 +1422,20 @@ Odpowiedz w formacie:
                   <span class="test-questions">${test.questionCount} pytań</span>
                   <span class="test-date">${test.date}</span>
                 </div>
+                <div class="test-stats">
+                  <div class="stat-row">
+                    <span class="stat-label">Próby:</span>
+                    <span class="stat-value">${test.attempts || 0}</span>
+                  </div>
+                  <div class="stat-row">
+                    <span class="stat-label">Dokładność:</span>
+                    <span class="stat-value">${test.accuracy || 0}%</span>
+                  </div>
+                  <div class="stat-row">
+                    <span class="stat-label">ChatGPT:</span>
+                    <span class="stat-value">${test.chatgptResponses || 0}</span>
+                  </div>
+                </div>
                 <button class="btn btn-primary test-select-btn" data-test="${test.id}">
                   Rozpocznij test
                 </button>
@@ -1449,14 +1481,37 @@ Odpowiedz w formacie:
       { id: '2012-study', name: '2012 Study', year: '2012', questionCount: 200, date: '2012' },
       { id: '2011-study', name: '2011 Study', year: '2011', questionCount: 200, date: '2011' },
       { id: '2010-study', name: '2010 Study', year: '2010', questionCount: 200, date: '2010' },
-      { id: '2009-study', name: '2009 Study', year: '2009', questionCount: 200, date: '2009' },
+      { id: '2020-09', name: '2009 Study', year: '2009', questionCount: 200, date: '2009' },
       { id: '2008-study', name: '2008 Study', year: '2008', questionCount: 200, date: '2008' },
       { id: '2007-study', name: '2007 Study', year: '2007', questionCount: 200, date: '2007' },
       { id: '2006-study', name: '2006 Study', year: '2006', questionCount: 200, date: '2006' },
       { id: '2005-study', name: '2005 Study', year: '2005', questionCount: 200, date: '2005' }
     ];
     
-    return testList;
+    // Dodaj statystyki dla każdego testu
+    return testList.map(test => {
+      const testStats = this.getTestStats(test.id);
+      return {
+        ...test,
+        ...testStats
+      };
+    });
+  }
+
+  getTestStats(testId) {
+    // Pobierz statystyki testu z localStorage (tymczasowo)
+    const testStats = localStorage.getItem(`test_stats_${testId}`);
+    if (testStats) {
+      return JSON.parse(testStats);
+    }
+    
+    // Domyślne statystyki
+    return {
+      attempts: 0,
+      accuracy: 0,
+      chatgptResponses: 0,
+      lastAttempt: null
+    };
   }
 
   async startTest(testId) {
@@ -1489,6 +1544,9 @@ Odpowiedz w formacie:
         progress.sessionAccuracy = 0;
       }
     });
+    
+    // Zwiększ licznik prób testu
+    this.updateTestStats(testId, 'attempt');
     
     // Stwórz UI do nauki
     this.createUI();
@@ -1553,6 +1611,26 @@ Odpowiedz w formacie:
     }
     
     console.log('Wygenerowano losową kolejność pytań:', this.testQuestionOrder);
+  }
+
+  updateTestStats(testId, type, value = null) {
+    const stats = this.getTestStats(testId);
+    
+    switch (type) {
+      case 'attempt':
+        stats.attempts = (stats.attempts || 0) + 1;
+        stats.lastAttempt = new Date().toISOString();
+        break;
+      case 'accuracy':
+        stats.accuracy = value;
+        break;
+      case 'chatgpt':
+        stats.chatgptResponses = (stats.chatgptResponses || 0) + 1;
+        break;
+    }
+    
+    // Zapisz w localStorage (tymczasowo)
+    localStorage.setItem(`test_stats_${testId}`, JSON.stringify(stats));
   }
 
 }

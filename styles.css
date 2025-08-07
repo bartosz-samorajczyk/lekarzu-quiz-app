@@ -70,6 +70,34 @@
     font-weight: bold;
   }
   
+  .test-stats {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 15px;
+  }
+  
+  .test-stats .stat-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-size: 14px;
+  }
+  
+  .test-stats .stat-row:last-child {
+    margin-bottom: 0;
+  }
+  
+  .test-stats .stat-label {
+    color: #666;
+    font-weight: 500;
+  }
+  
+  .test-stats .stat-value {
+    color: var(--primary);
+    font-weight: bold;
+  }
+  
   .subtitle {
     color: #666;
     font-size: 16px;
