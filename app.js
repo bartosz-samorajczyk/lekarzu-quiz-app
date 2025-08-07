@@ -1576,11 +1576,11 @@ Odpowiedz w formacie:
   }
 
   async getAllTestChatGPTCoverage() {
-    // Pobierz wszystkie statystyki ChatGPT z Supabase jednym zapytaniem
+    // SENIORSKIE ROZWIĄZANIE: Proste i efektywne
     if (this.supabaseConfig.enabled) {
       try {
         const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 5000); // 5 sekund timeout
+        const timeoutId = setTimeout(() => controller.abort(), 5000);
         
         const response = await fetch(`${this.supabaseConfig.url}/rest/v1/chatgpt_responses?select=question_id`, {
           headers: {
@@ -1595,32 +1595,49 @@ Odpowiedz w formacie:
         
         if (response.ok) {
           const data = await response.json();
+          console.log('📋 Wszystkie question_id z Supabase:', data.map(item => item.question_id));
           
-                     // Grupuj odpowiedzi według testów
-           const testCounts = {};
-           data.forEach(item => {
-             const questionId = item.question_id;
-             console.log('🔍 Sprawdzam question_id:', questionId);
-             
-             // Wyciągnij ID testu z question_id (np. q_updated-new_123 -> updated-new)
-             const match = questionId.match(/q_([^_]+)_/);
-             if (match) {
-               const testId = match[1];
-               console.log('✅ Znaleziono test:', testId);
-               testCounts[testId] = (testCounts[testId] || 0) + 1;
-             } else {
-               console.log('❌ Nie udało się dopasować test z:', questionId);
-             }
-           });
-           
-           console.log('📊 Statystyki testów:', testCounts);
+          // SENIORSKIE ROZWIĄZANIE: Sprawdź które pytania należą do którego testu
+          const testCounts = {};
+          const tests = this.getAvailableTests();
           
+          for (const test of tests) {
+            // Załaduj pytania testu (tylko raz)
+            try {
+              await this.loadTestQuestions(test.id);
+              console.log(`📚 Załadowano pytania testu: ${test.id}`);
+              
+              // Sprawdź które pytania z Supabase są w tym teście
+              let count = 0;
+              for (const item of data) {
+                const questionId = item.question_id;
+                // Usuń prefix q_ jeśli istnieje
+                const cleanId = questionId.startsWith('q_') ? questionId.replace('q_', '') : questionId;
+                
+                // Sprawdź czy pytanie jest w załadowanym teście
+                const found = this.testQuestions.find(q => q.id === cleanId);
+                if (found) {
+                  count++;
+                  console.log(`✅ Pytanie ${cleanId} znalezione w teście ${test.id}`);
+                }
+              }
+              
+              if (count > 0) {
+                testCounts[test.id] = count;
+                console.log(`📊 Test ${test.id}: ${count} odpowiedzi ChatGPT`);
+              }
+              
+            } catch (error) {
+              console.log(`❌ Nie udało się załadować testu: ${test.id}`, error);
+            }
+          }
+          
+          console.log('📊 Końcowe statystyki testów:', testCounts);
           return testCounts;
         }
-              } catch (error) {
-          console.log('❌ Błąd pobierania statystyk ChatGPT z Supabase:', error);
-          console.log('🔧 Używam fallback do localStorage');
-        }
+      } catch (error) {
+        console.log('❌ Błąd pobierania z Supabase:', error);
+      }
     }
     
     // Fallback do localStorage
