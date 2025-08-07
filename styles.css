@@ -106,7 +106,7 @@
     align-items: center;
     margin-bottom: 4px;
     font-size: 12px;
-    gap: 8px;
+    position: relative;
   }
   
   .test-stats .stat-row:last-child {
@@ -117,14 +117,15 @@
     color: #666;
     font-weight: 500;
     text-align: right;
-    min-width: 60px;
+    width: 80px;
+    margin-right: 8px;
   }
   
   .test-stats .stat-value {
     color: var(--primary);
     font-weight: bold;
-    text-align: left;
-    min-width: 30px;
+    text-align: center;
+    width: 40px;
   }
   
   .subtitle {
