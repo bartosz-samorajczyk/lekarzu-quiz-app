@@ -479,6 +479,17 @@ class MedicalQuizApp {
     console.log('=== SPRAWDZANIE ELEMENTÓW DOM ===');
     const answerSection = document.getElementById('answer-section');
     const showAnswerBtn = document.getElementById('show-answer-btn');
+    
+    // Wyczyść stare sekcje ChatGPT przy przechodzeniu między pytaniami
+    const oldGptSection = document.getElementById('chatgpt-response-section');
+    if (oldGptSection) {
+      oldGptSection.remove();
+    }
+    const oldButtons = document.querySelectorAll('.show-chatgpt-btn');
+    oldButtons.forEach(btn => btn.remove());
+    
+    // Sprawdź czy pytanie ma odpowiedź ChatGPT i zaktualizuj przyciski
+    await this.checkAndUpdateChatGPTButtons(q.id);
     const markStudiedBtn = document.getElementById('mark-studied-btn');
     
     console.log('answerSection:', answerSection);
@@ -1560,6 +1571,37 @@ Odpowiedz w formacie:
     // Fallback do localStorage
     const cached = localStorage.getItem(`chatgpt_${questionId}`);
     return cached ? JSON.parse(cached) : null;
+  }
+
+  async checkAndUpdateChatGPTButtons(questionId) {
+    try {
+      console.log('🔍 Sprawdzam odpowiedź ChatGPT dla pytania:', questionId);
+      const responseData = await this.loadFromSupabase(questionId);
+      console.log('📊 Odpowiedź ChatGPT:', responseData ? 'TAK' : 'NIE');
+      
+      const askGptBtn = document.getElementById('ask-gpt-btn');
+      const saveGptBtn = document.getElementById('save-gpt-btn');
+      
+      console.log('🔘 Przyciski znalezione:', {
+        askGptBtn: !!askGptBtn,
+        saveGptBtn: !!saveGptBtn
+      });
+      
+      if (responseData && askGptBtn && saveGptBtn) {
+        // Jeśli jest odpowiedź ChatGPT, pokaż przycisk "Edytuj"
+        console.log('✅ Pokazuję przycisk "Edytuj odpowiedź ChatGPT"');
+        askGptBtn.classList.add('hidden');
+        saveGptBtn.classList.remove('hidden');
+        saveGptBtn.textContent = 'Edytuj odpowiedź ChatGPT';
+      } else if (askGptBtn && saveGptBtn) {
+        // Jeśli nie ma odpowiedzi, pokaż przycisk "Zapytaj"
+        console.log('✅ Pokazuję przycisk "Zapytaj ChatGPT"');
+        askGptBtn.classList.remove('hidden');
+        saveGptBtn.classList.add('hidden');
+      }
+    } catch (error) {
+      console.error('❌ Błąd sprawdzania odpowiedzi ChatGPT:', error);
+    }
   }
 
   async loadChatGPTResponse(questionId) {
