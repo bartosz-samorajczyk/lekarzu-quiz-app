@@ -21,7 +21,7 @@
   .test-card {
     background: white;
     border-radius: 10px;
-    padding: 20px;
+    padding: 16px;
     box-shadow: var(--shadow);
     transition: transform 0.2s, box-shadow 0.2s;
     border: 2px solid transparent;
@@ -58,7 +58,7 @@
   .test-info {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     font-size: 14px;
     color: #666;
   }
@@ -73,8 +73,8 @@
   .test-stats {
     background: #f8f9fa;
     border-radius: 8px;
-    padding: 12px;
-    margin-bottom: 15px;
+    padding: 10px;
+    margin-bottom: 12px;
   }
   
   .test-stats .stat-row {

@@ -463,6 +463,26 @@ class MedicalQuizApp {
     const q = questions[questionIndex];
     const answers = q.answers;
     
+    // Sprawdź czy pytanie już zostało odpowiedziane w tej sesji
+    if (!this.userProgress[q.id]) {
+      this.userProgress[q.id] = {
+        studied: 0,
+        sessionAnswers: [],
+        historicalAnswers: [],
+        historicalAccuracy: 0,
+        sessionAccuracy: 0,
+        answeredInSession: false
+      };
+    }
+    
+    const progress = this.userProgress[q.id];
+    
+    // Jeśli już odpowiedziano w tej sesji, nie licz ponownie
+    if (progress.answeredInSession) {
+      console.log('Pytanie już odpowiedziane w tej sesji');
+      return;
+    }
+    
     // Remove previous selections
     document.querySelectorAll('.option-btn').forEach(btn => {
       btn.classList.remove('selected', 'correct', 'incorrect');
@@ -486,8 +506,9 @@ class MedicalQuizApp {
       });
     }
     
-    // Update progress dla konkretnego pytania
-    const progress = this.userProgress[q.id];
+    // Oznacz pytanie jako odpowiedziane w tej sesji
+    progress.answeredInSession = true;
+    
     const isCorrect = selectedAnswer.isCorrect;
     
     // Inicjalizuj statystyki pytania jeśli nie istnieją
@@ -1433,7 +1454,7 @@ Odpowiedz w formacie:
                   </div>
                   <div class="stat-row">
                     <span class="stat-label">ChatGPT:</span>
-                    <span class="stat-value">${test.chatgptResponses || 0}</span>
+                    <span class="stat-value">${test.chatgptResponses || 0} (${this.getTestChatGPTCoverage(test.id)}%)</span>
                   </div>
                 </div>
                 <button class="btn btn-primary test-select-btn" data-test="${test.id}">
@@ -1514,6 +1535,19 @@ Odpowiedz w formacie:
     };
   }
 
+  getTestChatGPTCoverage(testId) {
+    // Pobierz liczbę pytań w teście
+    const test = this.getAvailableTests().find(t => t.id === testId);
+    if (!test) return 0;
+    
+    // Pobierz liczbę odpowiedzi ChatGPT dla tego testu
+    const testStats = this.getTestStats(testId);
+    const chatgptCount = testStats.chatgptResponses || 0;
+    
+    // Oblicz procent pokrycia
+    return Math.round((chatgptCount / test.questionCount) * 100);
+  }
+
   async startTest(testId) {
     console.log(`Rozpoczynam test: ${testId}`);
     
@@ -1542,6 +1576,7 @@ Odpowiedz w formacie:
       if (progress.sessionAnswers) {
         progress.sessionAnswers = [];
         progress.sessionAccuracy = 0;
+        progress.answeredInSession = false;
       }
     });
     
