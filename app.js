@@ -1598,7 +1598,8 @@ Odpowiedz w formacie:
     
     let testHTML = '';
     for (const test of tests) {
-      const chatgptCoverage = await this.getTestChatGPTCoverage(test.id, testCounts);
+      // TYMCZASOWO: Wyłącz statystyki Supabase
+      const chatgptCoverage = 0; // await this.getTestChatGPTCoverage(test.id, testCounts);
       
       testHTML += `
         <div class="test-card" data-test="${test.id}">
@@ -1613,11 +1614,11 @@ Odpowiedz w formacie:
           <div class="test-stats">
             <div class="stat-row">
               <div class="stat-label">Próby:</div>
-              <div class="stat-value">${test.attempts || 0}</div>
+              <div class="stat-value">0</div>
             </div>
             <div class="stat-row">
               <div class="stat-label">Dokładność:</div>
-              <div class="stat-value">${test.accuracy || 0}%</div>
+              <div class="stat-value">0%</div>
             </div>
             <div class="stat-row">
               <div class="stat-label">ChatGPT:</div>
