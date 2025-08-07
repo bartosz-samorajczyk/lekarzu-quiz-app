@@ -1,0 +1,1167 @@
+// app.js - Główna aplikacja Medical Quiz
+import { questionDB, dbMetadata } from './data/questions-db.js';
+
+class MedicalQuizApp {
+  constructor() {
+    console.log('=== KONSTRUKTOR START ===');
+    console.log('questionDB:', questionDB);
+    console.log('dbMetadata:', dbMetadata);
+    
+    this.questions = questionDB.questions;
+    console.log('this.questions:', this.questions);
+    console.log('Liczba pytań:', this.questions.length);
+    
+    this.currentQuestion = null;
+    this.currentIndex = 0;
+    this.userProgress = this.loadProgress();
+    this.currentMode = 'study';
+    this.isAnswerShown = false;
+    this.sessionStats = {
+      studied: 0,
+      correct: 0,
+      startTime: Date.now()
+    };
+    
+    // Tymczasowo wyłączamy chmurę - localStorage + eksport/import
+    this.cloudConfig = {
+      enabled: false,
+      fallbackToLocal: true
+    };
+
+
+    console.log('=== KONSTRUKTOR END ===');
+    this.init();
+  }
+  
+  init() {
+    console.log('Inicjalizacja aplikacji...');
+    
+    // Załaduj pytania z questionDB (ES6 modules)
+    this.questions = window.questionDB?.questions || [];
+    console.log(`Załadowano ${this.questions.length} pytań`);
+    
+    // Jeśli nie ma pytań, spróbuj załadować z localStorage
+    if (this.questions.length === 0) {
+      console.log('Brak pytań w questionDB, próbuję localStorage...');
+      const cachedQuestions = localStorage.getItem('questions');
+      if (cachedQuestions) {
+        this.questions = JSON.parse(cachedQuestions);
+        console.log(`Załaduj z cache: ${this.questions.length} pytań`);
+      }
+    }
+    
+    // Jeśli nadal nie ma pytań, stwórz testowe pytanie
+    if (this.questions.length === 0) {
+      console.log('Tworzę testowe pytanie...');
+      this.questions = [{
+        id: 'test-1',
+        question: 'Test question: What is the capital of Poland?',
+        answers: [
+          { text: 'A. Warsaw', isCorrect: true },
+          { text: 'B. Krakow', isCorrect: false },
+          { text: 'C. Gdansk', isCorrect: false },
+          { text: 'D. Poznan', isCorrect: false }
+        ],
+        priority: 1
+      }];
+      console.log(`Utworzono testowe pytanie`);
+    }
+    
+    
+    // Załaduj postęp użytkownika
+    this.loadProgress();
+    
+    // Ustaw losowe pytanie jako pierwsze
+    this.currentQuestionIndex = Math.floor(Math.random() * this.questions.length);
+    console.log(`Losowe pytanie startowe: ${this.currentQuestionIndex}`);
+    
+    // Stwórz UI
+    this.createUI();
+    this.bindEvents();
+    
+    // Chmura tymczasowo wyłączona - używamy tylko localStorage
+    
+    // Wyświetl pierwsze pytanie
+    this.displayQuestion();
+    
+    // Aktualizuj statystyki
+    this.updateStats();
+    this.updateGlobalStats();
+  }
+
+  createUI() {
+    console.log('Tworzę UI...');
+    const app = document.getElementById('app');
+    if (!app) {
+      console.error('Nie znaleziono elementu #app');
+      return;
+    }
+    console.log('Element #app znaleziony, tworzę HTML...');
+    app.innerHTML = `
+      <div class="container">
+        <!-- Header -->
+        <header class="header">
+          <h1>Medical Quiz Pro</h1>
+          <div class="header-stats">
+            <div class="stat-item">
+              <span class="stat-label">Postęp</span>
+              <span class="stat-value" id="progress-stat">0/${this.questions.length}</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Sesja</span>
+              <span class="stat-value" id="session-stat">0</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Czas</span>
+              <span class="stat-value" id="time-stat">0:00</span>
+            </div>
+          </div>
+        </header>
+        
+        <!-- Question Stats -->
+        <div class="question-stats" id="question-stats"></div>
+        
+        <!-- Main Card -->
+        <div class="main-card">
+          <div class="question-header">
+            <span class="question-number" id="question-number">#1</span>
+            <div class="question-badges" id="question-badges"></div>
+          </div>
+          
+          <div class="question-content" id="question-content">
+            <p class="question-text" id="question-text"></p>
+          </div>
+          
+          <div class="answer-section hidden" id="answer-section">
+            <div class="divider"></div>
+            <h3>Odpowiedź:</h3>
+            <div class="answer-content" id="answer-content"></div>
+          </div>
+        </div>
+        
+        <!-- Controls -->
+        <div class="controls">
+          <button class="btn btn-secondary" id="prev-btn">
+            ← Poprzednie
+          </button>
+          <button class="btn btn-primary hidden" id="show-answer-btn">
+            👁️ Pokaż odpowiedź
+          </button>
+          <button class="btn btn-success hidden" id="mark-studied-btn">
+            ✓ Nauczyłam się
+          </button>
+          <button class="btn btn-secondary" id="next-btn">
+            Następne →
+          </button>
+          <button class="btn btn-ai" id="ask-gpt-btn">
+            🤖 Zapytaj ChatGPT
+          </button>
+          <button class="btn btn-success" id="save-gpt-btn">
+            💾 Zapisz odpowiedź ChatGPT
+          </button>
+        </div>
+        
+        <!-- Quick Actions -->
+        <div class="quick-actions">
+          <button class="btn-icon" id="random-btn" title="Losowe pytanie">🎲</button>
+          <button class="btn-icon" id="priority-btn" title="Najważniejsze pytania">⭐</button>
+          <button class="btn-icon" id="new-btn" title="Nowe pytania">🆕</button>
+          <button class="btn-icon" id="hard-btn" title="Trudne pytania">💪</button>
+
+        </div>
+      </div>
+    `;
+  }
+  
+  loadProgress() {
+    const saved = localStorage.getItem('medical_quiz_progress');
+    if (saved) {
+      return JSON.parse(saved);
+    }
+    
+    const progress = {};
+    this.questions.forEach(q => {
+      progress[q.id] = {
+        seen: 0,
+        studied: 0,
+        lastSeen: null,
+        difficulty: 0, // 0-1, gdzie 1 = bardzo trudne
+        lastResult: null,
+        avgResult: null,
+        results: []
+      };
+    });
+    return progress;
+  }
+  
+  saveProgress() {
+    localStorage.setItem('medical_quiz_progress', JSON.stringify(this.userProgress));
+  }
+  
+  loadNextQuestion() {
+    this.currentQuestion = this.questions[this.currentIndex];
+    this.isAnswerShown = false;
+    this.displayQuestion();
+  }
+  
+  displayQuestion() {
+    console.log('=== DISPLAY QUESTION START ===');
+    console.log('currentQuestionIndex:', this.currentQuestionIndex);
+    const q = this.questions[this.currentQuestionIndex];
+    if (!q) {
+      console.error('Brak pytania dla indeksu:', this.currentQuestionIndex);
+      return;
+    }
+    console.log('Pytanie znalezione:', q.question.substring(0, 100) + '...');
+    console.log('=== DISPLAY QUESTION - PRZED INICJALIZACJĄ PROGRESS ===');
+    
+    // Inicjalizuj progress dla nowego pytania
+    console.log('=== DISPLAY QUESTION - INICJALIZACJA PROGRESS ===');
+    if (!this.userProgress[q.id]) {
+      console.log('Tworzę nowy progress dla pytania:', q.id);
+      this.userProgress[q.id] = {
+        seen: 0,
+        studied: 0,
+        lastResult: null,
+        avgResult: '0%',
+        results: []
+      };
+    }
+    console.log('=== DISPLAY QUESTION - PO INICJALIZACJI PROGRESS ===');
+    
+    // Inicjalizuj progress dla nowego pytania
+    if (!this.userProgress[q.id]) {
+      this.userProgress[q.id] = {
+        seen: 0,
+        studied: 0,
+        lastResult: null,
+        avgResult: '0%',
+        results: []
+      };
+    }
+    
+    // Zaktualizuj lastSeen
+    this.userProgress[q.id].lastSeen = Date.now();
+    this.userProgress[q.id].seen++;
+    this.saveProgress();
+    
+    // Display question
+    console.log('Próbuję znaleźć element question-text...');
+    const questionTextElement = document.getElementById('question-text');
+    console.log('Element question-text:', questionTextElement);
+    if (questionTextElement) {
+      questionTextElement.textContent = q.question;
+      console.log('Pytanie zostało ustawione:', q.question);
+    } else {
+      console.error('Element question-text nie istnieje!');
+      console.log('Dostępne elementy w question-content:', document.getElementById('question-content')?.innerHTML);
+    }
+    
+    // Display question number
+    const questionNumberElement = document.getElementById('question-number');
+    if (questionNumberElement) {
+      questionNumberElement.textContent = `#${this.currentQuestionIndex + 1}`;
+    }
+    
+    // Display badges
+    const badgesContainer = document.getElementById('question-badges');
+    if (badgesContainer) {
+      const progress = this.userProgress[q.id];
+      badgesContainer.innerHTML = `
+        <span class="badge priority">Priorytet: ${q.priority || 1}</span>
+        <span class="badge studied">Uczone: ${progress.studied}</span>
+        <span class="badge last-result">Ostatni: ${progress.lastResult || 'Brak'}</span>
+        <span class="badge avg-result">Średni: ${progress.avgResult}</span>
+      `;
+    }
+    
+    // Display answer options immediately
+    const answers = this.getAnswerOptions(q);
+    this.displayAnswerOptions(answers);
+    
+    // Hide sections by default
+    console.log('=== SPRAWDZANIE ELEMENTÓW DOM ===');
+    const answerSection = document.getElementById('answer-section');
+    const showAnswerBtn = document.getElementById('show-answer-btn');
+    const markStudiedBtn = document.getElementById('mark-studied-btn');
+    
+    console.log('answerSection:', answerSection);
+    console.log('showAnswerBtn:', showAnswerBtn);
+    console.log('markStudiedBtn:', markStudiedBtn);
+    
+    if (answerSection) answerSection.classList.add('hidden');
+    if (showAnswerBtn) showAnswerBtn.classList.add('hidden');
+    if (markStudiedBtn) markStudiedBtn.classList.add('hidden');
+    
+    // Reset answer shown state
+    this.isAnswerShown = false;
+    
+    // Sprawdź czy jest zapisana odpowiedź ChatGPT
+    const cacheKey = `chatgpt_${q.id}`;
+    const cachedResponse = localStorage.getItem(cacheKey);
+    if (cachedResponse) {
+      try {
+        const responseData = JSON.parse(cachedResponse);
+        this.showChatGPTResponse(responseData);
+      } catch (e) {
+        console.error('Błąd parsowania odpowiedzi ChatGPT:', e);
+      }
+    } else {
+      // Ukryj sekcję ChatGPT jeśli nie ma odpowiedzi
+      const gptSection = document.getElementById('chatgpt-response-section');
+      if (gptSection) {
+        gptSection.classList.add('hidden');
+      }
+    }
+    
+    // Update stats
+    this.updateStats();
+  }
+  
+  getAnswerOptions(question) {
+    // Jeśli pytanie ma answers, użyj ich
+    if (question.answers && question.answers.length > 0) {
+      console.log('Używam answers z pytania:', question.answers);
+      return question.answers;
+    }
+    
+    // Jeśli ma answer_en, stwórz opcję
+    if (question.answer_en) {
+      console.log('Tworzę opcję z answer_en:', question.answer_en);
+      return [{
+        text: question.answer_en,
+        isCorrect: true
+      }];
+    }
+    
+    // Jeśli nie ma żadnej odpowiedzi, stwórz domyślne opcje na podstawie pytania
+    console.log('Tworzę domyślne opcje dla pytania');
+    return this.generateDefaultAnswers(question);
+  }
+  
+  generateDefaultAnswers(question) {
+    // Dla pytania o gruźlicę nerkową
+    if (question.question.includes('renal tuberculosis') && question.question.includes('cord factor')) {
+      return [
+        {
+          text: "Inoculation of laboratory animals",
+          isCorrect: true
+        },
+        {
+          text: "Serological identification of the causative agent",
+          isCorrect: false
+        },
+        {
+          text: "Toxigenicity testing",
+          isCorrect: false
+        },
+        {
+          text: "Phage typing of the obtained culture",
+          isCorrect: false
+        },
+        {
+          text: "Allergy skin test",
+          isCorrect: false
+        }
+      ];
+    }
+    
+    // Dla innych pytań - stwórz generyczne opcje
+    return [
+      {
+        text: "Opcja A",
+        isCorrect: true
+      },
+      {
+        text: "Opcja B", 
+        isCorrect: false
+      },
+      {
+        text: "Opcja C",
+        isCorrect: false
+      },
+      {
+        text: "Opcja D",
+        isCorrect: false
+      }
+    ];
+  }
+  
+  displayAnswerOptions(answers) {
+    console.log('displayAnswerOptions wywołane z:', answers);
+    
+    const questionContent = document.getElementById('question-content');
+    console.log('questionContent element:', questionContent);
+    
+    if (!questionContent) {
+      console.error('Element question-content nie istnieje!');
+      return;
+    }
+    
+    const optionsHTML = `
+      <div class="answer-options">
+        <h3>Wybierz odpowiedź:</h3>
+        <div class="options-list">
+          ${answers.map((answer, index) => `
+            <button class="option-btn" data-index="${index}">
+              ${answer.text}
+            </button>
+          `).join('')}
+        </div>
+      </div>
+    `;
+    
+    console.log('Generated HTML:', optionsHTML);
+    
+    // Remove existing options
+    const existingOptions = questionContent.querySelector('.answer-options');
+    if (existingOptions) {
+      existingOptions.remove();
+    }
+    
+    // Insert new options
+    questionContent.insertAdjacentHTML('beforeend', optionsHTML);
+    console.log('Opcje zostały dodane do DOM');
+    
+    // Bind option clicks
+    const optionButtons = document.querySelectorAll('.option-btn');
+    console.log('Znalezione przyciski opcji:', optionButtons.length);
+    
+    optionButtons.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        this.selectAnswer(parseInt(e.target.dataset.index));
+      });
+    });
+  }
+  
+  selectAnswer(selectedIndex) {
+    const q = this.questions[this.currentQuestionIndex];
+    const answers = q.answers;
+    
+    // Remove previous selections
+    document.querySelectorAll('.option-btn').forEach(btn => {
+      btn.classList.remove('selected', 'correct', 'incorrect');
+    });
+    
+    // Mark selected answer
+    const selectedBtn = document.querySelector(`[data-index="${selectedIndex}"]`);
+    selectedBtn.classList.add('selected');
+    
+    // Check if correct
+    const selectedAnswer = answers[selectedIndex];
+    if (selectedAnswer.isCorrect) {
+      selectedBtn.classList.add('correct');
+    } else {
+      selectedBtn.classList.add('incorrect');
+      // Show correct answer
+      answers.forEach((answer, index) => {
+        if (answer.isCorrect) {
+          document.querySelector(`[data-index="${index}"]`).classList.add('correct');
+        }
+      });
+    }
+    
+    // Update progress
+    const progress = this.userProgress[q.id];
+    const isCorrect = selectedAnswer.isCorrect;
+    progress.lastResult = isCorrect ? 'Poprawna' : 'Błędna';
+    
+    // Calculate average result
+    if (!progress.results) progress.results = [];
+    progress.results.push(isCorrect);
+    const correctCount = progress.results.filter(r => r).length;
+    progress.avgResult = `${Math.round((correctCount / progress.results.length) * 100)}%`;
+    
+    this.saveProgress();
+    
+    // Pokaż przycisk "Nauczyłam się"
+    document.getElementById('mark-studied-btn').classList.remove('hidden');
+  }
+  
+  showAnswer() {
+    const q = this.questions[this.currentQuestionIndex];
+    this.isAnswerShown = true;
+    
+    // If user already selected an answer, just show the explanation
+    if (q.answers && q.answers.length > 0) {
+      // User already made a choice, show explanation
+      this.showAnswerExplanation();
+    } else {
+      // Show answer section
+      const answerSection = document.getElementById('answer-section');
+      const answerContent = document.getElementById('answer-content');
+      
+      answerContent.innerHTML = `
+        <div class="answer-explanation">
+          <h4>Odpowiedź:</h4>
+          <p class="correct-answer">${q.answer_en}</p>
+        </div>
+      `;
+      
+      answerSection.classList.remove('hidden');
+    }
+  }
+  
+  showAnswerExplanation() {
+    const q = this.questions[this.currentQuestionIndex];
+    const answerSection = document.getElementById('answer-section');
+    const answerContent = document.getElementById('answer-content');
+    
+    // Find correct answer
+    const correctAnswer = q.answers.find(a => a.isCorrect);
+    
+    answerContent.innerHTML = `
+      <div class="answer-explanation">
+        <h4>Odpowiedź:</h4>
+        <p class="correct-answer">${correctAnswer.text}</p>
+        <p><em>Kliknij "Nauczyłam się" aby przejść do następnego pytania.</em></p>
+      </div>
+    `;
+    
+    answerSection.classList.remove('hidden');
+  }
+  
+  markAsStudied() {
+    const q = this.questions[this.currentQuestionIndex];
+    const progress = this.userProgress[q.id];
+    
+    progress.studied++;
+    this.sessionStats.studied++;
+    this.updateStats();
+    
+    // Reset button state
+    document.getElementById('show-answer-btn').textContent = '👁️ Pokaż odpowiedź';
+    document.getElementById('show-answer-btn').onclick = () => this.showAnswer();
+    
+    // Auto next question
+    setTimeout(() => this.nextQuestion(), 500);
+  }
+  
+  nextQuestion() {
+    // Inteligentne losowanie z priorytetami
+    this.currentQuestionIndex = this.getNextQuestionIndex();
+    this.displayQuestion();
+  }
+  
+  getNextQuestionIndex() {
+    // Oblicz wagi dla każdego pytania
+    const weights = this.questions.map((q, index) => {
+      const progress = this.userProgress[q.id] || { seen: 0, studied: 0, lastResult: null, avgResult: 0 };
+      
+      // Podstawowa waga = priorytet pytania (1-10)
+      let weight = (q.priority || 1) * 10;
+      
+      // Bonus za nieuczone pytania
+      if (progress.studied === 0) {
+        weight += 50; // Duży bonus za nowe pytania
+      }
+      
+      // Bonus za trudne pytania (złe wyniki)
+      if (progress.studied > 0) {
+        const avgResult = parseFloat(progress.avgResult) || 0;
+        if (avgResult < 50) {
+          weight += 30; // Bonus za trudne pytania
+        } else if (avgResult < 80) {
+          weight += 15; // Mniejszy bonus za średnie pytania
+        }
+      }
+      
+      // Bonus za spaced repetition (im dłużej nie powtarzane, tym większy bonus)
+      if (progress.lastSeen) { // Changed from lastStudied to lastSeen
+        const daysSinceLastStudy = (Date.now() - progress.lastSeen) / (1000 * 60 * 60 * 24);
+        if (daysSinceLastStudy > 7) {
+          weight += Math.min(daysSinceLastStudy * 2, 40); // Maksymalnie 40 punktów bonusu
+        }
+      }
+      
+      // Bonus za pytania z błędnymi odpowiedziami
+      if (progress.lastResult === 'Błędna') {
+        weight += 25;
+      }
+      
+      return { index, weight };
+    });
+    
+    // Sortuj po wadze (malejąco)
+    weights.sort((a, b) => b.weight - a.weight);
+    
+    // Wybierz z górnych 20% z większym prawdopodobieństwem
+    const topCount = Math.max(1, Math.floor(weights.length * 0.2));
+    const topQuestions = weights.slice(0, topCount);
+    
+    // Losuj z górnych 20% z większym prawdopodobieństwem
+    const random = Math.random();
+    if (random < 0.7) {
+      // 70% szans na pytanie z górnych 20%
+      return topQuestions[Math.floor(Math.random() * topQuestions.length)].index;
+    } else {
+      // 30% szans na losowe pytanie
+      return weights[Math.floor(Math.random() * weights.length)].index;
+    }
+  }
+  
+  prevQuestion() {
+    if (this.currentQuestionIndex > 0) {
+      this.currentQuestionIndex--;
+    } else {
+      this.currentQuestionIndex = this.questions.length - 1;
+    }
+    this.displayQuestion();
+  }
+  
+  goToRandomQuestion() {
+    this.currentQuestionIndex = Math.floor(Math.random() * this.questions.length);
+    this.displayQuestion();
+  }
+  
+  goToPriorityQuestions() {
+    // Sort by priority and go to highest
+    const sorted = [...this.questions].sort((a, b) => (b.priority || 0) - (a.priority || 0));
+    const topQuestion = sorted[0];
+    this.currentQuestionIndex = this.questions.findIndex(q => q.id === topQuestion.id);
+    this.displayQuestion();
+  }
+  
+  goToNewQuestions() {
+    // Find unseen questions
+    const unseenIndex = this.questions.findIndex(q => 
+      !this.userProgress[q.id] || this.userProgress[q.id].seen === 0
+    );
+    
+    if (unseenIndex !== -1) {
+      this.currentQuestionIndex = unseenIndex;
+    } else {
+      // All seen, go to least seen
+      const sorted = [...this.questions].sort((a, b) => {
+        const aSeen = this.userProgress[a.id]?.seen || 0;
+        const bSeen = this.userProgress[b.id]?.seen || 0;
+        return aSeen - bSeen;
+      });
+      const leastSeen = sorted[0];
+      this.currentQuestionIndex = this.questions.findIndex(q => q.id === leastSeen.id);
+    }
+    this.displayQuestion();
+  }
+  
+  goToHardQuestions() {
+    // Find questions studied but with low success rate
+    const hardQuestions = this.questions.filter(q => {
+      const progress = this.userProgress[q.id];
+      return progress && progress.studied > 0 && (progress.avgResult || 0) < 50;
+    });
+    
+    if (hardQuestions.length > 0) {
+      const hardest = hardQuestions[0];
+      this.currentQuestionIndex = this.questions.findIndex(q => q.id === hardest.id);
+      this.displayQuestion();
+    } else {
+      alert('Nie masz jeszcze trudnych pytań. Ucz się dalej!');
+    }
+  }
+  
+  updateStats() {
+    // Session time
+    const elapsed = Math.floor((Date.now() - this.sessionStats.startTime) / 1000);
+    const minutes = Math.floor(elapsed / 60);
+    const seconds = elapsed % 60;
+    const timeStat = document.getElementById('time-stat');
+    if (timeStat) {
+      timeStat.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+    }
+    
+    // Session studied
+    const sessionStat = document.getElementById('session-stat');
+    if (sessionStat) {
+      sessionStat.textContent = this.sessionStats.studied;
+    }
+  }
+  
+  updateGlobalStats() {
+    const studied = Object.values(this.userProgress).filter(p => p.studied > 0).length;
+    const progressStat = document.getElementById('progress-stat');
+    if (progressStat) {
+      progressStat.textContent = `${studied}/${this.questions.length}`;
+    }
+    
+    // Update timer every second
+    setInterval(() => this.updateStats(), 1000);
+  }
+  
+
+  
+  bindEvents() {
+    // Main buttons
+    const showAnswerBtn = document.getElementById('show-answer-btn');
+    const markStudiedBtn = document.getElementById('mark-studied-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const prevBtn = document.getElementById('prev-btn');
+    
+    if (showAnswerBtn) showAnswerBtn.addEventListener('click', () => this.showAnswer());
+    if (markStudiedBtn) markStudiedBtn.addEventListener('click', () => this.markAsStudied());
+    if (nextBtn) nextBtn.addEventListener('click', () => this.nextQuestion());
+    if (prevBtn) prevBtn.addEventListener('click', () => this.prevQuestion());
+    
+    // Quick actions
+    const randomBtn = document.getElementById('random-btn');
+    const priorityBtn = document.getElementById('priority-btn');
+    const newBtn = document.getElementById('new-btn');
+    const hardBtn = document.getElementById('hard-btn');
+    
+    if (randomBtn) randomBtn.addEventListener('click', () => this.goToRandomQuestion());
+    if (priorityBtn) priorityBtn.addEventListener('click', () => this.goToPriorityQuestions());
+    if (newBtn) newBtn.addEventListener('click', () => this.goToNewQuestions());
+    if (hardBtn) hardBtn.addEventListener('click', () => this.goToHardQuestions());
+    
+    // Translations
+
+
+    // Keyboard shortcuts
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') this.nextQuestion();
+      if (e.key === 'ArrowLeft') this.prevQuestion();
+      if (e.key === ' ') { // Space
+        e.preventDefault();
+        if (!this.isAnswerShown) {
+          this.showAnswer();
+        } else {
+          this.markAsStudied();
+        }
+      }
+    });
+
+    // ChatGPT buttons
+    document.getElementById('ask-gpt-btn').addEventListener('click', () => {
+      this.askChatGPT();
+    });
+    
+    document.getElementById('save-gpt-btn').addEventListener('click', () => {
+      this.showSaveChatGPTModal();
+    });
+  }
+
+  askChatGPT() {
+    const q = this.questions[this.currentQuestionIndex];
+    
+    // Sprawdź cache
+    const cacheKey = `chatgpt_${q.id}`;
+    const cachedResponse = localStorage.getItem(cacheKey);
+    
+    if (cachedResponse) {
+      this.showChatGPTResponse(JSON.parse(cachedResponse));
+      return;
+    }
+    
+    // Generuj prompt używając oryginalnej funkcji
+    const prompt = this.generateChatGPTPrompt(q);
+    
+    // Kopiuj do schowka
+    navigator.clipboard.writeText(prompt)
+      .then(() => {
+        console.log('Prompt skopiowany do schowka!');
+        alert('Prompt skopiowany! Wklej go w otwartym ChatGPT.');
+      })
+      .catch(err => {
+        console.error('Błąd kopiowania promptu:', err);
+        alert('Nie udało się skopiować promptu. Skopiuj ręcznie: ' + prompt);
+      });
+    
+    // Otwórz ChatGPT w nowej karcie
+    window.open('https://chat.openai.com/', '_blank');
+    
+    // Opcjonalnie: Pokaż prompt w UI lub zapisz odpowiedź później
+  }
+  
+  generateChatGPTPrompt(question) {
+    // Oryginalna implementacja
+    const correctAnswer = question.answers ? question.answers.find(a => a.isCorrect) : null;
+    const answerText = correctAnswer ? correctAnswer.text : question.answer_en || 'Brak odpowiedzi';
+    
+    // Zbierz wszystkie odpowiedzi
+    let allAnswersText = '';
+    if (question.answers && question.answers.length > 0) {
+      allAnswersText = question.answers.map((answer, index) => {
+        const letter = String.fromCharCode(65 + index);
+        // Sprawdź czy odpowiedź już zaczyna się od litery
+        const answerText = answer.text.trim();
+        if (answerText.match(/^[A-E]\.\s/)) {
+          // Jeśli już ma literę, użyj jak jest
+          return answerText;
+        } else {
+          // Jeśli nie ma litery, dodaj
+          return `${letter}. ${answerText}`;
+        }
+      }).join('\n');
+    }
+    
+    // Znajdź poprawną odpowiedź i jej literę
+    let correctAnswerLetter = '';
+    if (question.answers && question.answers.length > 0) {
+      const correctIndex = question.answers.findIndex(a => a.isCorrect);
+      if (correctIndex !== -1) {
+        correctAnswerLetter = String.fromCharCode(65 + correctIndex);
+      }
+    }
+    
+    return `Jesteś ekspertem medycznym i nauczycielem. Wyjaśniaj przystępnie ale dokładnie. Używaj przykładów klinicznych. Odpowiadaj po polsku.
+
+Pytanie egzaminacyjne: "${question.question}"
+
+Wszystkie odpowiedzi:
+${allAnswersText}
+
+Poprawna odpowiedź: "${answerText}"
+
+Proszę wyjaśnij:
+1. Przetłumacz pytanie na język polski (prostymi słowami)
+2. O co dokładnie pyta to pytanie? (prostymi słowami)
+3. Jakie są wszystkie odpowiedzi wraz z polskim i łacińskim tłumaczeniem oraz dlaczego odpowiedź ${correctAnswerLetter} jest poprawna?
+4. Jakie kluczowe koncepty medyczne muszę znać?
+5. Podaj praktyczny przykład kliniczny
+6. Wyjaśnij dlaczego każda z pozostałych odpowiedzi jest niepoprawna
+7. Wskaż najczęstsze błędy studentów przy tym pytaniu
+8. Podaj link do polskiego źródła medycznego (np. PZWL, Elsevier, Medycyna Praktyczna)
+
+Odpowiedz w formacie:
+**Tłumaczenie pytania:**
+[przekład na polski]
+
+**Wszystkie odpowiedzi z tłumaczeniami:**
+- A. [nazwa angielska] - [tłumaczenie polskie] - [tłumaczenie łacińskie]
+- B. [nazwa angielska] - [tłumaczenie polskie] - [tłumaczenie łacińskie]
+- C. [nazwa angielska] - [tłumaczenie polskie] - [tłumaczenie łacińskie]
+- D. [nazwa angielska] - [tłumaczenie polskie] - [tłumaczenie łacińskie]
+- E. [nazwa angielska] - [tłumaczenie polskie] - [tłumaczenie łacińskie]
+
+**Analiza pytania:**
+[wyjaśnienie]
+
+**Dlaczego ta odpowiedź jest poprawna:**
+[wyjaśnienie]
+
+**Kluczowe koncepty:**
+- [koncept 1]
+- [koncept 2]
+
+**Przykład kliniczny:**
+[przykład]
+
+**Dlaczego pozostałe odpowiedzi są niepoprawne:**
+- A. [nazwa angielska] (tłumaczenie polskie) - [wyjaśnienie dlaczego błędna]
+- B. [nazwa angielska] (tłumaczenie polskie) - [wyjaśnienie dlaczego błędna]
+- C. [nazwa angielska] (tłumaczenie polskie) - [wyjaśnienie dlaczego błędna]
+- D. [nazwa angielska] (tłumaczenie polskie) - [wyjaśnienie dlaczego błędna]
+- E. [nazwa angielska] (tłumaczenie polskie) - [wyjaśnienie dlaczego błędna]
+
+**Częste błędy:**
+- [błąd 1]
+- [błąd 2]
+
+**Źródła:**
+- [link do polskiego źródła]`;
+  }
+  
+  showSaveChatGPTModal() {
+    const q = this.questions[this.currentQuestionIndex];
+    const cacheKey = `chatgpt_${q.id}`;
+    
+    // Sprawdź czy już ma zapisaną odpowiedź
+    const existingResponse = localStorage.getItem(cacheKey);
+    
+    const modal = document.createElement('div');
+    modal.style.cssText = `
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    `;
+    
+    const modalContent = document.createElement('div');
+    modalContent.style.cssText = `
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      width: 80%;
+      max-width: 600px;
+      max-height: 80%;
+      overflow-y: auto;
+    `;
+    
+    modalContent.innerHTML = `
+      <h3>💾 Zapisz odpowiedź ChatGPT</h3>
+      <p><strong>Pytanie:</strong> ${q.question.substring(0, 100)}...</p>
+      ${existingResponse ? '<p style="color: #28a745;"><strong>✅ Masz już zapisaną odpowiedź dla tego pytania</strong></p>' : ''}
+      <p style="color: #666; font-size: 14px; margin: 10px 0;">💾 <strong>Zapis lokalny:</strong> Odpowiedzi są zapisywane w przeglądarce (bezpieczne i szybkie)</p>
+      <p>Wklej tutaj pełną odpowiedź z ChatGPT:</p>
+      <textarea id="gpt-response-text" style="width: 100%; height: 200px; padding: 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;" placeholder="Wklej tutaj odpowiedź z ChatGPT..."></textarea>
+      <div style="margin-top: 15px; text-align: right;">
+        <button id="cancel-save" style="margin-right: 10px; padding: 10px 20px; background: #6c757d; color: white; border: none; border-radius: 5px; cursor: pointer;">Anuluj</button>
+        <button id="save-response" style="padding: 10px 20px; background: #28a745; color: white; border: none; border-radius: 5px; cursor: pointer;">💾 Zapisz</button>
+      </div>
+    `;
+    
+    modal.appendChild(modalContent);
+    document.body.appendChild(modal);
+    
+    // Focus na textarea
+    const textarea = document.getElementById('gpt-response-text');
+    textarea.focus();
+    
+    // Event listeners
+    document.getElementById('cancel-save').addEventListener('click', () => {
+      document.body.removeChild(modal);
+    });
+    
+    document.getElementById('save-response').addEventListener('click', async () => {
+      const responseText = textarea.value.trim();
+      if (responseText) {
+        // Przygotuj dane do zapisu
+        const responseData = {
+          question: q.question,
+          response: responseText,
+          savedAt: new Date().toISOString(),
+          questionId: q.id
+        };
+        
+        // Zapisz lokalnie (zawsze)
+        localStorage.setItem(cacheKey, JSON.stringify(responseData));
+        
+        // Pokaż informację o zapisywaniu
+        const saveBtn = document.getElementById('save-response');
+        const originalText = saveBtn.textContent;
+        saveBtn.textContent = '💾 Zapisywanie...';
+        saveBtn.disabled = true;
+        
+        // Spróbuj zapisać w chmurze
+        const cloudSaved = await this.saveToCloud(q.id, responseData);
+        
+        // Przywróć przycisk
+        saveBtn.textContent = originalText;
+        saveBtn.disabled = false;
+        
+        // Pokaż odpowiednie potwierdzenie
+        if (cloudSaved) {
+          alert('✅ Odpowiedź zapisana lokalnie!');
+        } else {
+          alert('✅ Odpowiedź zapisana lokalnie!');
+        }
+        
+        // Zamknij modal
+        document.body.removeChild(modal);
+        
+        // Odśwież wyświetlanie pytania żeby pokazać zapisaną odpowiedź
+        this.displayQuestion();
+      } else {
+        alert('Proszę wklej odpowiedź z ChatGPT');
+      }
+    });
+    
+    // Zamknij modal po kliknięciu w tło
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        document.body.removeChild(modal);
+      }
+    });
+    
+    // Zamknij modal po ESC
+    document.addEventListener('keydown', function escHandler(e) {
+      if (e.key === 'Escape') {
+        if (document.body.contains(modal)) {
+          document.body.removeChild(modal);
+        }
+        document.removeEventListener('keydown', escHandler);
+      }
+    });
+  }
+
+  showChatGPTResponse(responseData) {
+    // Znajdź lub utwórz sekcję na odpowiedź ChatGPT
+    let gptSection = document.getElementById('chatgpt-response-section');
+    if (!gptSection) {
+      gptSection = document.createElement('div');
+      gptSection.id = 'chatgpt-response-section';
+      gptSection.style.cssText = `
+        margin-top: 20px;
+        padding: 15px;
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 8px;
+      `;
+      
+      // Dodaj sekcję po answer-section
+      const answerSection = document.getElementById('answer-section');
+      answerSection.parentNode.insertBefore(gptSection, answerSection.nextSibling);
+    }
+    
+    gptSection.innerHTML = `
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+        <h4 style="margin: 0; color: #28a745;">🤖 Odpowiedź ChatGPT</h4>
+        <small style="color: #6c757d;">Zapisano: ${new Date(responseData.savedAt).toLocaleString('pl-PL')}</small>
+      </div>
+      <div style="white-space: pre-wrap; line-height: 1.6; font-size: 14px;">${responseData.response}</div>
+    `;
+    
+    gptSection.classList.remove('hidden');
+  }
+
+  showChatGPTPrompt(prompt, cacheKey) {
+    const modal = this.createModal();
+    
+    modal.innerHTML = `
+      <div class="modal-content chatgpt-modal">
+        <span class="close-modal">&times;</span>
+        <h2>🤖 ChatGPT Helper</h2>
+        
+        <div class="chatgpt-container">
+          <div class="chatgpt-header">
+            <h3>📋 Krok 1: Skopiuj prompt</h3>
+            <p>Kliknij przycisk poniżej aby skopiować gotowy prompt do ChatGPT:</p>
+            <button class="btn btn-primary" id="copy-prompt">📋 Skopiuj prompt</button>
+          </div>
+          
+          <div class="prompt-preview">
+            <h3>🔍 Podgląd promptu:</h3>
+            <div class="prompt-text">${prompt.substring(0, 200)}...</div>
+          </div>
+          
+          <div class="chatgpt-steps">
+            <h3>📝 Krok 2: Otwórz ChatGPT</h3>
+            <button class="btn btn-secondary" id="open-chatgpt">🔗 Otwórz ChatGPT</button>
+            
+            <h3>📋 Krok 3: Wklej i wyślij</h3>
+            <p>W otwartej karcie ChatGPT wklej prompt (Ctrl+V) i naciśnij Enter</p>
+            
+            <h3>📝 Krok 4: Wklej odpowiedź</h3>
+            <p>Po otrzymaniu odpowiedzi skopiuj ją i wklej poniżej:</p>
+            <textarea id="chatgpt-response" placeholder="Wklej tutaj odpowiedź z ChatGPT..." rows="8"></textarea>
+            
+            <div class="chatgpt-actions">
+              <button class="btn btn-primary" id="save-response">💾 Zapisz odpowiedź</button>
+              <button class="btn btn-secondary" id="clear-response">🗑️ Wyczyść</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+    
+    document.body.appendChild(modal);
+    
+    // Close button
+    modal.querySelector('.close-modal').onclick = () => modal.remove();
+    
+    // Copy prompt
+    modal.querySelector('#copy-prompt').onclick = () => {
+      navigator.clipboard.writeText(prompt).then(() => {
+        alert('Prompt skopiowany do schowka!');
+      }).catch(err => {
+        console.error('Błąd kopiowania:', err);
+        alert('Skopiuj prompt ręcznie z podglądu powyżej');
+      });
+    };
+    
+    // Open ChatGPT
+    modal.querySelector('#open-chatgpt').onclick = () => {
+      window.open('https://chat.openai.com', '_blank');
+    };
+    
+    // Save response
+    modal.querySelector('#save-response').onclick = () => {
+      const response = modal.querySelector('#chatgpt-response').value.trim();
+      if (response) {
+        const responseData = {
+          question: this.questions[this.currentQuestionIndex].question,
+          response: response,
+          timestamp: Date.now()
+        };
+        
+        localStorage.setItem(cacheKey, JSON.stringify(responseData));
+        this.showChatGPTResponse(responseData);
+        modal.remove();
+      } else {
+        alert('Wklej odpowiedź z ChatGPT przed zapisaniem!');
+      }
+    };
+    
+    // Clear response
+    modal.querySelector('#clear-response').onclick = () => {
+      modal.querySelector('#chatgpt-response').value = '';
+    };
+  }
+  
+  createModal() {
+    const modal = document.createElement('div');
+    modal.className = 'modal';
+    modal.onclick = (e) => {
+      if (e.target === modal) modal.remove();
+    };
+    return modal;
+  }
+
+  formatChatResponse(text) {
+    return text
+      .replace(/\n\n/g, '</p><p>')
+      .replace(/\n/g, '<br>')
+      .replace(/(\d+\.)/g, '<br><strong>$1</strong>')
+      .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+      .replace(/\*(.*?)\*/g, '<em>$1</em>')
+      .replace(/^/, '<p>')
+      .replace(/$/, '</p>');
+  }
+
+  // ===== MOCKAPI.IO CLOUD STORAGE =====
+  
+  async initCloudStorage() {
+    try {
+      // MockAPI nie wymaga tworzenia - endpoint istnieje automatycznie
+      console.log('✅ Połączono z chmurową bazą danych MockAPI');
+      return true;
+    } catch (error) {
+      console.warn('❌ Błąd połączenia z bazą chmurową:', error);
+    }
+    return false;
+  }
+  
+  async saveToCloud(questionId, responseData) {
+    // Chmura tymczasowo wyłączona - zapisujemy tylko lokalnie
+    if (!this.cloudConfig.enabled) {
+      console.log('📱 Zapisano lokalnie (chmura wyłączona):', questionId);
+      return true; // Symulujemy sukces
+    }
+    
+    // Tutaj będzie prawdziwa implementacja chmury w przyszłości
+    return false;
+  }
+  
+  async loadFromCloud() {
+    // Chmura tymczasowo wyłączona
+    if (!this.cloudConfig.enabled) {
+      console.log('📱 Ładowanie z localStorage (chmura wyłączona)');
+      return null;
+    }
+    
+    // Tutaj będzie prawdziwa implementacja chmury w przyszłości
+    return null;
+  }
+  
+  async syncWithCloud() {
+    // Chmura tymczasowo wyłączona
+    if (!this.cloudConfig.enabled) {
+      console.log('📱 Synchronizacja wyłączona - używamy tylko localStorage');
+      return true; // Symulujemy sukces
+    }
+    
+    // Tutaj będzie prawdziwa implementacja chmury w przyszłości
+    return false;
+  }
+
+}
+
+// Inicjalizuj aplikację po załadowaniu DOM
+document.addEventListener('DOMContentLoaded', () => {
+  window.app = new MedicalQuizApp();
+});

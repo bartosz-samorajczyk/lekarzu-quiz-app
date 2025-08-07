@@ -1,0 +1,6 @@
+.DS_Store
+*.log
+.cursorrules
+response-batch-*.json
+node_modules/
+.env

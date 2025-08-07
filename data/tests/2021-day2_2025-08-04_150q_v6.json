@@ -1,0 +1,6159 @@
+{
+  "examName": "2021-day2",
+  "totalQuestions": 150,
+  "questionsWithCorrectAnswers": 150,
+  "questionsWithoutCorrectAnswers": 0,
+  "exportDate": "2025-08-04T05:46:41.286Z",
+  "questions": [
+    {
+      "id": "8299",
+      "number": "1",
+      "question": "1. When a dentist applied hydrogen peroxide to the patient’s oral mucosa, it started frothing excessively. What enzyme breaks down hydrogen peroxide?",
+      "answers": [
+        {
+          "text": "A. Cholinesterase",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Glucose-6-phosphate dehydrogenase",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Catalase",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Methemoglobin reductase",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Acetyltransferase",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8299",
+      "timestamp": "2025-08-04T05:35:00.251Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8296",
+      "number": "2",
+      "question": "2. A patient with myocardial infarction in the acute phase has been hospitalized into the cardiology unit. To induce platelet lysis in the patient’s coronary vessels, the following enzyme should be used during the early hours of infarction:",
+      "answers": [
+        {
+          "text": "A. Trypsin",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Streptokinase",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Lydase (Hyaluronidase)",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Lysozyme",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        },
+        {
+          "text": "E. Chymotrypsin",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8296",
+      "timestamp": "2025-08-04T05:35:03.231Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8271",
+      "number": "3",
+      "question": "3. A man with tetanus developed acute respiratory failure. What type of respiratory failure develops in such cases?",
+      "answers": [
+        {
+          "text": "A. Dysregulatory disorder of alveolar ventilation",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": true
+        },
+        {
+          "text": "B. Obstructive disorder of alveolar ventilation",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Perfusion abnormality",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Restrictive disorder of alveolar ventilation",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Diffusion abnormality",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8271",
+      "timestamp": "2025-08-04T05:40:47.431Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8380",
+      "number": "4",
+      "question": "4. Wernicke-Korsakoff syndrome often develops in chronic alcoholics, who have a low-vitamin dict. Decreased transketolase activity can be observed in the course causes this development?",
+      "answers": [
+        {
+          "text": "A. Retinol",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        },
+        {
+          "text": "B. Thiamine",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Riboflavin",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Cobalamin",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Niacin",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8380",
+      "timestamp": "2025-08-04T05:41:21.757Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8326",
+      "number": "5",
+      "question": "5. After a severe case of poliomyelitis, disturbed function of the central nervous system has caused weakening of the movements of all four limbs in the patient. What diagnostic term is used to describe this condition?",
+      "answers": [
+        {
+          "text": "A. Tetraplegia",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Paresis",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Flaccid paralysis",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Peripheral paralysis",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Spastic paralysis",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8326",
+      "timestamp": "2025-08-04T05:41:23.764Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8281",
+      "number": "6",
+      "question": "6. A diet must contain fats. What plasticity function do they fulfill in the body?",
+      "answers": [
+        {
+          "text": "A. They are a part of cellular receptors",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. They are a part of cellular membranes",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. They are a part of cellular ion pumps",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. They are a part of cellular ion channel",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. They are a part of glycocalyx",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8281",
+      "timestamp": "2025-08-04T05:41:25.772Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8334",
+      "number": "7",
+      "question": "7. Liver diseases usually are accompanied by a marked tendency to bleed. Why is it so?",
+      "answers": [
+        {
+          "text": "A. Disturbed pigment metabolism",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Decreased blood levels of potassium",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Increased breakdown of coagulation factors",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        },
+        {
+          "text": "D. Decreased synthesis of prothrombin and fibrinogen",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Decreased synthesis of bile acids",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8334",
+      "timestamp": "2025-08-04T05:41:27.778Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8308",
+      "number": "8",
+      "question": "8. An older man with parkinsonism was prescribed a certain drug. Several days later the man developed complaints of dry mouth and rapid heart rate. The prescribed drug is a?",
+      "answers": [
+        {
+          "text": "A. Dopamine receptor stimulator",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Adrenomimetic",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Cholinoblocker",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": true
+        },
+        {
+          "text": "D. Cholinomimetic",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Cholinesterase inhibiter",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8308",
+      "timestamp": "2025-08-04T05:41:29.786Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8339",
+      "number": "9",
+      "question": "9. Autopsy of the body of a woman revealed the following morphologic changes: stenosis of the atrioventricular opening, mitral insufficiency. Histologically there are focal cardiosclerosis and «blooming» Aschoff nodules in the myocardium. What is the most likely diagnosis?",
+      "answers": [
+        {
+          "text": "A. Polyarteritis nodosa",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Scleroderma",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        },
+        {
+          "text": "C. Dermatomyositis",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Rheumatism",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Systemic lupus erythematosus",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8339",
+      "timestamp": "2025-08-04T05:41:31.792Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8320",
+      "number": "10",
+      "question": "10. During a dry for spleen injury, the surgeon needs to isolate an artery that supplies the spleen with blood. Which branch of the arterial vessel is it?",
+      "answers": [
+        {
+          "text": "A. A. hepatica propria",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        },
+        {
+          "text": "B. A. gastrica sinistra",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. A. gastroduodenalis",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. A. hepatica communis",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Truncus coeliacus",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8320",
+      "timestamp": "2025-08-04T05:41:33.799Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8355",
+      "number": "11",
+      "question": "11. A man complains of a burning pain in the area of his heart. Based on the analysis of his ECG, he has been diagnosed with infarction of the posterior wall of the left ventricle. What artery has damaged branches in this case?",
+      "answers": [
+        {
+          "text": "A. Anterior interventricular branch of the left coronary artery",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        },
+        {
+          "text": "B. Circumflex branch of left coronary artery",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Pericardial branches of the thoracic to aorta",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Left coronary artery",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Right coronary artery",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8355",
+      "timestamp": "2025-08-04T05:41:35.808Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8340",
+      "number": "12",
+      "question": "12. A man has undergone a surgery for the removal of one third of his large intestine that was involved in a pathological process.  , if water intake of this man remains as usual?",
+      "answers": [
+        {
+          "text": "A. -",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Significant increase",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Significantly decrease",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. No significant changes",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": true
+        },
+        {
+          "text": "E. Slight increase",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8340",
+      "timestamp": "2025-08-04T05:41:37.814Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8366",
+      "number": "13",
+      "question": "13. A man for a long time was suffering from hemoblastosis. Autopsy of the body revealed brown color of the bone marrow, spleen, liver, and lymph nodes. Perl’s histochemical reaction was performed. It was determined that reticular, endothelial, and histiocytic elements of the affected organs contain blue granules. What pigment was detected using the Perl’s histochemical reaction?",
+      "answers": [
+        {
+          "text": "A. Hemosiderin",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Hematoporphyrin",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. -",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        },
+        {
+          "text": "D. Hematoidin",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Bilirubin",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8366",
+      "timestamp": "2025-08-04T05:41:39.820Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8347",
+      "number": "14",
+      "question": "14. A person has increased pulmonary ventilation because of physical exertion. What indicator of external respiration will be significantly increased compared to the resting state?",
+      "answers": [
+        {
+          "text": "A. Inspiratory reserve volume",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Expiratory reserve volume",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Respiratory volume",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Total lung capacity",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Vital lung capacity",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8347",
+      "timestamp": "2025-08-04T05:41:41.827Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8310",
+      "number": "15",
+      "question": "15. The synthesis rates of DNA. RNA, and necessary proteins are decreased in the cells of a human body and mitotic activity is insignificant. These changes most likely correspond with the following ontogenetic period:",
+      "answers": [
+        {
+          "text": "A. Old age",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": true
+        },
+        {
+          "text": "B. Young age",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Biological death",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Adolescence",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Clinical death",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8310",
+      "timestamp": "2025-08-04T05:41:43.834Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8270",
+      "number": "16",
+      "question": "16. A 3-year-old child has been brought to the pediatric department with a non-closure of the anterior fontanelle. At what age does it normally occur?",
+      "answers": [
+        {
+          "text": "A. At 2-3 months of age",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. At 4-6 months of age",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        },
+        {
+          "text": "C. In the second year of life",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. In the third year of life",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. In the first year of life",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8270",
+      "timestamp": "2025-08-04T05:41:45.842Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8314",
+      "number": "17",
+      "question": "17. ECG of the patient shows increased duration of the QRS complex. What is the most likely cause?",
+      "answers": [
+        {
+          "text": "A. Increased atrial excitability",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Increased period of atrial excitation",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Disturbed conduction in the atrioventricular node",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Increased period of ventricular excitation",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": true
+        },
+        {
+          "text": "E. Increased atrial and ventricular excitability",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8314",
+      "timestamp": "2025-08-04T05:41:47.849Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8311",
+      "number": "18",
+      "question": "18. To assess their adaptation to physical exertion, the doctor has examined the workers after a severe workload. What changes in the complete blood count can be detected in this case?",
+      "answers": [
+        {
+          "text": "A. Redistributive leucocytosis",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Intensification of leukopoiesis",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Accelerated leukocyte exit from the bone marrow",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Decelerated leukocyte extravasation",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Decreased leukocyte destruction",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8311",
+      "timestamp": "2025-08-04T05:41:49.855Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8363",
+      "number": "19",
+      "question": "19. A woman with enteritis accompanied by severe diarrhea presents with loss of water in the extracellular space, increased water content in the cells, and decreased blood osmolarity. Name this type of water electrolyte imbalance:",
+      "answers": [
+        {
+          "text": "A. Hypoosmolar hypohydration",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": true
+        },
+        {
+          "text": "B. Hyperosmolar hyperhydration",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Hyperosmolar hypohydration",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Hypoosmolar hyperhydration",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Isoosmolar hypohydration",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8363",
+      "timestamp": "2025-08-04T05:41:51.859Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8358",
+      "number": "20",
+      "question": "20. Feces of a child with an acute intestinal infection were inoculated onto Endo medium, which resulted in growth of numerous raspberry-red colonies with a metallic sheen. It indicates that the colibacillus is the kely causative agent of the disease. What properly of the causative agent was used to distinguish it from other intestinal bacteria?",
+      "answers": [
+        {
+          "text": "A. Fermentation of glucose",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Fermentation of sucrose",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Fermentation of lactose",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Fermentation of mannitol",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        },
+        {
+          "text": "E. Fermentation of maltose",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8358",
+      "timestamp": "2025-08-04T05:41:53.865Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8376",
+      "number": "21",
+      "question": "21. The patient arterial hypertension is caused by renal artery stenosis. The main pathogenetic link of this type of hypertension is the activation of the following system:",
+      "answers": [
+        {
+          "text": "A. Sympathoadrenal",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Kallikrein-kinin",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Hypothalamic-pituitary",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Renin-angiotensin",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": true
+        },
+        {
+          "text": "E. Parasympathetic",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8376",
+      "timestamp": "2025-08-04T05:41:55.873Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8348",
+      "number": "22",
+      "question": "22. When studying section material, the pathologist has noticed folliculi lymphatici aggregati (Peyer’s patches) on the inner surface of an intestinal segment. This segment is a part of:",
+      "answers": [
+        {
+          "text": "A. Duodenum",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Colon ascendens",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Colon descendens",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. lleum",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": true
+        },
+        {
+          "text": "E. Jejunum",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8348",
+      "timestamp": "2025-08-04T05:41:57.878Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8332",
+      "number": "23",
+      "question": "23. After a myocardial infarction, the morphological intactness of the wall was restored in the patient. In this case, regeneration occurred because of the following tissue:",
+      "answers": [
+        {
+          "text": "A. Epithelial tissue",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Cross-striated muscle tissue",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Connective tissue",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": true
+        },
+        {
+          "text": "D. Nervous tissue",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Smooth muscle tissue",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8332",
+      "timestamp": "2025-08-04T05:41:59.887Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8294",
+      "number": "24",
+      "question": "24. A 48-year-old woman with diabetes mellitus has been hospitalized in a severe precomatose state. Analysis of her acid-base balance revealed metabolic acidosis. What primary mechanism is the cause of the changes detected in the woman’s acid-base balance?",
+      "answers": [
+        {
+          "text": "A. Disturbed blood buffer systems",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        },
+        {
+          "text": "B. Decreased CO2 excretion",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Excretion of alkaline components with urine",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Disturbed utilization of O2 in the cells",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Formation of underoxidized products",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8294",
+      "timestamp": "2025-08-04T05:42:01.893Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8335",
+      "number": "25",
+      "question": "25. When examining a biopsy material obtained from the thyroid gland, the pathologist discovered lymphocyte infiltration of the thyroid tissues and destruction of the parenchymal elements. Diffuse lymphocyte infiltration with lymphoid follicles was detected in the stroma. What is the most likely diagnosis?",
+      "answers": [
+        {
+          "text": "A. Grave’s disease (toxic diffuse goiter)",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Solid adenoma of the thyroid",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Undifferentiated thyroid carcinoma",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Hashimoto's thyroiditis (chronic lymphocytic thyroiditis)",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Papillary thyroid cancer",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8335",
+      "timestamp": "2025-08-04T05:42:03.899Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8316",
+      "number": "26",
+      "question": "26. During an outbreak of a hospital-acquired infection, pure cultures of S. aureus were obtained upon inoculation from the nasopharynxes of medical personnel and wound discharge of surgical patients. What analysis must be conducted to find the likely source of infection in this case?",
+      "answers": [
+        {
+          "text": "A. Antibiotic sensitivity testing",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Biochemical properties analysis",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Phage typing of the obtained cultures",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": true
+        },
+        {
+          "text": "D. Repeated inoculations",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Sero-identification",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8316",
+      "timestamp": "2025-08-04T05:42:05.905Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8318",
+      "number": "27",
+      "question": "27. A 56-year-old woman with angioneurotic edema was prescribed an H1 blocker with antispasmodic, sedative, and local anaesthetic action. Select this H1blocker from the list:",
+      "answers": [
+        {
+          "text": "A. Ambroxol",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Oxoline",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Levodopa",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Dimedrol (Diphenhydramine)",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": true
+        },
+        {
+          "text": "E. Acyclovir",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8318",
+      "timestamp": "2025-08-04T05:42:07.911Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8369",
+      "number": "28",
+      "question": "28. What differs a sanguinic from a phlegmatic?",
+      "answers": [
+        {
+          "text": "A. -",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Balance between nervous processes",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Intensity of excitation processes",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Mobility of nervous processes",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": true
+        },
+        {
+          "text": "E. Weakness of nervous processes",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8369",
+      "timestamp": "2025-08-04T05:42:09.917Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8371",
+      "number": "29",
+      "question": "29. A man had an acute onset of the disease. He complained of chills, fever of 40°C, headache, cough, and dyspnoea. The man died on the 5 day after the onset. Autopsy shows enlarged lungs with variegated appearance – «large variegated lung». Such clinical presentation of the lungs is characteristic of the following disease:",
+      "answers": [
+        {
+          "text": "A. Influenza",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Bronchiectasis",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        },
+        {
+          "text": "C. Adenovirus infection",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Croupous pneumonia",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Respiratory syncytical infection",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8371",
+      "timestamp": "2025-08-04T05:42:11.925Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8327",
+      "number": "30",
+      "question": "30. A patient has cardiac rhythm disturbance. ECG shows heart rate of 60/min., prolongation of PQ interval, and periodical loss of QRS complex. What cardiac rhythm disturbance is it?",
+      "answers": [
+        {
+          "text": "A. His’ right bundle branch block",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. First degree incomplete AV block",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Sick sinus syndrome",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        },
+        {
+          "text": "D. Second-degree incomplete AV block",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Complete AV block",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8327",
+      "timestamp": "2025-08-04T05:42:13.930Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8319",
+      "number": "31",
+      "question": "31. A man with acute rhinitis has dry and hyperaemic nasal mucosa. What cells of superficial mucosal epithelium normally provide its moisturizing?",
+      "answers": [
+        {
+          "text": "A. Tall and short basal cells",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Short basal cells",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Goblet cells",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": true
+        },
+        {
+          "text": "D. Brush cells",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Endocrine cells",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8319",
+      "timestamp": "2025-08-04T05:42:15.935Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8383",
+      "number": "32",
+      "question": "32. A 45-year-old man complains of dizziness, unsteady gait, and disturbed coordination of movements. Examination shows that he has osteochondrosis of the cervical spine and the vessel that passes through the transverse foramina of the cervical vertebrae is compressed. What vessel is it?",
+      "answers": [
+        {
+          "text": "A. A. carotis externa",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. A. carotis interna",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        },
+        {
+          "text": "C. A. occipitalis",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. A. verterbralis",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. A. subclavia",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8383",
+      "timestamp": "2025-08-04T05:42:17.940Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8328",
+      "number": "33",
+      "question": "33. During a fall, a small child has received a trauma of the anterior fontanelle. What type of cranial bone junction was pathologically affected in this case?",
+      "answers": [
+        {
+          "text": "A. Hemiarthrosis",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Syndesmosis",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": true
+        },
+        {
+          "text": "C. Sinsarcosis",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Synostosis",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Synchondrosis",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8328",
+      "timestamp": "2025-08-04T05:42:19.945Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8407",
+      "number": "34",
+      "question": "34. 5 weeks after a severe case of streptococcal tonsillitis, a 24-year-old man developed face edema and elevated blood pressure. He presents with hematuria and proteinuria of 1.2 g/L. In the blood, antistreptococcal antibodies and low levels of complement components are detected. In this case, nephropathy has been caused by immune complexes, accumulations of which can most likely be found in the microvasculature of:",
+      "answers": [
+        {
+          "text": "A. Pyramid",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        },
+        {
+          "text": "B. Glomeruli",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Proximal tubules",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Henle loop",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Descending tubules",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8407",
+      "timestamp": "2025-08-04T05:42:21.951Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8353",
+      "number": "35",
+      "question": "35. Blood plasma of a healthy person contains several dozens of protein types. If a person becomes ill, new types of proteins develop in the body. Among them there are acute phase proteins. Name one such protein:",
+      "answers": [
+        {
+          "text": "A. Prothrombin",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Immunoglobulin A",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Immunoglobulin G",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Fibrinogen",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        },
+        {
+          "text": "E. C-reactive protein",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8353",
+      "timestamp": "2025-08-04T05:42:23.957Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8329",
+      "number": "36",
+      "question": "36. An 8-year-old child had an acute onset of the disease. The death occurred two days after the onset. On the basal surface of the brain, autopsy shows acutely plethoric soft meninges that are soaked through with thick and turbid yellow-green exudate. Brain tissues are edematous. Make the diagnosis:",
+      "answers": [
+        {
+          "text": "A. Meningococcal infection",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Diphtheria",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Pertussis",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Measles",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Scarlet fever",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8329",
+      "timestamp": "2025-08-04T05:42:25.964Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8418",
+      "number": "37",
+      "question": "37. A measles outbreak has occurred in a maternity clinic. What class of maternal antibodies can provide newborn with immunity to measles virus?",
+      "answers": [
+        {
+          "text": "A. IgM",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. IgD",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. IgA",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        },
+        {
+          "text": "D. IgE",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. IgG",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8418",
+      "timestamp": "2025-08-04T05:42:27.971Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8400",
+      "number": "38",
+      "question": "38. Lung pathologies stimulate adaptive changes in the human body to ensure better oxygen supply to the tissues. One of these adaptive changes is the increased synthesis of the following in the erythrocytes:",
+      "answers": [
+        {
+          "text": "A. 2,3-diphosphoglycerate",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Glucose-6-phosphate",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. 1,3-diphosphoglycerate",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Fructose-1,6-diphosphate",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        },
+        {
+          "text": "E. 3-phosphoglycerate",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8400",
+      "timestamp": "2025-08-04T05:42:29.976Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8269",
+      "number": "39",
+      "question": "39. After an X-ray examination of the tuberculosis clinic patient, he was diagnosed with tumor of the right lung. During the surgery, the surgeon removed the middle lobe of the patient’s right lung. This lobe includes:",
+      "answers": [
+        {
+          "text": "A. Segmentum laterale et segmentum mediale",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Segmentum lingualare superius et inferius",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Segmentum apicale (superius) et segmentum basale mediale",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Segmentum anterius et segmentumn apicale",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Segmentum basale anterius et posterius",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8269",
+      "timestamp": "2025-08-04T05:42:31.979Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8289",
+      "number": "40",
+      "question": "40. What drug is used for treatment of malaria, amoebic dysentery, and autoimmune diseases?",
+      "answers": [
+        {
+          "text": "A. Streptomycin sulfate",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Co-trimoxazole (Biseptol)",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Itraconazole",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Dexamethasone",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        },
+        {
+          "text": "E. Chingamin (Chloroquine)",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8289",
+      "timestamp": "2025-08-04T05:42:33.985Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8406",
+      "number": "41",
+      "question": "41. After a cerebral trauma a person has lost the eyesight. What areas of the cerebral cortex are likely to be damaged, causing this condition?",
+      "answers": [
+        {
+          "text": "A. Frontal",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Occipital",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Temporal",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Temporal & Parietal",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        },
+        {
+          "text": "E. Parietal",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8406",
+      "timestamp": "2025-08-04T05:42:35.991Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8412",
+      "number": "42",
+      "question": "42. The initiation of transcription process becomes possible when an enzyme DNA dependent RNA polymerase attaches to a certain segment of DNA molecule. Name this DNA segment.",
+      "answers": [
+        {
+          "text": "A. Repressor",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Regulator",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Promoter",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": true
+        },
+        {
+          "text": "D. Terminator",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Suppressor",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8412",
+      "timestamp": "2025-08-04T05:42:37.997Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8399",
+      "number": "43",
+      "question": "43. A mutation has occurred in a cell in the first exon of the structural gene. The number of nucleotide pairs changed from 290 to 250. Name this type of mutation:",
+      "answers": [
+        {
+          "text": "A. Inversion",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        },
+        {
+          "text": "B. Deletion",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Duplication",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Translocation",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Insufficiency",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8399",
+      "timestamp": "2025-08-04T05:42:40.003Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8391",
+      "number": "44",
+      "question": "44. A man has been hospitalized with a suspected prostate tumor. During the surgery it was found that the tumor has penetrated into the urinary bladder. What part of the bladder was affected?",
+      "answers": [
+        {
+          "text": "A. Apex",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Fundus",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Body",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        },
+        {
+          "text": "D. Trigone",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Cervix",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8391",
+      "timestamp": "2025-08-04T05:42:42.010Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8387",
+      "number": "45",
+      "question": "45. To determine the type of leukaemia, the patient needs to undergo a bone marrow aspiration. What bone is usually punctured for this analysis?",
+      "answers": [
+        {
+          "text": "A. Diaphysis of the humerus",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Diaphysis of the femur",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        },
+        {
+          "text": "C. The head of the third rib",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Sternum",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. The first cervical vertebra",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8387",
+      "timestamp": "2025-08-04T05:42:44.014Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8411",
+      "number": "46",
+      "question": "46. Mitochondrial destruction is observed in some hereditary diseases (for example, Kearns-Sayre syndrome). What processes can be disturbed, as a result, in the cell?",
+      "answers": [
+        {
+          "text": "A. Amino acid synthesis",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Glycolysis",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        },
+        {
+          "text": "C. Adenosine triphosphate synthesis",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Nuclear division",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Crossing over",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8411",
+      "timestamp": "2025-08-04T05:42:46.017Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8330",
+      "number": "47",
+      "question": "47. A man complains of itching skin between the fingers of his right hand. He was diagnosed with scabies. Name the preventive measures against this disease:",
+      "answers": [
+        {
+          "text": "A. Acaricides",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Preventive vaccinations",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Compliance with the rules of personal hygiene",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": true
+        },
+        {
+          "text": "D. Insecticide treatment of premises",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Protection against tick bites",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8330",
+      "timestamp": "2025-08-04T05:42:48.026Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8291",
+      "number": "48",
+      "question": "48. The patient is suspected to have infectious mononucleosis. What results of laboratory analysis can Sum this diagnosis immediately on the day of the hospitalization?",
+      "answers": [
+        {
+          "text": "A. Cytomegalovirus antibodies were detected",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. IgM antibodies to herpes simplex virus were detected",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Herpesvirus was isolated",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. IgM antibodies to Epstein-Barr virus were detected",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": true
+        },
+        {
+          "text": "E. Fourfold increase in number of antibodies to Epstein-Barr virus was detected",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8291",
+      "timestamp": "2025-08-04T05:42:50.031Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8408",
+      "number": "49",
+      "question": "49. After an open scapular fracture, a man suddenly died. Early autopsy detects frothy blood in the right ventricle and pulmonary arteries. What was the cause of death in this case?",
+      "answers": [
+        {
+          "text": "A. Pulmonary edema",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Fat embolism",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Air embolism",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Tissue embolism",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Bacterial embolism",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8408",
+      "timestamp": "2025-08-04T05:42:52.038Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8378",
+      "number": "50",
+      "question": "50. After a nephrectomy, a 40-year-old man has developed signs of anemia. Why did these signs appear?",
+      "answers": [
+        {
+          "text": "A. Decreased synthesis of erythropoietin",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Folic acid deficiency",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        },
+        {
+          "text": "C. Vitamin B12 deficiency",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Iron deficiency",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Intensified destruction of erythrocytes",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8378",
+      "timestamp": "2025-08-04T05:42:54.044Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8338",
+      "number": "51",
+      "question": "51. A patient, who for a long time was suffering from rheumatism and had mitral stenosis, died of cardiopulmonary failure. Autopsy revealed brown induration of the lungs. What circulatory disorder leads to such changes in the lungs?",
+      "answers": [
+        {
+          "text": "A. Acute left ventricular failure",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Acute heart failure",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Acute right ventricular failure",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        },
+        {
+          "text": "D. Chronic right ventricular failure",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Chronic left ventricular failure",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8338",
+      "timestamp": "2025-08-04T05:42:56.049Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8323",
+      "number": "52",
+      "question": "52. A patient used an indirect-acting adrenergic agonist to treat rhinitis. After the patient has been putting in the nose drops or several days, the vasoconstrictive effect of the drug gradually diminished. Name this phenomenon:",
+      "answers": [
+        {
+          "text": "A. Cumulation",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Teratogenicity",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Allergy",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Tachyphylaxis",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Idiosynerasy",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8323",
+      "timestamp": "2025-08-04T05:42:58.055Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8274",
+      "number": "53",
+      "question": "53. Oxygen supply of skeletal muscles during their intensive work is often problematic because of compressed vessels and disrupted blood flow. What supplies muscles with oxygen in this case?",
+      "answers": [
+        {
+          "text": "A. Calmodulin",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Hemoglobin",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Cytochrome",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Myoglobin",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": true
+        },
+        {
+          "text": "E. Creatine phosphate",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8274",
+      "timestamp": "2025-08-04T05:43:00.061Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8301",
+      "number": "54",
+      "question": "54. A patient complains of acute increase in diuresis (up to 5-7 liters of urine per 24 hours). Examination revealed decreased secretion of vasopressin in this patient. What cells have insufficient secretory activity in this case?",
+      "answers": [
+        {
+          "text": "A. Neurosecretory cells of the hypothalamus",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": true
+        },
+        {
+          "text": "B. Pituicytes",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Endocrinocytes of the anterior pituitary",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Pars tuberalis cells",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Endocrinocytes of the intermediate pituitary",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8301",
+      "timestamp": "2025-08-04T05:43:02.067Z",
+      "retriedInThirdPass": true
+    },
+    {
+      "id": "8337",
+      "number": "55",
+      "question": "55. In experiment on an isolated squid giant axon submerged in a salt solution, the extracellular potassium ion concentration was increased to the level of the intracellular potassium ions concentration. What change in the membrane potential will occur in this case?",
+      "answers": [
+        {
+          "text": "A. Potential remains unchanged",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Potential disappears",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": true
+        },
+        {
+          "text": "C. Potential increases",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Potential decreases",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Potential first decreases and then increases",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8337",
+      "timestamp": "2025-08-04T05:43:04.073Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8397",
+      "number": "56",
+      "question": "56. A newborn had seizures that stopped after vitamin B6 was prescribed. This effect was most likely observed, because vitamin B6 takes part in formation of:",
+      "answers": [
+        {
+          "text": "A. Gamma-aminobutyric acid (GABA)",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Nicotinamide",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Non-essential amino acids",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Heme",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        },
+        {
+          "text": "E. Histamine",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8397",
+      "timestamp": "2025-08-04T05:43:06.081Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8343",
+      "number": "57",
+      "question": "57. What compensatory response occurs in the human body, when external temperature significantly rises?",
+      "answers": [
+        {
+          "text": "A. Dilation of the visceral blood vessels",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Dilation of the cutaneous blood vessels",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Peripheral vasoconstriction",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Decreased perspiration",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Increased muscle tone",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8343",
+      "timestamp": "2025-08-04T05:43:08.087Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8309",
+      "number": "58",
+      "question": "58. During patient examination, the doctor conducts auscultation to assess the functioning of the mitral valve. Where can the tones of this valve be auscultated?",
+      "answers": [
+        {
+          "text": "A. At the edge of the sternum on the left, opposite the cartilage of rib 5",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. At the edge of the sternum, in the second intercostal space on the left",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        },
+        {
+          "text": "C. At the edge of the sternum, in the second intercostal space on the right",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. At the cardiac apex",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. At the edge of the sternum on the right, opposite the cartilage of rib 5",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8309",
+      "timestamp": "2025-08-04T05:43:10.092Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8336",
+      "number": "59",
+      "question": "59. A patient with streptococcal infection of the gingiva was prescribed a drug with β-lactam ring in its structure. What drug of those listed below belongs to this pharmacological group?",
+      "answers": [
+        {
+          "text": "A. Levomycetin (Chloramphenicol)",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Erythromycin",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Benzylpenicillin",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": true
+        },
+        {
+          "text": "D. Streptomycin sulfate",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Rifampicin",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8336",
+      "timestamp": "2025-08-04T05:43:12.100Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8382",
+      "number": "60",
+      "question": "60. An 11-year-old girl is brought to the doctor’s office by her mother, who states that her daughter felt weak and had swollen face for 3 days. According to the mother, her daughter had always been healthy and active until the onset of the symptoms. Physical examination reveals generalized swelling of the face and pitting edema of the lower limbs. Upon inquiry, the girl describes a foamy appearance of her urine, but denies blood in urine, nycturia or pain during urination. Laboratory studies show proteinuria and microscopic hematuria. Which of the following is the most likely cause of the findings in the laboratory analysis of urine?",
+      "answers": [
+        {
+          "text": "A. Increased plasma oncotic pressure",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Increased hydrostatic pressure in the Bowman’s capsule",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        },
+        {
+          "text": "C. Increased glomerular hydrostatic pressure",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Increased permeability across the glomerular capillary wall",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. -",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8382",
+      "timestamp": "2025-08-04T05:43:14.106Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8280",
+      "number": "61",
+      "question": "61. Before prescribing a protein parenteral nutrition to an emaciated patient, the doctor has referred the patient for serum protein electrophoresis. This technique is based on the following physicochemical properties of proteins:",
+      "answers": [
+        {
+          "text": "A. Hydrophilicity and an ability to swell",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        },
+        {
+          "text": "B. Optical activity",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Inability to denature",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Viscosity",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Presence of a charge",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8280",
+      "timestamp": "2025-08-04T05:43:16.112Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8324",
+      "number": "62",
+      "question": "62. A patient has elevated blood pressure due to increased vascular tone. To lower the blood pressure, it is necessary to prescribe the blockers of:",
+      "answers": [
+        {
+          "text": "A. β-adrenoceptors",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. α-adrenoceptors",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Histamine H1 receptors",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Muscarinic acetylcholine receptors",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. α and β adrenoceptors",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8324",
+      "timestamp": "2025-08-04T05:43:18.122Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8388",
+      "number": "63",
+      "question": "63. A man, who for many years has been suffering from bronchial asthma, has died of asphyxia. Histology of his lungs shows large amounts of mucus with eosinophilic admixtures in the lumina of the bronchioles and small bronchi, the interalveolar septa are sclerotic, the alveolar lumina are dilated. What mechanism of hypersensitivity reaction development is observed in this case?",
+      "answers": [
+        {
+          "text": "A. Lymphocyte-induced cytolysis",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Cytotoxic reaction",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Reagin reaction",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Immune complex reaction",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        },
+        {
+          "text": "E. Granulomatosis",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8388",
+      "timestamp": "2025-08-04T05:43:20.128Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8303",
+      "number": "64",
+      "question": "64. After thorough examination, a man, who has returned to Ukraine from the Central Asia, was provisionally diagnosed with spring-summer encephalitis. In such cases, the causative agent is transmitted via the bites of a certain arthropod. Name this arthropod:",
+      "answers": [
+        {
+          "text": "A. Phlebotominae",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Ornithodoros papillipes",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Ixodes persulcatus",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Ixodes Ricinus",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        },
+        {
+          "text": "E. Sarcoptes scabiei",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8303",
+      "timestamp": "2025-08-04T05:43:22.134Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8390",
+      "number": "65",
+      "question": "65. The cell surface of pathogenic gram-negative bacteria can be covered in villi and cilia. What function do these structures have?",
+      "answers": [
+        {
+          "text": "A. Bacterial adhesion to the surface of the host cells, conjugation",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Resistance to antibody opsonization",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Inhibition of complement activity",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Nutrient transport into the cell",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. RNA exchange between cells",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8390",
+      "timestamp": "2025-08-04T05:43:24.142Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8287",
+      "number": "66",
+      "question": "66. The ophthalmologist noticed a purulent discharge from the conjunctiva of a newborn. Microscopy of the smear obtained from the conjunctiva found there a large number of leukocytes, as well as gram negative bean-shaped diplococci located inside the leukocytes. What is the causative agent of this disease?",
+      "answers": [
+        {
+          "text": "A. Staphylococcus epidermitis",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Staphylococcus aureus",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        },
+        {
+          "text": "C. Streptococcurs pyogenes",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Neisseria gonnorrhoeae",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Neisseria catarrhalis",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8287",
+      "timestamp": "2025-08-04T05:43:26.147Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8396",
+      "number": "67",
+      "question": "67. A child with mushroom (fly agaric) poisoning was brought into a toxicology department. What drug should be administered first as a part of emergency aid?",
+      "answers": [
+        {
+          "text": "A. Papaverine",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Atropine",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": true
+        },
+        {
+          "text": "C. Naloxone",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. -",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Unithiol (Dimercaptopropansulfonate sodium)",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8396",
+      "timestamp": "2025-08-04T05:43:28.153Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8312",
+      "number": "68",
+      "question": "68. To study hypoxia, a test animal was given a potassium cyanide solution. What type of oxygen starvation develops in this case?",
+      "answers": [
+        {
+          "text": "A. Respiratory",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        },
+        {
+          "text": "B. Circulatory",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Tissue",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Hemic",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Hypoxic",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8312",
+      "timestamp": "2025-08-04T05:43:30.162Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8295",
+      "number": "69",
+      "question": "69. A long-term taking of potassium preparations has caused hyperkalaemia in the patient. This condition results in the following changes in secretion:",
+      "answers": [
+        {
+          "text": "A. Decreased renin secretion",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        },
+        {
+          "text": "B. Increased vasopressin secretion",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Increased vasopressin secretion",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Increased aldosterone secretion",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Decreased aldosterone secretion",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8295",
+      "timestamp": "2025-08-04T05:43:32.166Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8278",
+      "number": "70",
+      "question": "70. During a surgery with application of inhalation narcosis and muscle relaxants, the anesthesiologist noticed rapid increase of the patient’s body temperature to 43°C. What pathology developed in this patient?",
+      "answers": [
+        {
+          "text": "A. Overheating",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Physical hyperthermia",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Infection-induced fever",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Hyperthermic syndrome",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Traumatic shock",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8278",
+      "timestamp": "2025-08-04T05:43:34.173Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8398",
+      "number": "71",
+      "question": "71. A 3-year-old child after a past case of severe viral infection presents with recurrent vomiting, loss of consciousness, and seizures. Blood testing reveals hyperammonemia. What is the likely cause of such changes in the biochemical parameters of the child’s blood?",
+      "answers": [
+        {
+          "text": "A. Disturbed neutralization of biogenic amines",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Activation of amino acid decarboxylation processes",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Disturbed ammonia neutralization in the ornithine cycle",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Increased putrefaction of proteins in the intestine",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Disturbed ammonia neutralization in the Krebs cycle",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8398",
+      "timestamp": "2025-08-04T05:43:36.179Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8379",
+      "number": "72",
+      "question": "72. To study inflammations, a test animal was injected with a lethal dose of tetanus toxin into the cavity of a turpentine-induced abscess. However, the test animal did not die. What is the most likely cause of such test result?",
+      "answers": [
+        {
+          "text": "A. Activation of detoxification function of phagocytes",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Activation of antibody synthesis during inflammation",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        },
+        {
+          "text": "C. Increased vascularization of the inflammation site",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Formation of a barrier around inflammation",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Stimulation of leukopoiesis during inflammation",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8379",
+      "timestamp": "2025-08-04T05:43:38.185Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8279",
+      "number": "73",
+      "question": "73. A person has been bitten by a snake, which led to asphyxia and haemoglobin in urine. Erythrocyte hemolysis occurs in blood. What is the toxic snake venom?",
+      "answers": [
+        {
+          "text": "A. Lysolecithin formation",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Acidosis",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Polyuria",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Triglyceride formation",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        },
+        {
+          "text": "E. Alkalosis development",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8279",
+      "timestamp": "2025-08-04T05:43:40.192Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8415",
+      "number": "74",
+      "question": "74. A child has been diagnosed with agammaglobulinemia. This genetic disease disrupts the antibody synthesis, leading to:",
+      "answers": [
+        {
+          "text": "A. Increased metabolism",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Decreased defense responses of the body",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": true
+        },
+        {
+          "text": "C. Disturbed permeability of biomembranes",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Disturbed blood coagulation",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Disturbed cell division",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8415",
+      "timestamp": "2025-08-04T05:43:42.198Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8381",
+      "number": "75",
+      "question": "75. According to the Schade’s physicochemical theory, hyperosmia, hyperonchia and acidosis can be observed in the area of inflammation. The development of hyperosmia is, to an extent, associated with the increasing concentration of K+ in the inflamed area. What causes the hyperkalaemia of the inflammatory exudate?",
+      "answers": [
+        {
+          "text": "A. Increased permeability of blood vessels",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Excess of Ca+ ions",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        },
+        {
+          "text": "C. Intensive destruction of damaged cells",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Inhibition of glycogenolysis in the area",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Activation of proliferative processes",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8381",
+      "timestamp": "2025-08-04T05:43:44.203Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8331",
+      "number": "76",
+      "question": "76. Histone protein synthesis is inhibited what structure will be affected?",
+      "answers": [
+        {
+          "text": "A. Nucleolus",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Cell Membrane",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Nuclear chromatin",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": true
+        },
+        {
+          "text": "D. Golgi apparatus",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Nuclear Membrane",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8331",
+      "timestamp": "2025-08-04T05:43:46.209Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8300",
+      "number": "77",
+      "question": "77. On examination a man presents with convergent strabismus, inward deviation of the eyeball and inability to move the eyeball outward. What nerve is damaged?",
+      "answers": [
+        {
+          "text": "A. Ophthalmic nerve",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Abducent nerve",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Trochlear nerve",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Oculomotor nerve",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Optic nerve",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8300",
+      "timestamp": "2025-08-04T05:43:48.214Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8282",
+      "number": "78",
+      "question": "78. During analysis a medical laboratory scientist has additionally noted that the blood sample was obtained from a woman. What blood corpuscles have the structural characteristics that allow making such a conclusion?",
+      "answers": [
+        {
+          "text": "A. Basophilic leukocytes",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Neutrophilic leukocytes",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Lymphocytes",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Monocytes",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        },
+        {
+          "text": "E. Erythrocytes",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8282",
+      "timestamp": "2025-08-04T05:43:50.219Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8276",
+      "number": "79",
+      "question": "79. A 52-year-old woman came to the neurologist with complaints of loss of skin sensitivity on the right half of her face in the area of the lower eyelid, nasal arch and upper lip. What branch of what nerve is damaged in this patient?",
+      "answers": [
+        {
+          "text": "A. Mandibular branch of the trigeminal nerve",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Ophthalmic branch of the trigeminal nerve",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Chorda tympani branching from the facial nerve",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Greater petrosal nerve branching from the facial nerve",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        },
+        {
+          "text": "E. Maxillary branch of the trigeminal nerve",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8276",
+      "timestamp": "2025-08-04T05:43:52.224Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8367",
+      "number": "80",
+      "question": "80. An older man developed an acute cerebrovascular accident, followed by coma and death. Autopsy revealed a large blood-filled cavity in the right hemisphere of his brain. What pathological process was detected in the brain?",
+      "answers": [
+        {
+          "text": "A. Stroke",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Cyst",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        },
+        {
+          "text": "C. Hemorrhagic Infiltration",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Hematoma",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Brain tumor",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8367",
+      "timestamp": "2025-08-04T05:43:54.229Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8384",
+      "number": "81",
+      "question": "81. Examination shows that leukocyte count in the patient’s blood is 11 x 109/L, with 80% neutrophils, among which 9% are band neutrophils. Characterize the changes in the cell composition of white blood in this case:",
+      "answers": [
+        {
+          "text": "A. Lymphocytosis",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Leukopenia",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Nuclear left shift of neutrophils",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Neutropenia",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Nuclear right shift of neutrophils",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8384",
+      "timestamp": "2025-08-04T05:43:56.237Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8304",
+      "number": "82",
+      "question": "82. Excitation processes in cardiomyocytes have been studied in an experiment. It was determined that during the phase of their rapid depolarization, Na+ ions can additionally be through the?",
+      "answers": [
+        {
+          "text": "A. K+ channels",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Ca++ channels",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": true
+        },
+        {
+          "text": "C. Mg++ channels",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Cl-- channels",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Li+ channels",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8304",
+      "timestamp": "2025-08-04T05:43:58.242Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8292",
+      "number": "83",
+      "question": "83. A woman with chronic hepatitis complains of increased sensitivity to barbiturates that previously she could take without any signs of intoxication. Her condition is mainly associated with disturbance of the following hepatic function:",
+      "answers": [
+        {
+          "text": "A. Hematopoietic",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Hemodynamic",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        },
+        {
+          "text": "C. Bile formation",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Phagocytic",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Metabolic",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8292",
+      "timestamp": "2025-08-04T05:44:00.249Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8375",
+      "number": "84",
+      "question": "84. X-ray has detected multiple foci of osteoporosis and osteolysis in the flat bones of a man. Trephine biopsy material contains high levels of neoplastic plasma cells. Make the diagnosis:",
+      "answers": [
+        {
+          "text": "A. Multiple myeloma",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Histiocytosis",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Acute monocytic leukemia",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        },
+        {
+          "text": "D. Chronic myeloid leukemia",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Lymphogranulomatosis",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8375",
+      "timestamp": "2025-08-04T05:44:02.255Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8392",
+      "number": "85",
+      "question": "85. A man has acute pancreatitis. What medicines must be prescribed in this case, to prevent pancreatic autolysis?",
+      "answers": [
+        {
+          "text": "A. Protease activators",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Amylase",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Chymotrypsin",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Trypsin",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        },
+        {
+          "text": "E. Protease inhibitors",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8392",
+      "timestamp": "2025-08-04T05:44:04.260Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8417",
+      "number": "86",
+      "question": "86. What type of disease inheritance results in men being affected by haemophilia, while women are the carriers of this disease?",
+      "answers": [
+        {
+          "text": "A. Y-linked",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Autosomal recessive",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        },
+        {
+          "text": "C. X- linked dominant",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. X-linked recessive",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Autosomal dominant",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8417",
+      "timestamp": "2025-08-04T05:44:06.267Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8297",
+      "number": "87",
+      "question": "87. In reperfusion syndrome, the processes of free radical oxidation activate, resulting in damage to cell membranes and disturbance of specific cell functions. These changes are associated with excessive accumulation of the following ions in the cytoplasm:",
+      "answers": [
+        {
+          "text": "A. Sodium ions",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Calcium ions",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": true
+        },
+        {
+          "text": "C. Chlorine ions",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Magnesium ions",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Potassium ions",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8297",
+      "timestamp": "2025-08-04T05:44:08.279Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8313",
+      "number": "88",
+      "question": "88. A man is a carrier of AIDS virus that is an RNA virus. The cells of this patient synthesize viral DNA. This process is based on:",
+      "answers": [
+        {
+          "text": "A. Repair",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Replication",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        },
+        {
+          "text": "C. Transcription",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Reverse transcription",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Translation",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8313",
+      "timestamp": "2025-08-04T05:44:10.293Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8285",
+      "number": "89",
+      "question": "89. A patient was hospitalized in a comatose state. The patient has a 5-year-long history of diabetes mellitus type 2. Objectively, his respiration is noisy, deep, with acetone breath odour. Blood glucose is 15.2 mmol/L, ketone bodies 100 micromol/L. These signs are characteristic of the following diabetes complication:",
+      "answers": [
+        {
+          "text": "A. Hyperglycemic coma",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Hepatic coma",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        },
+        {
+          "text": "C. Hyperosmolar coma",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Hypoglycemic coma",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Ketoacidotic coma",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8285",
+      "timestamp": "2025-08-04T05:44:12.296Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8350",
+      "number": "90",
+      "question": "90. A man has received a hit to the area of the inferior angle of the scapula on the right, which resulted in rib fracture. What ribs were damaged in this case?",
+      "answers": [
+        {
+          "text": "A. XII",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        },
+        {
+          "text": "B. I-III",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. VI-VII",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. VIII-IX",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. X-XI",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8350",
+      "timestamp": "2025-08-04T05:44:14.300Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8346",
+      "number": "91",
+      "question": "91. A patient with clinical signs of a primary immunodeficiency has functionally disturbed mechanism of antigen-presentation to the immunocompetent cells. What cells are likely to have structural defects?",
+      "answers": [
+        {
+          "text": "A. B-lymphocytes",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. O-lymphocytes",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Macrophages, monocytes",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Fibroblasts",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        },
+        {
+          "text": "E. T-lymphocytes",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8346",
+      "timestamp": "2025-08-04T05:44:16.306Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8365",
+      "number": "92",
+      "question": "92. Examination of a patient, who for a long time was taking glucocorticoids, detected lymphopenia. How can the functional State of the patient’s immune- system be characterized?",
+      "answers": [
+        {
+          "text": "A. Anaphylaxis",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Secondary immunodeficiency",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Primary immunodeficiency",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Autoantigen tolerance",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Congenital immunodeficiency",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8365",
+      "timestamp": "2025-08-04T05:44:18.313Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8362",
+      "number": "93",
+      "question": "93. Autopsy of the body revealed waxy degeneration of the rectus abdominis muscles. In the terminal segment of the small intestine there are ulcers 3-5 cm in diameter. The ulcer walls are covered in a crumbling gray-yellow substance. The ulcer edges are moderately raised above the mucosa. Widal test is positive. Make the diagnosis:",
+      "answers": [
+        {
+          "text": "A. Crohn’s disease",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Dysentery",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Typhoid fever",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": true
+        },
+        {
+          "text": "D. Relapsing fever",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Non specific ulcerative colitis",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8362",
+      "timestamp": "2025-08-04T05:44:20.319Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8333",
+      "number": "94",
+      "question": "94. A man presents with osteoporosis. There are hypercalcemia and hypophosphatemia in his blood. What is the cause of his condition?",
+      "answers": [
+        {
+          "text": "A. Increased secretion of corticosteroids",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        },
+        {
+          "text": "B. Increased thyroxine secretion",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Inhibited secretion of corticosteroids",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Inhibited parathyroid hormone secretion",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Increased secretion of parathyroid hormone",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8333",
+      "timestamp": "2025-08-04T05:44:22.325Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8272",
+      "number": "95",
+      "question": "95. In von Gierke disease, glycogen accumulation can be observed in liver and kidneys. This disease is caused by deficiency of the following enzyme:",
+      "answers": [
+        {
+          "text": "A. Phosphorylase kinase",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Glucose 6-phosphatase",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": true
+        },
+        {
+          "text": "C. Gtucokinase",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Glycogen phosphorylase",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Phosphoglucomutase",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8272",
+      "timestamp": "2025-08-04T05:44:24.330Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8414",
+      "number": "96",
+      "question": "96. A man presents with decreased vasopressin synthesis, which causes polyuria and results in marked dehydration. What is the most likely polyuria mechanism in this case?",
+      "answers": [
+        {
+          "text": "A. Increased tubular reabsorption of water",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Renal permeability decreased",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Decreased glomerular filtration",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        },
+        {
+          "text": "D. Decreased tubular reabsorption of water",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Increased glomerular filtration",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8414",
+      "timestamp": "2025-08-04T05:44:26.335Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8305",
+      "number": "97",
+      "question": "97. Increased resistance to blood ejection from the left ventricle has activated the homeometric compensation mechanism in the patient. In what pathological process can this compensation mechanism develop in the left ventricle?",
+      "answers": [
+        {
+          "text": "A. Aortic valve stenosis",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Pulmonary embolism",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        },
+        {
+          "text": "C. Arterial hypotension",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Mitral stenosis",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Aortic valve insufficiency",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8305",
+      "timestamp": "2025-08-04T05:44:28.341Z",
+      "retriedInThirdPass": true
+    },
+    {
+      "id": "8385",
+      "number": "98",
+      "question": "98. A man with multiple myeloma presents with protein in his urine. What type of proteinuria does he have?",
+      "answers": [
+        {
+          "text": "A. Renal tubular",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Subrenal urethal",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Renal glomerular",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        },
+        {
+          "text": "D. Subrenal cystic",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Suprarenal",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8385",
+      "timestamp": "2025-08-04T05:44:30.346Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8404",
+      "number": "99",
+      "question": "99. During examination of a man, who was in a car accident, the neurologist has detected dysmetria. This sign characterized by:",
+      "answers": [
+        {
+          "text": "A. Muscle tremors when performing voluntary muscles",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Inability to conduct a finger-to-nose test with eyes closed",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. –",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Hand termers.",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        },
+        {
+          "text": "E. Impaired muscle tone",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8404",
+      "timestamp": "2025-08-04T05:44:32.352Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8402",
+      "number": "100",
+      "question": "100. A 60-year-old man, who has a long history of angina pectoris, was along with coronarolytics prescribed acetylsalicylic acid to decrease the platelet aggregation. What is the mechanism of antiaggregant action of acetylsalicylic acid?",
+      "answers": [
+        {
+          "text": "A. Has a membrane-stabilizing effect",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Reduces phosphodiesterase activity",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Increases platelet adenylate cyclase activity",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Increases prostacyclin synthesis",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Reduces cyclooxygenase activity",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": true
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8402",
+      "timestamp": "2025-08-04T05:44:34.358Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8322",
+      "number": "101",
+      "question": "101. A woman with ischemic heart disease was prescribed amiodarone. This medicine has antianginal effect. What other effect does it have?",
+      "answers": [
+        {
+          "text": "A. Anti-inflammatory",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Antiarrhythmic",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Antishock",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        },
+        {
+          "text": "D. Local anaesthetic",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Analgesic",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8322",
+      "timestamp": "2025-08-04T05:44:36.365Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8298",
+      "number": "102",
+      "question": "102. Autopsy of the body of a 42- year-old man, who had chronic diffuse bronchitis and died of cardiopulmonary failure, shows large hyperinflated lungs that cover the mediastinum with their edges. The lungs do not deflate, are pale gray, emit crackling sound when cut. Pressing a finger to the surface of the lungs leaves an indentation. Bronchial lumen produces mucopurulent exudate. Make the diagnosis:",
+      "answers": [
+        {
+          "text": "A. Interstitial emphysema",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Chronic diffuse obstructive pulmonary emphysema",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": true
+        },
+        {
+          "text": "C. Chronic focal emphysema",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Vicarious compensatory emphysema",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Primary idiopathic emphysema",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8298",
+      "timestamp": "2025-08-04T05:44:38.372Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8277",
+      "number": "103",
+      "question": "103. Patients with B12-deficiency anaemia develop degenerative processes in the posterior and lateral columns of the spinal cord (funicular myelosis). In this case, the damage to the axons is caused by the disturbed formation of:",
+      "answers": [
+        {
+          "text": "A. Setotonin",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Dopamine",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        },
+        {
+          "text": "C. Acetylcholine",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Myelin",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Noradrenaline",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8277",
+      "timestamp": "2025-08-04T05:44:40.378Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8359",
+      "number": "104",
+      "question": "104. A man had a case of epidemic typhus 5 years ago. After an acute respiratory viral disease, against the background of weakened immune system, he developed signs of typhus again. The exacerbation occurred because of the causative agents, remaining in his body. What type of infection is it?",
+      "answers": [
+        {
+          "text": "A. Secondary infection",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Superinfection",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Relapse",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Reinfection",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Co-infection",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8359",
+      "timestamp": "2025-08-04T05:44:42.387Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8394",
+      "number": "105",
+      "question": "105. In typhoid fever, the necrotized Peyer’s patches in the small intestine color yellow-brown. What pigment permeates the necrotized tissue?",
+      "answers": [
+        {
+          "text": "A. Haemoglobin",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Bilirubin",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Melanin",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Indole",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        },
+        {
+          "text": "E. Lipofuscin",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8394",
+      "timestamp": "2025-08-04T05:44:44.395Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8284",
+      "number": "106",
+      "question": "106. Bacteriology testing is one of methods for laboratory diagnostics of diphtheria. To grow the colonies of C. diphtheriae, it is necessary to know the proper conditions for causative agent cultivation. What nutrient media are optimal for Corynebacterium diphtheriae cultivation?",
+      "answers": [
+        {
+          "text": "A. Sugar meat peptone broth, sugar meat peptone agar",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Endo medium, Ploskirev medium",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        },
+        {
+          "text": "C. Scrum agar, ascitic agar",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Salt egg yolk agar",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Blood agar, tellurite blood agar",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8284",
+      "timestamp": "2025-08-04T05:44:46.400Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8321",
+      "number": "107",
+      "question": "107. A patient suffers from disturbed renal function. To check the filtration ability of the kidneys, he was referred for clearance measurement of the following substance:",
+      "answers": [
+        {
+          "text": "A. Hydrogen carbonate",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Creatinine",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Glutamine",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        },
+        {
+          "text": "D. Indole",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Uric acid",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8321",
+      "timestamp": "2025-08-04T05:44:48.407Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8395",
+      "number": "108",
+      "question": "108. A 50-year-old man has undergone a surgery for gastric cancer. Complex anesthesia included dithylin (Suxamethonium iodide). After the surgery was over, dithylin effect continued. Why is proserine (neostigmine) contraindicated in case of dithylin overdose?",
+      "answers": [
+        {
+          "text": "A. May cause bronchospasm",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Reactivates acetylcholinesterase",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Causes intestinal colic",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Increases synanthic membrane depolarization",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Reduces acetylcholine effect",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8395",
+      "timestamp": "2025-08-04T05:44:50.413Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8386",
+      "number": "109",
+      "question": "109. A 40-year-old man has died of a pulmonary haemorrhage. In the upper lobe of the right lung, autopsy shows a cavity 4 cm in diameter with dense walls and uneven inner surface. The cavity contains blood clots. Microscopy detects disintegrating leukocytes in the inner layer of the cavity wall and proliferations of epithelioid, lymphoid, and giant multinucleated cells with horseshoe shaped nuclei in the middle layer of the cavity wall. The observed changes in the lung are characteristic of a:",
+      "answers": [
+        {
+          "text": "A. Congenital cyst",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Pulmonary infarction with septic breakdown",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        },
+        {
+          "text": "C. Lung abscess",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Tuberculous cavity",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Bronchiectasis cavity",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8386",
+      "timestamp": "2025-08-04T05:44:52.419Z",
+      "retriedInThirdPass": true
+    },
+    {
+      "id": "8401",
+      "number": "110",
+      "question": "110. Tyrosine is used as a substrate in thyroxine synthesis. What chemical element takes part in this process?",
+      "answers": [
+        {
+          "text": "A. Zinc",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. lodine",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Iron",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        },
+        {
+          "text": "D. Copper",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Calcium",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8401",
+      "timestamp": "2025-08-04T05:44:54.426Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8307",
+      "number": "111",
+      "question": "111. A patient with essential hypertension was prescribed hydrochlorothiazide as a part of complex therapy. What mechanism of drug action facilitates a decrease in blood pressure in this case?",
+      "answers": [
+        {
+          "text": "A. Calcium channel blockade",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Carbonic anhydrase blockade",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Increased excretion of sodium ions and water",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Increased production of angiotensin II",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Decreased excretion of sodium ions and water",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8307",
+      "timestamp": "2025-08-04T05:44:56.432Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8344",
+      "number": "112",
+      "question": "112. A man has a node in his thigh that is located within the thigh muscles. On section, the node is whitish, fibrous, without clear margins. Microscopy shows that the tumour consists of immature polymorphic fibroblast cells with numerous mitoses and collagen fibres. What tumour is it?",
+      "answers": [
+        {
+          "text": "A. Rhabdomyosarcoma",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        },
+        {
+          "text": "B. Myosarcoma",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Fibrosarcoma",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Fibromyoma",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Fibroma",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8344",
+      "timestamp": "2025-08-04T05:44:58.437Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8389",
+      "number": "113",
+      "question": "113. An older woman has type 2 diabetes mellitus accompanied by obesity, atherosclerosis, and ischemic heart disease. Basal-state hyperinsulinemia was detected in her condition. What treatment would be adequate for this woman?",
+      "answers": [
+        {
+          "text": "A. Amlodipine",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Insulin",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Lovastatin",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Retabolil (Nandrolone)",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        },
+        {
+          "text": "E. Glibenclamide",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8389",
+      "timestamp": "2025-08-04T05:45:00.444Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8290",
+      "number": "114",
+      "question": "114. A man with heart failure presents with enlarged liver, leg edema, and ascites. What is the leading mechanism of edema formation in this case?",
+      "answers": [
+        {
+          "text": "A. Hydrodynamic",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Phagocytic",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        },
+        {
+          "text": "C. Bile formation",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Metabolic",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Hematopoietic",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8290",
+      "timestamp": "2025-08-04T05:45:02.452Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8356",
+      "number": "115",
+      "question": "115. A 45-year-old woman has an attack of ciliary arrhythmia. She suffers from stage II essential hypertension. What is the drug of choice for stopping this attack?",
+      "answers": [
+        {
+          "text": "A. Strophanthin",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Lidocaine",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Sustac forte (Nitroglycerin)",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Anaprilin (Propranolol)",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Potassium chloride",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8356",
+      "timestamp": "2025-08-04T05:45:04.459Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8341",
+      "number": "116",
+      "question": "116. There is a sensation of tingling in thumb, index and middle finger, earlier pain was resolved using ibuprofen, but now the pain is much worse and wakes her up at night. She works as a typist and the pain often increases after typing all day. Her right wrist and fingers are line. Nerve conduction studies reveal nerve compression. Which of the following nerves is most likely compressed in this patient?",
+      "answers": [
+        {
+          "text": "A. Axillary nerve",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Musculocutaneous nerve",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Radial nerve",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Median nerve",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Ulnar nerve",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8341",
+      "timestamp": "2025-08-04T05:45:06.465Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8275",
+      "number": "117",
+      "question": "117. Hematologic study shows the following pattern: erythrocytes 2.8 x 1012/L, Hb- 80 g/l, color index – 0.85, recylocytes-0.1%, platelets – 160 thousand per microliter, leukocytes 60 x 109/L, basocytes – 2%, eosinophils – 8%, promyelocytes – 5%, myelocytes – 5%, juvenile – 16%, stab neutrophils – 20%, segmented neutrophils – 34%, lymphocytes – 5%, monocytes – 5%. This clinical presentation indicates the following blood pathology:",
+      "answers": [
+        {
+          "text": "A. Hypoplastic anemia",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Undifferentiated leukemia",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Acute myeloleukemia",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Chronic myeloleukemia",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": true
+        },
+        {
+          "text": "E. Hemolytic anemia",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8275",
+      "timestamp": "2025-08-04T05:45:08.472Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8317",
+      "number": "118",
+      "question": "118. What is used as an antidote for poisoning with salts of heavy metals?",
+      "answers": [
+        {
+          "text": "A. Unithiol (Dimercaptopropansulfonate sodium)",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Iodine",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Oxygen",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        },
+        {
+          "text": "D. Sodium sulphate",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. -",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8317",
+      "timestamp": "2025-08-04T05:45:10.477Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8410",
+      "number": "119",
+      "question": "119. On the third day after gastric resection, the patient developed intestinal atony. What medicine should be used in the case?",
+      "answers": [
+        {
+          "text": "A. Proserine (Neostigmine)",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Benzohexonium (Hexamethonium)",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. No-Spa (Drotaverine)",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Pirelenum (Pempidine)",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        },
+        {
+          "text": "E. Atropine Sulfate",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8410",
+      "timestamp": "2025-08-04T05:45:12.482Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8416",
+      "number": "120",
+      "question": "120. A urology department has received a 48-year-old man with signs of renal colic. What medicine will be the most advisable in his condition?",
+      "answers": [
+        {
+          "text": "A. Analgin (Metamizole)",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Fentanyl",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Promedole",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": true
+        },
+        {
+          "text": "D. Atropine",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Morphine",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8416",
+      "timestamp": "2025-08-04T05:45:14.487Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8302",
+      "number": "121",
+      "question": "121. A 17-year-old girl is undergoing an examination. She has signs of pharyngitis, lymphadenopathy of neck, and fever and was previously diagnosed with infectious mononucleosis. What test can confirm the diagnosis at the onset of the disease?",
+      "answers": [
+        {
+          "text": "A. Measuring the Antibodies (IgM) to Epstein-Bar virus",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Measuring the IgG to Epstein-barr virus",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        },
+        {
+          "text": "C. Sabin-Feldman dye test",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Microscopy of blood smear using Romanovsky-Giemsa method",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Measuring the levels of C-reactive protein",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8302",
+      "timestamp": "2025-08-04T05:45:16.495Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8393",
+      "number": "122",
+      "question": "122. After putting in eye drops, a man with glaucoma developed miosis and myopia. His intraocular pressure decreased. What drugs can have such effect?",
+      "answers": [
+        {
+          "text": "A. M-cholinomimetics",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": true
+        },
+        {
+          "text": "B. Alpha-adrenomimetics",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. N-cholinomimetics",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Ganglioblockers",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Muscarinic receptor antagonists",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8393",
+      "timestamp": "2025-08-04T05:45:18.501Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8409",
+      "number": "123",
+      "question": "123. Autopsy of the body of a 40-year-old woman, who died of uremia, shows enlarged variegated kidneys. In the kidneys, the glomerular capillary membranes are thickened and resemble “wire loops”; there are foci of fibrinoid necrosis in their walls and hyaline thrombi in their lumina. In the nuclei, there are hematoxylin bodies. In the heart, Libman-Sacks endocarditis is observed. What renal disorder is the most likely in this case?",
+      "answers": [
+        {
+          "text": "A. Lupus nephritis",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": true
+        },
+        {
+          "text": "B. Rheumatic glomerulonephritis",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Sclerotic kidney",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Cholera glomerulonephritis",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Terminal glomerulonephritis",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8409",
+      "timestamp": "2025-08-04T05:45:20.506Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8286",
+      "number": "124",
+      "question": "124. Microslide an animal retina shows numerous phagosomes in the cells of its outer pigment layer. What function of pigment cells is the most evident in this case?",
+      "answers": [
+        {
+          "text": "A. Protective function",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Secretion function",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Regenerative function",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Permeability",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Activating function",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8286",
+      "timestamp": "2025-08-04T05:45:22.513Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8352",
+      "number": "125",
+      "question": "125. Watson and Crick determined that the DNA double helix structure is stabilized with the bonds between complementary nitrogenous bases. What type of bond is it?",
+      "answers": [
+        {
+          "text": "A. Hydrogen",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": true
+        },
+        {
+          "text": "B. Phosphodiester",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Peptide",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Ester",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. N-glycosidic",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8352",
+      "timestamp": "2025-08-04T05:45:24.518Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8273",
+      "number": "126",
+      "question": "126. A 14-year-old boy was diagnosed with Hutchinson’s triad: barrel-shaped teeth, parenchymatous keratitis, and deafness. These signs are characteristic of:",
+      "answers": [
+        {
+          "text": "A. Syphilis",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": true
+        },
+        {
+          "text": "B. Opisthorchiasis",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Toxoplasmosis",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Tuberculosis",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Leprosy",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8273",
+      "timestamp": "2025-08-04T05:45:26.526Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8288",
+      "number": "127",
+      "question": "127. A child has signs of delayed physical and mental development (cretinism). This condition is caused by deficiency of the following hormone:",
+      "answers": [
+        {
+          "text": "A. Somatotropin",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Testosterone",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Triiodothyronine",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Thyroxine",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Calcitonin",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8288",
+      "timestamp": "2025-08-04T05:45:28.536Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8293",
+      "number": "128",
+      "question": "128. A person has retained gustatory sensations, but overall sensitivity of the oral structures is lost, which indicates a damage to the:",
+      "answers": [
+        {
+          "text": "A. N. facialis",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. N. hypoglossus",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. N. abducens",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        },
+        {
+          "text": "D. N. vagus",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. N. trigeminus",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8293",
+      "timestamp": "2025-08-04T05:45:30.544Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8357",
+      "number": "129",
+      "question": "129. After examination, a man, who lived in the Ural region, was diagnosed with taiga encephalitis. The causative agent of this disease could have been transmitted to the patient via a bite of:",
+      "answers": [
+        {
+          "text": "A. Phlebotomus papatasii",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Ixodes ricinus",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        },
+        {
+          "text": "C. Stomoxys calcitrans",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Ornithodoros papillipes",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Ixodes persulcatus",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8357",
+      "timestamp": "2025-08-04T05:45:32.550Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8306",
+      "number": "130",
+      "question": "130. During a surgery, the surgeon’s manipulations in the area between the stomach and liver were extremely careful, to avoid damaging the hepatoduodenal ligament, because it contains:",
+      "answers": [
+        {
+          "text": "A. Inferior vena cava, cystic duct",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Common bile duct, proper hepatic artery, hepatic portal vein",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Common bile duct, common hepatic artery, inferior vena cava",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        },
+        {
+          "text": "D. Proper hepatic artery, gastroduodenal artery",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Hepatic portal vein, hepatic veins",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8306",
+      "timestamp": "2025-08-04T05:45:34.556Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8403",
+      "number": "131",
+      "question": "131. Against the background of digitoxin treatment, a man has developed bigeminy, severe muscle weakness, diarrhoea, vomiting, impaired vision. What medicines can mitigate the signs of poisoning in this case?",
+      "answers": [
+        {
+          "text": "A. Potassium preparations",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": true
+        },
+        {
+          "text": "B. Iron preparations",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Calcium preparations",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Magnesium preparations",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Sodium preparations",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8403",
+      "timestamp": "2025-08-04T05:45:36.566Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8405",
+      "number": "132",
+      "question": "132. In an experiment, electrical stimulation of neurons in the brain of a test animal resulted in hypophagia (refusal to eat). Electrodes were applied to the following area of the brain in this case:",
+      "answers": [
+        {
+          "text": "A. Adenohypophysis",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Neurohypophysis",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        },
+        {
+          "text": "C. thalamus",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Hypothalamus",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Red nucleus",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8405",
+      "timestamp": "2025-08-04T05:45:38.574Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8360",
+      "number": "133",
+      "question": "133. Collagenosis patients typically present with connective tissue destruction processes. The presence of these processes can be confirmed by the increase in:",
+      "answers": [
+        {
+          "text": "A. LDH-isoenzyme activity in the blood",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Blood oxyproline and oxylysine",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": true
+        },
+        {
+          "text": "C. Blood creatine and creatinine",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Blood urates",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Transaminase activity in the blood",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8360",
+      "timestamp": "2025-08-04T05:45:40.581Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8283",
+      "number": "134",
+      "question": "134. Autopsy of the body of a person, who died after an abdominal surgery, revealed numerous thrombi in the veins of the lesser pelvis. Clinically, thromboembolism syndrome was registered. Where should the pathologist search for thromboembolism?",
+      "answers": [
+        {
+          "text": "A. Portal vein",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Pulmonary arteries",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Brain",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        },
+        {
+          "text": "D. Lower limb veins",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Left ventricle of the heart",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8283",
+      "timestamp": "2025-08-04T05:45:42.590Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8325",
+      "number": "135",
+      "question": "135. Synovial fluid is known to reduce the friction between articular surfaces. In rheumatism or arthritis, its viscosity decreases because of depolymerization (destruction) of the following substance:",
+      "answers": [
+        {
+          "text": "A. Glycogen",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Hyaluronic acid",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Collagen",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Albumin",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        },
+        {
+          "text": "E. Heparin",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8325",
+      "timestamp": "2025-08-04T05:45:44.597Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8315",
+      "number": "136",
+      "question": "136. Significant radiation exposure leads to changes in the body resistance, suppression of phagocytosis, reduction of non-specific humoral defense factors, and decreased antibody synthesis. what kind of infection develop as a result of radiation sickness?",
+      "answers": [
+        {
+          "text": "A. Coinfection",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Apparent",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Autoinfection",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Opportunistic",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        },
+        {
+          "text": "E. Reinfection",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8315",
+      "timestamp": "2025-08-04T05:45:46.602Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8413",
+      "number": "137",
+      "question": "137. Ventricular myocardium of the examined person exhibits disturbed repolarization processes. It causes disturbances in amplitude, configuration, and duration of the following wave:",
+      "answers": [
+        {
+          "text": "A. R",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. P",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. S",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        },
+        {
+          "text": "D. Q",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. T",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8413",
+      "timestamp": "2025-08-04T05:45:49.097Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8368",
+      "number": "138",
+      "question": "138. In the haematology unit a patient with leukaemia was prescribed 5- fluorouracil. This drug:",
+      "answers": [
+        {
+          "text": "A. Inhibits DNA synthesis",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Inhibits transcription",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Inhibits translation",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        },
+        {
+          "text": "D. Stimulate DNase",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Catalyses replication",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8368",
+      "timestamp": "2025-08-04T05:45:51.104Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8345",
+      "number": "139",
+      "question": "139. An isolated cell of a human heart automatically generates excitation impulses at the rate of 60/min. This cell was obtained from the:",
+      "answers": [
+        {
+          "text": "A. Sinoatrial node",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Atria",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Ventricles",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        },
+        {
+          "text": "D. His bundle",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Atrioventricular node",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8345",
+      "timestamp": "2025-08-04T05:45:53.114Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8373",
+      "number": "140",
+      "question": "140. During mental stress, a hormone-sensitive enzyme triacylglycerol lipase activates in fatty tissues. What secondary messenger takes part in activation of this enzyme?",
+      "answers": [
+        {
+          "text": "A. Cyclic guanosine monophosphate",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Ca2+",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        },
+        {
+          "text": "C. Cyclic adenosine monophosphate",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Diacylglycerol",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Inositol triphosphate",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8373",
+      "timestamp": "2025-08-04T05:45:55.121Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8364",
+      "number": "141",
+      "question": "141. A 35-year-old woman was taking acetylsalicylic acid to relieve the pain in her carious tooth. After a time, she noticed digestive disorders, stomach heaviness, and heartburn. Why does this drug aggravate the gastric condition?",
+      "answers": [
+        {
+          "text": "A. Disrupts the microcirculation in the gastrointestinal mucosa",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Inhibits the activity of COX-1 in the stomach",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Increases hydrochloric acid secretion",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Increases pepsin activity",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        },
+        {
+          "text": "E. Blocks PDE of smooth muscles",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8364",
+      "timestamp": "2025-08-04T05:45:57.130Z",
+      "retriedInThirdPass": true
+    },
+    {
+      "id": "8354",
+      "number": "142",
+      "question": "142. A man has undergone corneal transplantation. What characteristics of corneal structure allow hoping for its retention rather than rejection?",
+      "answers": [
+        {
+          "text": "A. Presence of stratified anterior epithelium",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Presence of connective tissue",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Absence of blood vessels and typical lymphatic vessels",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Excessive innervation",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Presence of non-stratified squamous epithelium",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8354",
+      "timestamp": "2025-08-04T05:45:59.136Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8351",
+      "number": "143",
+      "question": "143. When planning a diet, one should observe the correct ratio of nutrients proteins, fats, and carbohydrates. What is the correct ratio?",
+      "answers": [
+        {
+          "text": "A. Proteins - 1, fats - 1, carbohydrates - 4",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Proteins - 3, fats - 1, carbohydrates -2",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        },
+        {
+          "text": "C. Proteins - 1, fats -2, carbohydrates -1",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Proteins – 2, fats – 2, carbohydrates -1",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Proteins - 2, fats - 3, carbohydrates -1",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8351",
+      "timestamp": "2025-08-04T05:46:01.142Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8361",
+      "number": "144",
+      "question": "144. Name the supramolecular multienzyme complex that is integrated into the lipid layer of inner mitochondrial membrane that creates conditions for redox reactions:",
+      "answers": [
+        {
+          "text": "A. Pyruvate kinase",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Carboxypeptidase",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. G-protein transducer",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Hexokinase",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Respiratory chain",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": true
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8361",
+      "timestamp": "2025-08-04T05:46:03.149Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8377",
+      "number": "145",
+      "question": "145. A man, who has arrived from Tunisia, has alpha-thalassemia with hemolysis of erythrocytes and jaundice. The disease was diagnosed based on the presence of the following in the patient’s blood:",
+      "answers": [
+        {
+          "text": "A. Reticulocytes",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Target erythrocytes",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": true
+        },
+        {
+          "text": "C. Polychromatophilic erythrocytes",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Granular erythrocytes",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Normocytes",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8377",
+      "timestamp": "2025-08-04T05:46:05.157Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8374",
+      "number": "146",
+      "question": "146. Albinos are vulnerable to sunlight – instead of developing a suntan, they develop burns. This phenomenon occurs because of disturbed metabolism of a certain amino acid. Name this amino acid:",
+      "answers": [
+        {
+          "text": "A. Glutamine",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Tryptophan",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Histidine",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        },
+        {
+          "text": "D. Phenylalanine",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. MethionineMethionine",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8374",
+      "timestamp": "2025-08-04T05:46:07.167Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8372",
+      "number": "147",
+      "question": "147. A patient with suppurative bronchitis was hospitalized into the pulmonology department. As a part of complex therapy, he was prescribed a medicine that liquefies sputum and facilitates expectoration. Name this medicine:",
+      "answers": [
+        {
+          "text": "A. Acetylcysteine",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Cholosas",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Prednisolone",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Valerian tincture",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Morphine Hydrochloride",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8372",
+      "timestamp": "2025-08-04T05:46:09.173Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8370",
+      "number": "148",
+      "question": "148. A patient was brought by an ambulance to the inpatient department. He was provisionally diagnosed with acute pancreatitis. To confirm this diagnosis, it is necessary to measure the activity of a certain enzyme in the patient’s blood and urine. Name this enzyme:",
+      "answers": [
+        {
+          "text": "A. Aspartate transaminase",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        },
+        {
+          "text": "B. Choline esterase",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Alanine transaminase",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Lactate dehydrogenase",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Alpha-amylase",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8370",
+      "timestamp": "2025-08-04T05:46:11.180Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8349",
+      "number": "149",
+      "question": "149. A man has atrioventricular block of the I degree with a prolonged PQ interval of 0.25 seconds. What cardiac ability is disturbed in this case?",
+      "answers": [
+        {
+          "text": "A. Excitability",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Conductivity",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": true
+        },
+        {
+          "text": "C. Contractility",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "D. Automatism",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Pacemaking",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8349",
+      "timestamp": "2025-08-04T05:46:13.186Z",
+      "retriedInThirdPass": false
+    },
+    {
+      "id": "8342",
+      "number": "150",
+      "question": "150. A 1.5-year-old boy, who previously received no regular immunization, was in contact with a measles patient. For urgent specific prevention, the child was administered donor gamma globulin. What type of immunity develops in this case?",
+      "answers": [
+        {
+          "text": "A. Antitoxic",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "B. Passive",
+          "isCorrect": true,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "C. Post-vaccination",
+          "isCorrect": false,
+          "isWrong": true,
+          "isSelected": true
+        },
+        {
+          "text": "D. Local",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        },
+        {
+          "text": "E. Natural",
+          "isCorrect": false,
+          "isWrong": false,
+          "isSelected": false
+        }
+      ],
+      "hasCorrectAnswer": true,
+      "url": "https://krokology.com/quiz/2021-day2-study-mode-9Ef7IAFgvqDoOxY9KHLCFtLa/8342",
+      "timestamp": "2025-08-04T05:46:15.189Z",
+      "retriedInThirdPass": false
+    }
+  ]
+}
