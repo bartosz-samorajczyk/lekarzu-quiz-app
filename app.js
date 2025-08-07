@@ -121,23 +121,15 @@ class MedicalQuizApp {
         <header class="header">
           <div class="fancy-banner">
             <div class="logo-container">
-              <div class="app-logo">
-                <div class="logo-icon">
-                  <div class="medical-cross">
-                    <div class="cross-vertical"></div>
-                    <div class="cross-horizontal"></div>
-                    <div class="cross-cut"></div>
-                  </div>
-                </div>
-              </div>
+              <img src="assets/logo.png" alt="Lekarzu Quiz App" class="app-logo">
             </div>
             <div class="banner-content">
               <p class="banner-subtitle">Profesjonalna nauka do egzaminu LEK/LDEK</p>
             </div>
-            <div class="banner-decoration">
-              <div class="decoration-dot"></div>
-              <div class="decoration-dot"></div>
-              <div class="decoration-dot"></div>
+            <div class="menu-dots">
+              <div class="menu-dot"></div>
+              <div class="menu-dot"></div>
+              <div class="menu-dot"></div>
             </div>
           </div>
           <div class="header-stats">
@@ -1488,23 +1480,15 @@ Odpowiedz w formacie:
         <header class="header">
           <div class="fancy-banner">
             <div class="logo-container">
-              <div class="app-logo">
-                <div class="logo-icon">
-                  <div class="medical-cross">
-                    <div class="cross-vertical"></div>
-                    <div class="cross-horizontal"></div>
-                    <div class="cross-cut"></div>
-                  </div>
-                </div>
-              </div>
+              <img src="assets/logo.png" alt="Lekarzu Quiz App" class="app-logo">
             </div>
             <div class="banner-content">
               <p class="banner-subtitle">Wybierz test do nauki</p>
             </div>
-            <div class="banner-decoration">
-              <div class="decoration-dot"></div>
-              <div class="decoration-dot"></div>
-              <div class="decoration-dot"></div>
+            <div class="menu-dots">
+              <div class="menu-dot"></div>
+              <div class="menu-dot"></div>
+              <div class="menu-dot"></div>
             </div>
           </div>
         </header>
@@ -1552,6 +1536,11 @@ Odpowiedz w formacie:
         const testId = e.target.dataset.test;
         this.startTest(testId);
       });
+    });
+    
+    // Dodaj event listener do menu dots
+    document.querySelector('.menu-dots').addEventListener('click', () => {
+      this.showMenu();
     });
   }
 
@@ -1822,6 +1811,13 @@ Odpowiedz w formacie:
     
     // Zapisz w localStorage (tymczasowo)
     localStorage.setItem(`test_stats_${testId}`, JSON.stringify(stats));
+  }
+  
+  showMenu() {
+    // Na razie tylko powrót do listy testów
+    if (this.currentMode === 'study') {
+      this.showTestSelection();
+    }
   }
 
 }
