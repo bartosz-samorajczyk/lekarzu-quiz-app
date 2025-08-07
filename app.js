@@ -1739,7 +1739,7 @@ Odpowiedz w formacie:
         return {};
       }
       
-      // 2. Sprawdź które testy mają wpisy w bazie (BEZ ładowania plików!)
+      // 2. Sprawdź które testy mają wpisy w bazie (TYLKO testy z wpisami!)
       const testCounts = {};
       const tests = await this.getAvailableTests();
       
@@ -1747,6 +1747,8 @@ Odpowiedz w formacie:
       for (const test of tests) {
         // Sprawdź czy którykolwiek z question_id z bazy pasuje do tego testu
         let count = 0;
+        let hasAnyMatches = false;
+        
         for (const item of data) {
           const questionId = item.question_id;
           const cleanId = questionId.startsWith('q_') ? questionId.replace('q_', '') : questionId;
@@ -1760,6 +1762,7 @@ Odpowiedz w formacie:
             const found = this.testQuestions.find(q => q.id === cleanId);
             if (found) {
               count++;
+              hasAnyMatches = true;
             }
           } catch (error) {
             console.log(`❌ Nie udało się załadować testu: ${test.id}`, error);
@@ -1767,11 +1770,11 @@ Odpowiedz w formacie:
         }
         
         // Zapisz tylko jeśli są jakieś wpisy
-        if (count > 0) {
+        if (hasAnyMatches) {
           testCounts[test.id] = count;
           console.log(`📊 Test ${test.id}: ${count} odpowiedzi ChatGPT`);
         }
-        // Jeśli count = 0, nie dodajemy do testCounts (domyślnie 0)
+        // Jeśli nie ma wpisów, nie dodajemy do testCounts (domyślnie 0%)
       }
       
       console.log('📊 Końcowe statystyki testów:', testCounts);
