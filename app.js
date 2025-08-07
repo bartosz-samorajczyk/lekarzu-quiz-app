@@ -1140,6 +1140,7 @@ Odpowiedz w formacie:
 [wyjaśnienie]
 
 **Dlaczego ta odpowiedź jest poprawna:**
+**ODPOWIEDŹ ${correctAnswerLetter} JEST POPRAWNA:**
 [wyjaśnienie]
 
 **Kluczowe koncepty:**
