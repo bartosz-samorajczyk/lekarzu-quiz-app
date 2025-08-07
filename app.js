@@ -47,7 +47,7 @@ class MedicalQuizApp {
     this.init();
   }
   
-  init() {
+  async init() {
     console.log('Inicjalizacja aplikacji...');
     
     // Załaduj pytania z questionDB (ES6 modules)
@@ -101,7 +101,7 @@ class MedicalQuizApp {
     if (this.currentMode === 'test-selection') {
       this.showTestSelection();
     } else {
-      this.displayQuestion();
+      await this.displayQuestion();
       this.updateStats();
       this.updateGlobalStats();
     }
@@ -171,9 +171,6 @@ class MedicalQuizApp {
           <button class="btn btn-ai" id="ask-gpt-btn">
             🤖 Zapytaj ChatGPT
           </button>
-          <button class="btn btn-success" id="save-gpt-btn">
-            💾 Zapisz odpowiedź ChatGPT
-          </button>
         </div>
         
         <!-- Quick Actions -->
@@ -215,7 +212,7 @@ class MedicalQuizApp {
     this.displayQuestion();
   }
   
-  displayQuestion() {
+  async displayQuestion() {
     console.log('=== DISPLAY QUESTION START ===');
     console.log('currentIndex:', this.currentIndex);
     
@@ -327,7 +324,22 @@ class MedicalQuizApp {
     this.isAnswerShown = false;
     
     // Sprawdź czy jest zapisana odpowiedź ChatGPT (z Supabase lub localStorage)
-    this.loadChatGPTResponse(q.id);
+    await this.loadChatGPTResponse(q.id);
+    
+    // Zaktualizuj tekst przycisku ChatGPT
+    const askGptBtn = document.getElementById('ask-gpt-btn');
+    if (askGptBtn) {
+      const hasChatGPTResponse = document.getElementById('chatgpt-response-section') && 
+        !document.getElementById('chatgpt-response-section').classList.contains('hidden');
+      
+      if (hasChatGPTResponse) {
+        askGptBtn.textContent = '✏️ Edytuj odpowiedź ChatGPT';
+        askGptBtn.className = 'btn btn-success';
+      } else {
+        askGptBtn.textContent = '🤖 Zapytaj ChatGPT';
+        askGptBtn.className = 'btn btn-ai';
+      }
+    }
     
     // Update stats
     this.updateStats();
@@ -553,6 +565,7 @@ class MedicalQuizApp {
     
     this.saveProgress();
     this.updateStats();
+    this.updateGlobalStats();
   }
   
   showAnswer() {
@@ -866,10 +879,6 @@ class MedicalQuizApp {
     document.getElementById('ask-gpt-btn').addEventListener('click', () => {
       this.askChatGPT();
     });
-    
-    document.getElementById('save-gpt-btn').addEventListener('click', async () => {
-      await this.showSaveChatGPTModal();
-    });
   }
 
   askChatGPT() {
@@ -897,21 +906,8 @@ class MedicalQuizApp {
     // Generuj prompt używając oryginalnej funkcji
     const prompt = this.generateChatGPTPrompt(q);
     
-    // Kopiuj do schowka
-    navigator.clipboard.writeText(prompt)
-      .then(() => {
-        console.log('Prompt skopiowany do schowka!');
-        alert('Prompt skopiowany! Wklej go w otwartym ChatGPT.');
-      })
-      .catch(err => {
-        console.error('Błąd kopiowania promptu:', err);
-        alert('Nie udało się skopiować promptu. Skopiuj ręcznie: ' + prompt);
-      });
-    
-    // Otwórz ChatGPT w nowej karcie
-    window.open('https://chat.openai.com/', '_blank');
-    
-    // Opcjonalnie: Pokaż prompt w UI lub zapisz odpowiedź później
+    // Pokaż modal z promptem
+    this.showChatGPTPrompt(prompt, cacheKey);
   }
   
   generateChatGPTPrompt(question) {
@@ -1428,7 +1424,7 @@ Odpowiedz w formacie:
   }
 
   // Nowe funkcje do obsługi testów
-  showTestSelection() {
+  async showTestSelection() {
     console.log('Wyświetlam wybór testów...');
     
     const app = document.getElementById('app');
@@ -1436,6 +1432,12 @@ Odpowiedz w formacie:
     
     // Pobierz listę testów z metadanych
     const tests = this.getAvailableTests();
+    
+    // Pobierz statystyki ChatGPT dla wszystkich testów
+    const chatgptStats = {};
+    for (const test of tests) {
+      chatgptStats[test.id] = await this.getTestChatGPTCoverage(test.id);
+    }
     
     app.innerHTML = `
       <div class="container">
@@ -1469,7 +1471,7 @@ Odpowiedz w formacie:
                   </div>
                   <div class="stat-row">
                     <span class="stat-label">ChatGPT:</span>
-                    <span class="stat-value">${this.getTestChatGPTCoverage(test.id)}%</span>
+                    <span class="stat-value">${chatgptStats[test.id]}%</span>
                   </div>
                 </div>
                 <button class="btn btn-primary test-select-btn" data-test="${test.id}">
@@ -1550,16 +1552,34 @@ Odpowiedz w formacie:
     };
   }
 
-  getTestChatGPTCoverage(testId) {
+  async getTestChatGPTCoverage(testId) {
     // Pobierz liczbę pytań w teście
     const test = this.getAvailableTests().find(t => t.id === testId);
     if (!test) return 0;
     
-    // Pobierz liczbę odpowiedzi ChatGPT dla tego testu
+    // Pobierz liczbę odpowiedzi ChatGPT z Supabase dla tego testu
+    if (this.supabaseConfig.enabled) {
+      try {
+        const response = await fetch(`${this.supabaseConfig.url}/rest/v1/chatgpt_responses?question_id=like.q_${testId}_%&select=count`, {
+          headers: {
+            'apikey': this.supabaseConfig.key,
+            'Authorization': `Bearer ${this.supabaseConfig.key}`
+          }
+        });
+        
+        if (response.ok) {
+          const data = await response.json();
+          const chatgptCount = data[0]?.count || 0;
+          return Math.round((chatgptCount / test.questionCount) * 100);
+        }
+      } catch (error) {
+        console.log('❌ Błąd pobierania statystyk ChatGPT z Supabase:', error);
+      }
+    }
+    
+    // Fallback do localStorage
     const testStats = this.getTestStats(testId);
     const chatgptCount = testStats.chatgptResponses || 0;
-    
-    // Oblicz procent pokrycia
     return Math.round((chatgptCount / test.questionCount) * 100);
   }
 
