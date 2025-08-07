@@ -682,6 +682,57 @@
     to { opacity: 1; transform: translateY(0); }
   }
   
+  /* Login Page */
+  .login-card {
+    background: var(--light-secondary);
+    border-radius: var(--radius-xl);
+    padding: var(--spacing-2xl);
+    margin: var(--spacing-2xl) auto;
+    max-width: 500px;
+    box-shadow: var(--shadow-lg);
+    text-align: center;
+    animation: fadeIn 0.5s ease-out;
+  }
+  
+  .login-content h1 {
+    color: var(--text-primary);
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .login-content p {
+    color: var(--text-secondary);
+    font-size: 16px;
+    margin-bottom: var(--spacing-xl);
+    line-height: 1.6;
+  }
+  
+  .login-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-md);
+    width: 100%;
+    padding: var(--spacing-lg);
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: var(--spacing-xl);
+  }
+  
+  .login-info {
+    background: var(--primary-light);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    margin-top: var(--spacing-lg);
+  }
+  
+  .login-info p {
+    color: var(--text-secondary);
+    font-size: 14px;
+    margin: var(--spacing-xs) 0;
+  }
+  
   .main-card {
     animation: fadeIn 0.5s ease-out;
   }
