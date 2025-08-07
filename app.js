@@ -121,7 +121,7 @@ class MedicalQuizApp {
         <header class="header">
           <div class="fancy-banner">
             <div class="logo-container">
-              <img src="assets/logo.png" alt="Lekarzu Quiz App" class="app-logo">
+              <img src="assets/lekarzu-quiz-app-logo.jpeg" alt="Lekarzu Quiz App" class="app-logo">
             </div>
             <div class="banner-content">
               <p class="banner-subtitle">Profesjonalna nauka do egzaminu LEK/LDEK</p>
@@ -188,10 +188,7 @@ class MedicalQuizApp {
           </button>
         </div>
         
-        <!-- Quick Actions -->
-        <div class="quick-actions">
-          <button class="btn-icon" id="back-to-tests-btn" title="Powrót do wyboru testów">🏠</button>
-        </div>
+
       </div>
     `;
   }
@@ -874,10 +871,11 @@ class MedicalQuizApp {
     if (nextBtn) nextBtn.addEventListener('click', () => this.nextQuestion());
     if (prevBtn) prevBtn.addEventListener('click', () => this.prevQuestion());
     
-    // Quick actions
-    const backToTestsBtn = document.getElementById('back-to-tests-btn');
-    
-    if (backToTestsBtn) backToTestsBtn.addEventListener('click', () => this.showTestSelection());
+    // Menu dots (tylko na stronie pytań)
+    const menuDots = document.querySelector('.menu-dots');
+    if (menuDots) {
+      menuDots.addEventListener('click', () => this.showMenu());
+    }
     
     // Translations
 
@@ -1480,15 +1478,10 @@ Odpowiedz w formacie:
         <header class="header">
           <div class="fancy-banner">
             <div class="logo-container">
-              <img src="assets/logo.png" alt="Lekarzu Quiz App" class="app-logo">
+              <img src="assets/lekarzu-quiz-app-logo.jpeg" alt="Lekarzu Quiz App" class="app-logo">
             </div>
             <div class="banner-content">
               <p class="banner-subtitle">Wybierz test do nauki</p>
-            </div>
-            <div class="menu-dots">
-              <div class="menu-dot"></div>
-              <div class="menu-dot"></div>
-              <div class="menu-dot"></div>
             </div>
           </div>
         </header>
@@ -1538,10 +1531,7 @@ Odpowiedz w formacie:
       });
     });
     
-    // Dodaj event listener do menu dots
-    document.querySelector('.menu-dots').addEventListener('click', () => {
-      this.showMenu();
-    });
+
   }
 
   getAvailableTests() {
@@ -1814,9 +1804,65 @@ Odpowiedz w formacie:
   }
   
   showMenu() {
-    // Na razie tylko powrót do listy testów
-    if (this.currentMode === 'study') {
-      this.showTestSelection();
+    // Stwórz menu dropdown
+    const menuHtml = `
+      <div class="menu-dropdown" id="menu-dropdown">
+        <div class="menu-item" data-action="back-to-tests">
+          📚 Powrót do wyboru testów
+        </div>
+        <div class="menu-item" data-action="settings">
+          ⚙️ Ustawienia
+        </div>
+        <div class="menu-item" data-action="stats">
+          📊 Statystyki
+        </div>
+      </div>
+    `;
+    
+    // Usuń istniejące menu
+    const existingMenu = document.getElementById('menu-dropdown');
+    if (existingMenu) {
+      existingMenu.remove();
+      return;
+    }
+    
+    // Dodaj menu do DOM
+    document.body.insertAdjacentHTML('beforeend', menuHtml);
+    
+    // Dodaj event listeners
+    document.querySelectorAll('.menu-item').forEach(item => {
+      item.addEventListener('click', (e) => {
+        const action = e.target.dataset.action;
+        this.handleMenuAction(action);
+        document.getElementById('menu-dropdown').remove();
+      });
+    });
+    
+    // Zamknij menu po kliknięciu poza nim
+    setTimeout(() => {
+      document.addEventListener('click', function closeMenu(e) {
+        if (!e.target.closest('.menu-dropdown') && !e.target.closest('.menu-dots')) {
+          const menu = document.getElementById('menu-dropdown');
+          if (menu) menu.remove();
+          document.removeEventListener('click', closeMenu);
+        }
+      });
+    }, 100);
+  }
+  
+  handleMenuAction(action) {
+    switch (action) {
+      case 'back-to-tests':
+        this.showTestSelection();
+        break;
+      case 'settings':
+        // TODO: Dodać ustawienia
+        console.log('Ustawienia - do implementacji');
+        break;
+      case 'stats':
+        // TODO: Dodać statystyki
+        console.log('Statystyki - do implementacji');
+        break;
     }
   }
 

@@ -278,6 +278,50 @@
     background: var(--text-secondary);
   }
   
+  /* Menu Dropdown */
+  .menu-dropdown {
+    position: fixed;
+    top: 80px;
+    right: var(--spacing-md);
+    background: var(--light-secondary);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg);
+    border: 1px solid rgba(74, 144, 226, 0.2);
+    z-index: 1000;
+    min-width: 200px;
+    overflow: hidden;
+    animation: slideIn 0.2s ease-out;
+  }
+  
+  .menu-item {
+    padding: var(--spacing-md);
+    cursor: pointer;
+    transition: background-color 0.2s;
+    border-bottom: 1px solid rgba(74, 144, 226, 0.1);
+    font-size: 14px;
+    color: var(--text-primary);
+  }
+  
+  .menu-item:last-child {
+    border-bottom: none;
+  }
+  
+  .menu-item:hover {
+    background-color: var(--primary-light);
+    color: var(--primary);
+  }
+  
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
   .header h1 {
     color: var(--primary);
     margin-bottom: var(--spacing-sm);
