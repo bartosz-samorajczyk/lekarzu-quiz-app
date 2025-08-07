@@ -187,7 +187,7 @@
 }
   
   body {
-  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   background: var(--light);
   min-height: 100vh;
   color: var(--text-primary);
@@ -224,7 +224,7 @@
   }
   
   .app-logo {
-    width: 180px;
+    width: 220px;
     height: auto;
     object-fit: contain;
     cursor: pointer;
@@ -254,15 +254,15 @@
   }
   
   .header-text .stat-label {
-    font-size: 12px;
+    font-size: 14px;
     color: var(--text-secondary);
-    font-weight: 400;
+    font-weight: 500;
   }
   
   .header-text .stat-value {
-    font-size: 14px;
+    font-size: 18px;
     color: var(--primary);
-    font-weight: 600;
+    font-weight: 700;
   }
   
   .app-logo:hover {
@@ -664,7 +664,7 @@
     }
     
     .header-text .stat-value {
-      font-size: 12px;
+      font-size: 16px;
     }
   }
   

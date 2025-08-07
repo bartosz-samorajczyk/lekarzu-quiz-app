@@ -1100,7 +1100,7 @@ Odpowiedz w formacie:
       ${existingResponse ? '<p style="color: #28a745;"><strong>✅ Znaleziono zapisaną odpowiedź dla tego pytania</strong></p>' : ''}
       <p style="color: #666; font-size: 14px; margin: 10px 0;">☁️ <strong>Zapis w chmurze:</strong> Odpowiedzi są zapisywane w Supabase i dostępne dla wszystkich użytkowników</p>
       <p>Wklej tutaj pełną odpowiedź z ChatGPT:</p>
-      <textarea id="gpt-response-text" style="width: 100%; height: 200px; padding: 10px; border: 1px solid #ccc; border-radius: 5px; font-family: Arial, sans-serif;" placeholder="Wklej tutaj odpowiedź z ChatGPT..."></textarea>
+              <textarea id="gpt-response-text" style="width: 100%; height: 200px; padding: 10px; border: 1px solid #ccc; border-radius: 5px; font-family: 'Inter', sans-serif;" placeholder="Wklej tutaj odpowiedź z ChatGPT..."></textarea>
       <div style="margin-top: 15px; text-align: right;">
         <button id="cancel-save" style="margin-right: 10px; padding: 10px 20px; background: #6c757d; color: white; border: none; border-radius: 5px; cursor: pointer;">Anuluj</button>
         <button id="save-response" style="padding: 10px 20px; background: #28a745; color: white; border: none; border-radius: 5px; cursor: pointer;">💾 Zapisz</button>
@@ -1884,10 +1884,11 @@ Odpowiedz w formacie:
     const headerTitle = document.getElementById('header-title');
     if (headerTitle) {
       if (this.currentMode === 'study' && this.currentTest) {
-        // W trybie pytania - pokaż tytuł testu
-        headerTitle.textContent = `Test: ${this.currentTest}`;
+        // W trybie pytania - ukryj tytuł, pokaż tylko statystyki
+        headerTitle.style.display = 'none';
       } else {
-        // W trybie wyboru testu
+        // W trybie wyboru testu - pokaż tytuł
+        headerTitle.style.display = 'block';
         headerTitle.textContent = 'Wybierz test do nauki';
       }
     }
