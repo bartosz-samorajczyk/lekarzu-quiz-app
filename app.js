@@ -25,7 +25,7 @@ class MedicalQuizApp {
     // Konfiguracja Supabase
     this.supabaseConfig = {
       url: 'https://jxjapiimjkoubdbsfeid.supabase.co', // ZASTĄP swoim URL
-      key: 'YOUR_ANON_KEY', // ZASTĄP swoim kluczem
+      key: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp4amFwaWltamtvdWJkYnNmZWlkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQ1NjYyNzYsImV4cCI6MjA3MDE0MjI3Nn0.k2XHIEljXDcJIUH215xcb8t2aicZsCVMCGmgpW4L6DE', // ZASTĄP swoim kluczem
       enabled: true
     };
 
