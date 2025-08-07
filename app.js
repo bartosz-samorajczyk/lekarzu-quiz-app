@@ -124,26 +124,25 @@ class MedicalQuizApp {
           </div>
           <div class="header-text">
             <span id="header-title">Wybierz pytanie</span>
+            <div class="header-stats">
+              <div class="stat-item">
+                <span class="stat-label">Odpowiedzi</span>
+                <span class="stat-value" id="progress-stat">0/${this.questions.length}</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">Dokładność</span>
+                <span class="stat-value" id="session-stat">0%</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">Czas</span>
+                <span class="stat-value" id="time-stat">0:00</span>
+              </div>
+            </div>
           </div>
           <div class="menu-dots">
             <div class="menu-dot"></div>
             <div class="menu-dot"></div>
             <div class="menu-dot"></div>
-          </div>
-        </header>
-          <div class="header-stats">
-            <div class="stat-item">
-              <span class="stat-label">Odpowiedzi</span>
-              <span class="stat-value" id="progress-stat">0/${this.questions.length}</span>
-            </div>
-            <div class="stat-item">
-              <span class="stat-label">Dokładność</span>
-              <span class="stat-value" id="session-stat">0%</span>
-            </div>
-            <div class="stat-item">
-              <span class="stat-label">Czas</span>
-              <span class="stat-value" id="time-stat">0:00</span>
-            </div>
           </div>
         </header>
         
@@ -1885,10 +1884,8 @@ Odpowiedz w formacie:
     const headerTitle = document.getElementById('header-title');
     if (headerTitle) {
       if (this.currentMode === 'study' && this.currentTest) {
-        // W trybie pytania - pokaż statystyki sesji
-        const stats = this.sessionStats;
-        const accuracy = stats.total > 0 ? Math.round((stats.correct / stats.total) * 100) : 0;
-        headerTitle.textContent = `${stats.correct}/${stats.total} (${accuracy}%)`;
+        // W trybie pytania - pokaż tytuł testu
+        headerTitle.textContent = `Test: ${this.currentTest}`;
       } else {
         // W trybie wyboru testu
         headerTitle.textContent = 'Wybierz test do nauki';

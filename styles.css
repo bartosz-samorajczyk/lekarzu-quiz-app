@@ -239,6 +239,32 @@
     color: var(--text-primary);
   }
   
+  .header-text .header-stats {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-sm);
+  }
+  
+  .header-text .stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+  }
+  
+  .header-text .stat-label {
+    font-size: 12px;
+    color: var(--text-secondary);
+    font-weight: 400;
+  }
+  
+  .header-text .stat-value {
+    font-size: 14px;
+    color: var(--primary);
+    font-weight: 600;
+  }
+  
   .app-logo:hover {
     transform: scale(1.05);
   }
@@ -324,30 +350,7 @@
     letter-spacing: -0.5px;
   }
   
-  .header-stats {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    flex-wrap: wrap;
-  }
-  
-  .stat-item {
-    text-align: center;
-  }
-  
-  .stat-label {
-    display: block;
-    font-size: 12px;
-    color: #666;
-    text-transform: uppercase;
-  }
-  
-  .stat-value {
-    display: block;
-    font-size: 24px;
-    font-weight: bold;
-    color: var(--primary);
-  }
+
   
   /* Question Stats */
   .question-stats {
@@ -656,12 +659,12 @@
       width: 100%;
     }
     
-    .header-stats {
-      gap: 15px;
+    .header-text .header-stats {
+      gap: 10px;
     }
     
-    .stat-value {
-      font-size: 20px;
+    .header-text .stat-value {
+      font-size: 12px;
     }
   }
   
