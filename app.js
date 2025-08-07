@@ -2065,11 +2065,22 @@ Odpowiedz w formacie:
 
   async loadTestQuestions(testId) {
     try {
-      // Załaduj pytania z pliku testu
-      const response = await fetch(`./data/tests/${testId}_2025-08-02_150q.json`);
-      if (!response.ok) {
-        // Spróbuj inne warianty nazw plików
-        const variants = [
+      // Dla testu updated-new najpierw spróbuj 54q
+      let variants;
+      if (testId === 'updated-new') {
+        variants = [
+          `${testId}_2025-08-02_54q.json`,
+          `${testId}_2025-08-02_150q.json`,
+          `${testId}_2025-08-02_139q_v8.json`,
+          `${testId}_2025-08-04_150q_v6.json`,
+          `${testId}_2025-08-04_150q_v7.json`,
+          `${testId}_2025-08-04_150q_v8.json`,
+          `${testId}_2025-08-05_200q_v8.json`
+        ];
+      } else {
+        // Dla innych testów najpierw spróbuj 150q
+        variants = [
+          `${testId}_2025-08-02_150q.json`,
           `${testId}_2025-08-02_54q.json`,
           `${testId}_2025-08-02_139q_v8.json`,
           `${testId}_2025-08-04_150q_v6.json`,
@@ -2077,6 +2088,15 @@ Odpowiedz w formacie:
           `${testId}_2025-08-04_150q_v8.json`,
           `${testId}_2025-08-05_200q_v8.json`
         ];
+      }
+      
+      // Spróbuj załadować pierwszy wariant
+      const firstResponse = await fetch(`./data/tests/${variants[0]}`);
+      if (firstResponse.ok) {
+        const testData = await firstResponse.json();
+        this.testQuestions = testData.questions;
+      } else {
+        // Spróbuj inne warianty nazw plików
         
         let loaded = false;
         for (const variant of variants) {
@@ -2092,9 +2112,6 @@ Odpowiedz w formacie:
         if (!loaded) {
           throw new Error(`Nie można załadować testu: ${testId}`);
         }
-      } else {
-        const testData = await response.json();
-        this.testQuestions = testData.questions;
       }
       
       console.log(`Załadowano ${this.testQuestions.length} pytań z testu ${testId}`);
