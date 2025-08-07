@@ -1118,7 +1118,7 @@ Poprawna odpowiedź: "${answerText}"
 Proszę wyjaśnij:
 1. Przetłumacz pytanie na język polski (prostymi słowami)
 2. O co dokładnie pyta to pytanie? (prostymi słowami)
-3. Jakie są wszystkie odpowiedzi wraz z polskim i łacińskim tłumaczeniem oraz dlaczego odpowiedź ${correctAnswerLetter} jest poprawna?
+3. Jakie są wszystkie odpowiedzi wraz z polskim i łacińskim tłumaczeniem oraz dlaczego odpowiedź ${correctAnswerLetter} jest poprawna? (ODPOWIEDŹ ${correctAnswerLetter} JEST POPRAWNA)
 4. Jakie kluczowe koncepty medyczne muszę znać?
 5. Podaj praktyczny przykład kliniczny
 6. Wyjaśnij dlaczego każda z pozostałych odpowiedzi jest niepoprawna
@@ -1130,11 +1130,11 @@ Odpowiedz w formacie:
 [przekład na polski]
 
 **Wszystkie odpowiedzi z tłumaczeniami:**
-- A. [nazwa angielska] - [tłumaczenie polskie] - [tłumaczenie łacińskie]
-- B. [nazwa angielska] - [tłumaczenie polskie] - [tłumaczenie łacińskie]
-- C. [nazwa angielska] - [tłumaczenie polskie] - [tłumaczenie łacińskie]
-- D. [nazwa angielska] - [tłumaczenie polskie] - [tłumaczenie łacińskie]
-- E. [nazwa angielska] - [tłumaczenie polskie] - [tłumaczenie łacińskie]
+- A. [nazwa angielska] - [tłumaczenie polskie] - [tłumaczenie łacińskie] ${correctAnswerLetter === 'A' ? '(POPRAWNA)' : ''}
+- B. [nazwa angielska] - [tłumaczenie polskie] - [tłumaczenie łacińskie] ${correctAnswerLetter === 'B' ? '(POPRAWNA)' : ''}
+- C. [nazwa angielska] - [tłumaczenie polskie] - [tłumaczenie łacińskie] ${correctAnswerLetter === 'C' ? '(POPRAWNA)' : ''}
+- D. [nazwa angielska] - [tłumaczenie polskie] - [tłumaczenie łacińskie] ${correctAnswerLetter === 'D' ? '(POPRAWNA)' : ''}
+- E. [nazwa angielska] - [tłumaczenie polskie] - [tłumaczenie łacińskie] ${correctAnswerLetter === 'E' ? '(POPRAWNA)' : ''}
 
 **Analiza pytania:**
 [wyjaśnienie]
