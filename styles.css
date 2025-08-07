@@ -81,6 +81,21 @@
     color: white;
   }
   
+  .badge.historical {
+    background: var(--primary);
+    color: white;
+  }
+  
+  .badge.session {
+    background: var(--success);
+    color: white;
+  }
+  
+  .badge.seen {
+    background: var(--warning);
+    color: var(--dark);
+  }
+  
   :root {
     --primary: #4a9b8e;
     --primary-dark: #3a8577;

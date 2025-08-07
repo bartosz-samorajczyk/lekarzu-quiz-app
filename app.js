@@ -17,8 +17,10 @@ class MedicalQuizApp {
     this.currentMode = 'test-selection'; // Zmienione: domyślnie wybór testu
     this.isAnswerShown = false;
     this.sessionStats = {
-      studied: 0,
       correct: 0,
+      incorrect: 0,
+      total: 0,
+      accuracy: 0,
       startTime: Date.now()
     };
     
@@ -120,12 +122,12 @@ class MedicalQuizApp {
           <h1>Medical Quiz Pro</h1>
           <div class="header-stats">
             <div class="stat-item">
-              <span class="stat-label">Postęp</span>
+              <span class="stat-label">Odpowiedzi</span>
               <span class="stat-value" id="progress-stat">0/${this.questions.length}</span>
             </div>
             <div class="stat-item">
-              <span class="stat-label">Sesja</span>
-              <span class="stat-value" id="session-stat">0</span>
+              <span class="stat-label">Dokładność</span>
+              <span class="stat-value" id="session-stat">0%</span>
             </div>
             <div class="stat-item">
               <span class="stat-label">Czas</span>
@@ -161,7 +163,7 @@ class MedicalQuizApp {
             👁️ Pokaż odpowiedź
           </button>
           <button class="btn btn-success hidden" id="mark-studied-btn">
-            ✓ Nauczyłam się
+            → Następne pytanie
           </button>
           <button class="btn btn-secondary" id="next-btn">
             Następne →
@@ -289,11 +291,18 @@ class MedicalQuizApp {
     if (badgesContainer) {
       const progress = this.userProgress[q.id];
       const testInfo = this.currentTest ? `<span class="badge test">Test: ${this.currentTest}</span>` : '';
+      const historicalInfo = progress.historicalAccuracy !== undefined ? 
+        `<span class="badge historical">Historia: ${progress.historicalAccuracy}%</span>` : '';
+      const sessionInfo = progress.sessionAccuracy !== undefined ? 
+        `<span class="badge session">Dziś: ${progress.sessionAccuracy}%</span>` : '';
+      const seenInfo = progress.historicalAnswers && progress.historicalAnswers.length > 0 ? 
+        `<span class="badge seen">Widziane: ${progress.historicalAnswers.length}x</span>` : '';
+      
       badgesContainer.innerHTML = `
         ${testInfo}
-        <span class="badge studied">Uczone: ${progress.studied}</span>
-        <span class="badge last-result">Ostatni: ${progress.lastResult || 'Brak'}</span>
-        <span class="badge avg-result">Średni: ${progress.avgResult}</span>
+        ${historicalInfo}
+        ${sessionInfo}
+        ${seenInfo}
       `;
     }
     
@@ -478,20 +487,49 @@ class MedicalQuizApp {
       });
     }
     
-    // Update progress
+    // Update progress dla konkretnego pytania
     const progress = this.userProgress[q.id];
     const isCorrect = selectedAnswer.isCorrect;
+    
+    // Inicjalizuj statystyki pytania jeśli nie istnieją
+    if (!progress.sessionAnswers) progress.sessionAnswers = [];
+    if (!progress.historicalAnswers) progress.historicalAnswers = [];
+    
+    // Dodaj odpowiedź do historii
+    progress.historicalAnswers.push({
+      isCorrect: isCorrect,
+      timestamp: Date.now()
+    });
+    
+    // Dodaj odpowiedź do sesji
+    progress.sessionAnswers.push({
+      isCorrect: isCorrect,
+      timestamp: Date.now()
+    });
+    
+    // Oblicz statystyki pytania
+    const historicalCorrect = progress.historicalAnswers.filter(a => a.isCorrect).length;
+    const historicalTotal = progress.historicalAnswers.length;
+    const sessionCorrect = progress.sessionAnswers.filter(a => a.isCorrect).length;
+    const sessionTotal = progress.sessionAnswers.length;
+    
+    progress.historicalAccuracy = historicalTotal > 0 ? Math.round((historicalCorrect / historicalTotal) * 100) : 0;
+    progress.sessionAccuracy = sessionTotal > 0 ? Math.round((sessionCorrect / sessionTotal) * 100) : 0;
     progress.lastResult = isCorrect ? 'Poprawna' : 'Błędna';
     
-    // Calculate average result
-    if (!progress.results) progress.results = [];
-    progress.results.push(isCorrect);
-    const correctCount = progress.results.filter(r => r).length;
-    progress.avgResult = `${Math.round((correctCount / progress.results.length) * 100)}%`;
+    // Update session stats
+    this.sessionStats.total++;
+    if (isCorrect) {
+      this.sessionStats.correct++;
+    } else {
+      this.sessionStats.incorrect++;
+    }
+    this.sessionStats.accuracy = Math.round((this.sessionStats.correct / this.sessionStats.total) * 100);
     
     this.saveProgress();
+    this.updateStats();
     
-    // Pokaż przycisk "Nauczyłam się"
+    // Pokaż przycisk "Następne pytanie"
     document.getElementById('mark-studied-btn').classList.remove('hidden');
   }
   
@@ -572,9 +610,8 @@ class MedicalQuizApp {
     const q = questions[questionIndex];
     const progress = this.userProgress[q.id];
     
-    progress.studied++;
-    this.sessionStats.studied++;
-    this.updateStats();
+    // Zaznacz że pytanie było studiowane
+    progress.studied = (progress.studied || 0) + 1;
     
     // Reset button state
     document.getElementById('show-answer-btn').textContent = '👁️ Pokaż odpowiedź';
@@ -747,10 +784,10 @@ class MedicalQuizApp {
       timeStat.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
     }
     
-    // Session studied
+    // Session accuracy
     const sessionStat = document.getElementById('session-stat');
     if (sessionStat) {
-      sessionStat.textContent = this.sessionStats.studied;
+      sessionStat.textContent = `${this.sessionStats.accuracy}%`;
     }
   }
   
@@ -761,7 +798,7 @@ class MedicalQuizApp {
       const totalQuestions = this.currentMode === 'study' && this.testQuestions.length > 0 
         ? this.testQuestions.length 
         : this.questions.length;
-      progressStat.textContent = `${studied}/${totalQuestions}`;
+      progressStat.textContent = `${this.sessionStats.total}/${totalQuestions}`;
     }
     
     // Update timer every second
@@ -1435,6 +1472,23 @@ Odpowiedz w formacie:
     this.currentMode = 'study';
     this.currentTest = testId;
     this.currentIndex = 0;
+    
+    // Resetuj statystyki sesji
+    this.sessionStats = {
+      correct: 0,
+      incorrect: 0,
+      total: 0,
+      accuracy: 0,
+      startTime: Date.now()
+    };
+    
+    // Wyczyść statystyki sesji dla wszystkich pytań
+    Object.values(this.userProgress).forEach(progress => {
+      if (progress.sessionAnswers) {
+        progress.sessionAnswers = [];
+        progress.sessionAccuracy = 0;
+      }
+    });
     
     // Stwórz UI do nauki
     this.createUI();
