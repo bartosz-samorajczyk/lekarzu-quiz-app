@@ -503,29 +503,8 @@ class MedicalQuizApp {
     // Reset answer shown state
     this.isAnswerShown = false;
     
-    // Sprawdź czy jest zapisana odpowiedź ChatGPT (z Supabase lub localStorage)
-    await this.loadChatGPTResponse(q.id);
-    
-    // Zaktualizuj widoczność przycisków ChatGPT
-    const askGptBtn = document.getElementById('ask-gpt-btn');
-    const saveGptBtn = document.getElementById('save-gpt-btn');
-    
-    if (askGptBtn && saveGptBtn) {
-      const hasChatGPTResponse = document.getElementById('chatgpt-response-section') && 
-        !document.getElementById('chatgpt-response-section').classList.contains('hidden');
-      
-      if (hasChatGPTResponse) {
-        // Jeśli jest odpowiedź - pokaż tylko "Edytuj"
-        askGptBtn.textContent = 'Edytuj odpowiedź ChatGPT';
-        askGptBtn.className = 'btn btn-success';
-        saveGptBtn.style.display = 'none';
-      } else {
-        // Jeśli nie ma odpowiedzi - pokaż tylko "Zapytaj"
-        askGptBtn.textContent = 'Zapytaj ChatGPT';
-        askGptBtn.className = 'btn btn-ai';
-        saveGptBtn.style.display = 'none';
-      }
-    }
+    // Sprawdź czy pytanie ma odpowiedź ChatGPT i zaktualizuj przyciski
+    await this.checkAndUpdateChatGPTButtons(q.id);
     
     // Update stats
     this.updateStats();
@@ -1603,6 +1582,9 @@ Odpowiedz w formacie:
         askGptBtn.classList.add('hidden');
         saveGptBtn.classList.remove('hidden');
         saveGptBtn.textContent = 'Edytuj odpowiedź ChatGPT';
+        
+        // Utwórz sekcję ChatGPT z odpowiedzią (zwiniętą)
+        this.showChatGPTResponse(responseData);
       } else if (askGptBtn && saveGptBtn) {
         // Jeśli nie ma odpowiedzi, pokaż przycisk "Zapytaj"
         console.log('✅ Pokazuję przycisk "Zapytaj ChatGPT"');
