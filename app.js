@@ -179,6 +179,9 @@ class MedicalQuizApp {
           <button class="btn btn-ai" id="ask-gpt-btn">
             Zapytaj ChatGPT
           </button>
+          <button class="btn btn-success hidden" id="save-gpt-btn">
+            Edytuj odpowiedź ChatGPT
+          </button>
         </div>
         
 
@@ -341,14 +344,14 @@ class MedicalQuizApp {
       
       if (hasChatGPTResponse) {
         // Jeśli jest odpowiedź - pokaż tylko "Edytuj"
-        askGptBtn.textContent = '✏️ Edytuj odpowiedź ChatGPT';
+        askGptBtn.textContent = 'Edytuj odpowiedź ChatGPT';
         askGptBtn.className = 'btn btn-success';
         saveGptBtn.style.display = 'none';
       } else {
-        // Jeśli nie ma odpowiedzi - pokaż oba przyciski
-        askGptBtn.textContent = '🤖 Zapytaj ChatGPT';
+        // Jeśli nie ma odpowiedzi - pokaż tylko "Zapytaj"
+        askGptBtn.textContent = 'Zapytaj ChatGPT';
         askGptBtn.className = 'btn btn-ai';
-        saveGptBtn.style.display = 'inline-block';
+        saveGptBtn.style.display = 'none';
       }
     }
     
@@ -894,13 +897,20 @@ class MedicalQuizApp {
     });
 
     // ChatGPT buttons
-    document.getElementById('ask-gpt-btn').addEventListener('click', () => {
-      this.askChatGPT();
-    });
+    const askGptBtn = document.getElementById('ask-gpt-btn');
+    const saveGptBtn = document.getElementById('save-gpt-btn');
     
-    document.getElementById('save-gpt-btn').addEventListener('click', async () => {
-      await this.showSaveChatGPTModal();
-    });
+    if (askGptBtn) {
+      askGptBtn.addEventListener('click', () => {
+        this.askChatGPT();
+      });
+    }
+    
+    if (saveGptBtn) {
+      saveGptBtn.addEventListener('click', async () => {
+        await this.showSaveChatGPTModal();
+      });
+    }
   }
 
   askChatGPT() {
