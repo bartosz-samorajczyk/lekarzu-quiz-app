@@ -171,6 +171,9 @@ class MedicalQuizApp {
           <button class="btn btn-ai" id="ask-gpt-btn">
             🤖 Zapytaj ChatGPT
           </button>
+          <button class="btn btn-success" id="save-gpt-btn">
+            💾 Zapisz odpowiedź ChatGPT
+          </button>
         </div>
         
         <!-- Quick Actions -->
@@ -326,18 +329,24 @@ class MedicalQuizApp {
     // Sprawdź czy jest zapisana odpowiedź ChatGPT (z Supabase lub localStorage)
     await this.loadChatGPTResponse(q.id);
     
-    // Zaktualizuj tekst przycisku ChatGPT
+    // Zaktualizuj widoczność przycisków ChatGPT
     const askGptBtn = document.getElementById('ask-gpt-btn');
-    if (askGptBtn) {
+    const saveGptBtn = document.getElementById('save-gpt-btn');
+    
+    if (askGptBtn && saveGptBtn) {
       const hasChatGPTResponse = document.getElementById('chatgpt-response-section') && 
         !document.getElementById('chatgpt-response-section').classList.contains('hidden');
       
       if (hasChatGPTResponse) {
+        // Jeśli jest odpowiedź - pokaż tylko "Edytuj"
         askGptBtn.textContent = '✏️ Edytuj odpowiedź ChatGPT';
         askGptBtn.className = 'btn btn-success';
+        saveGptBtn.style.display = 'none';
       } else {
+        // Jeśli nie ma odpowiedzi - pokaż oba przyciski
         askGptBtn.textContent = '🤖 Zapytaj ChatGPT';
         askGptBtn.className = 'btn btn-ai';
+        saveGptBtn.style.display = 'inline-block';
       }
     }
     
@@ -879,6 +888,10 @@ class MedicalQuizApp {
     document.getElementById('ask-gpt-btn').addEventListener('click', () => {
       this.askChatGPT();
     });
+    
+    document.getElementById('save-gpt-btn').addEventListener('click', async () => {
+      await this.showSaveChatGPTModal();
+    });
   }
 
   askChatGPT() {
@@ -906,8 +919,21 @@ class MedicalQuizApp {
     // Generuj prompt używając oryginalnej funkcji
     const prompt = this.generateChatGPTPrompt(q);
     
-    // Pokaż modal z promptem
-    this.showChatGPTPrompt(prompt, cacheKey);
+    // Kopiuj do schowka
+    navigator.clipboard.writeText(prompt)
+      .then(() => {
+        console.log('Prompt skopiowany do schowka!');
+        
+        // Pokaż modal do wklejania odpowiedzi
+        this.showSaveChatGPTModal();
+      })
+      .catch(err => {
+        console.error('Błąd kopiowania promptu:', err);
+        alert('Nie udało się skopiować promptu. Skopiuj ręcznie: ' + prompt);
+      });
+    
+    // Otwórz ChatGPT w nowej karcie
+    window.open('https://chat.openai.com/', '_blank');
   }
   
   generateChatGPTPrompt(question) {
@@ -1570,17 +1596,24 @@ Odpowiedz w formacie:
         if (response.ok) {
           const data = await response.json();
           
-          // Grupuj odpowiedzi według testów
-          const testCounts = {};
-          data.forEach(item => {
-            const questionId = item.question_id;
-            // Wyciągnij ID testu z question_id (np. q_updated-new_123 -> updated-new)
-            const match = questionId.match(/q_([^_]+)_/);
-            if (match) {
-              const testId = match[1];
-              testCounts[testId] = (testCounts[testId] || 0) + 1;
-            }
-          });
+                     // Grupuj odpowiedzi według testów
+           const testCounts = {};
+           data.forEach(item => {
+             const questionId = item.question_id;
+             console.log('🔍 Sprawdzam question_id:', questionId);
+             
+             // Wyciągnij ID testu z question_id (np. q_updated-new_123 -> updated-new)
+             const match = questionId.match(/q_([^_]+)_/);
+             if (match) {
+               const testId = match[1];
+               console.log('✅ Znaleziono test:', testId);
+               testCounts[testId] = (testCounts[testId] || 0) + 1;
+             } else {
+               console.log('❌ Nie udało się dopasować test z:', questionId);
+             }
+           });
+           
+           console.log('📊 Statystyki testów:', testCounts);
           
           return testCounts;
         }
