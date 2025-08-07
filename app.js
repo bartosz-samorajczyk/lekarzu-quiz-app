@@ -119,19 +119,15 @@ class MedicalQuizApp {
       <div class="container">
         <!-- Header -->
         <header class="header">
-          <div class="fancy-banner">
-            <div class="logo-container">
-              <img src="assets/lekarzu-quiz-app-logo.png" alt="Lekarzu Quiz App" class="app-logo">
-            </div>
-            <div class="banner-content">
-              <p class="banner-subtitle">Profesjonalna nauka do egzaminu LEK/LDEK</p>
-            </div>
-            <div class="menu-dots">
-              <div class="menu-dot"></div>
-              <div class="menu-dot"></div>
-              <div class="menu-dot"></div>
-            </div>
+          <div class="logo-container">
+            <img src="assets/lekarzu-quiz-app-logo.png" alt="Lekarzu Quiz App" class="app-logo" id="logo-clickable">
           </div>
+          <div class="menu-dots">
+            <div class="menu-dot"></div>
+            <div class="menu-dot"></div>
+            <div class="menu-dot"></div>
+          </div>
+        </header>
           <div class="header-stats">
             <div class="stat-item">
               <span class="stat-label">Odpowiedzi</span>
@@ -182,9 +178,6 @@ class MedicalQuizApp {
           </button>
           <button class="btn btn-ai" id="ask-gpt-btn">
             Zapytaj ChatGPT
-          </button>
-          <button class="btn btn-success" id="save-gpt-btn">
-            Zapisz odpowiedź ChatGPT
           </button>
         </div>
         
@@ -871,6 +864,12 @@ class MedicalQuizApp {
     if (nextBtn) nextBtn.addEventListener('click', () => this.nextQuestion());
     if (prevBtn) prevBtn.addEventListener('click', () => this.prevQuestion());
     
+    // Logo clickable
+    const logoClickable = document.getElementById('logo-clickable');
+    if (logoClickable) {
+      logoClickable.addEventListener('click', () => this.showTestSelection());
+    }
+    
     // Menu dots (tylko na stronie pytań)
     const menuDots = document.querySelector('.menu-dots');
     if (menuDots) {
@@ -1476,13 +1475,11 @@ Odpowiedz w formacie:
       <div class="container">
         <!-- Header -->
         <header class="header">
-          <div class="fancy-banner">
-            <div class="logo-container">
-              <img src="assets/lekarzu-quiz-app-logo.png" alt="Lekarzu Quiz App" class="app-logo">
-            </div>
-            <div class="banner-content">
-              <p class="banner-subtitle">Wybierz test do nauki</p>
-            </div>
+          <div class="logo-container">
+            <img src="assets/lekarzu-quiz-app-logo.png" alt="Lekarzu Quiz App" class="app-logo" id="logo-clickable">
+          </div>
+          <div class="page-subtitle">
+            <p>Wybierz test do nauki</p>
           </div>
         </header>
         
@@ -1809,12 +1806,6 @@ Odpowiedz w formacie:
       <div class="menu-dropdown" id="menu-dropdown">
         <div class="menu-item" data-action="back-to-tests">
           Powrót do wyboru testów
-        </div>
-        <div class="menu-item" data-action="settings">
-          Ustawienia
-        </div>
-        <div class="menu-item" data-action="stats">
-          Statystyki
         </div>
       </div>
     `;
