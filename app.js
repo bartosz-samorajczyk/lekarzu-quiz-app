@@ -1577,9 +1577,7 @@ Odpowiedz w formacie:
     // Pobierz listę testów z metadanych
     const tests = await this.getAvailableTests();
     
-    // TYMCZASOWO: Wyłącz sprawdzanie ChatGPT coverage na starcie
-    // const testCounts = await this.getAllTestChatGPTCoverage();
-    const testCounts = {};
+
     
     app.innerHTML = `
       <div class="container">
@@ -1603,21 +1601,18 @@ Odpowiedz w formacie:
     `;
     
     // Dodaj testy dynamicznie
-    await this.renderTests(tests, testCounts);
+    await this.renderTests(tests);
     
     // Update header text
     this.updateHeaderText();
   }
 
-    async renderTests(tests, testCounts) {
+    async renderTests(tests) {
     const testGrid = document.getElementById('test-grid');
     if (!testGrid) return;
 
     let testHTML = '';
     for (const test of tests) {
-      // TYMCZASOWO: Wyłącz sprawdzanie ChatGPT coverage
-      // const chatgptCoverage = await this.getTestChatGPTCoverage(test.id, testCounts);
-      const chatgptCoverage = 0;
 
       testHTML += `
         <div class="test-card" data-test="${test.id}">
@@ -1637,10 +1632,6 @@ Odpowiedz w formacie:
             <div class="stat-row">
               <div class="stat-label">Dokładność:</div>
               <div class="stat-value">${test.accuracy}%</div>
-            </div>
-            <div class="stat-row">
-              <div class="stat-label">ChatGPT:</div>
-              <div class="stat-value">${chatgptCoverage}%</div>
             </div>
           </div>
           <button class="btn btn-primary test-select-btn" data-test="${test.id}">
@@ -1694,19 +1685,14 @@ Odpowiedz w formacie:
       { id: '2005-study', name: '2005 Study', year: '2005', questionCount: 200, date: '2005' }
     ];
     
-    // Pobierz statystyki dla każdego testu
-    const testsWithStats = [];
-    for (const test of testList) {
-      const stats = await this.getTestStats(test.id);
-      testsWithStats.push({
-        ...test,
-        attempts: stats.attempts,
-        accuracy: stats.accuracy,
-        chatgptResponses: stats.chatgptResponses,
-        lastAttempt: stats.lastAttempt
-      });
-    }
-    return testsWithStats;
+    // TYMCZASOWO: Wyłącz pobieranie statystyk na starcie dla szybkości
+    // Statystyki będą pobierane tylko gdy użytkownik kliknie na test
+    return testList.map(test => ({
+      ...test,
+      attempts: 0,
+      accuracy: 0,
+      lastAttempt: null
+    }));
   }
 
   async getTestStats(testId) {
@@ -1769,101 +1755,7 @@ Odpowiedz w formacie:
     }
   }
 
-  async getAllTestChatGPTCoverage() {
-    console.log('🎯 Sprawdzam pokrycie ChatGPT dla wszystkich testów...');
-    
-    if (!this.supabaseConfig.enabled) {
-      console.log('❌ Supabase wyłączone');
-      return {};
-    }
-    
-    try {
-      // 1. Pobierz wszystkie question_id z chatgpt_responses (JEDNO zapytanie)
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 5000);
-      
-      const response = await fetch(`${this.supabaseConfig.url}/rest/v1/chatgpt_responses?select=question_id`, {
-        headers: {
-          'apikey': this.supabaseConfig.key,
-          'Authorization': `Bearer ${this.supabaseConfig.key}`,
-          'Content-Type': 'application/json'
-        },
-        signal: controller.signal
-      });
-      
-      clearTimeout(timeoutId);
-      
-      if (!response.ok) {
-        console.log('❌ Błąd pobierania z Supabase:', response.status);
-        return {};
-      }
-      
-      const data = await response.json();
-      console.log(`📋 Znaleziono ${data.length} odpowiedzi ChatGPT w bazie`);
-      console.log('🔍 Przykładowe question_id:', data.slice(0, 3).map(item => item.question_id));
-      
-      if (data.length === 0) {
-        console.log('📊 Brak odpowiedzi ChatGPT - wszystkie testy mają 0%');
-        return {};
-      }
-      
-      // 2. Sprawdź które testy mają wpisy w bazie (TYLKO testy z wpisami!)
-      const testCounts = {};
-      const tests = await this.getAvailableTests();
-      
-      // 3. Sprawdź tylko testy które mają wpisy w bazie
-      for (const test of tests) {
-        // Sprawdź czy którykolwiek z question_id z bazy pasuje do tego testu
-        let count = 0;
-        let hasAnyMatches = false;
-        
-        for (const item of data) {
-          const questionId = item.question_id;
-          const cleanId = questionId.startsWith('q_') ? questionId.replace('q_', '') : questionId;
-          
-          // Sprawdź czy question_id pasuje do tego testu
-          // Musimy załadować pytania testu żeby sprawdzić mapping
-          try {
-            await this.loadTestQuestions(test.id);
-            
-            // Sprawdź czy question_id istnieje w pytaniach tego testu
-            const found = this.testQuestions.find(q => q.id === cleanId);
-            if (found) {
-              count++;
-              hasAnyMatches = true;
-            }
-          } catch (error) {
-            console.log(`❌ Nie udało się załadować testu: ${test.id}`, error);
-          }
-        }
-        
-        // Zapisz tylko jeśli są jakieś wpisy
-        if (hasAnyMatches) {
-          testCounts[test.id] = count;
-          console.log(`📊 Test ${test.id}: ${count} odpowiedzi ChatGPT`);
-        }
-        // Jeśli nie ma wpisów, nie dodajemy do testCounts (domyślnie 0%)
-      }
-      
-      console.log('📊 Końcowe statystyki testów:', testCounts);
-      return testCounts;
-      
-    } catch (error) {
-      console.log('❌ Błąd pobierania z Supabase:', error);
-      return {};
-    }
-  }
 
-  async getTestChatGPTCoverage(testId, testCounts = {}) {
-    // Pobierz liczbę pytań w teście
-    const tests = await this.getAvailableTests();
-    const test = tests.find(t => t.id === testId);
-    if (!test) return 0;
-    
-    // Użyj podanych statystyk (z getAllTestChatGPTCoverage)
-    const chatgptCount = testCounts[testId] || 0;
-    return Math.round((chatgptCount / test.questionCount) * 100);
-  }
 
   async startTest(testId) {
     console.log(`Rozpoczynam test: ${testId}`);
