@@ -125,7 +125,7 @@
     display: table-cell;
     color: var(--primary);
     font-weight: bold;
-    text-align: center;
+    text-align: left;
     width: 50%;
   }
   
