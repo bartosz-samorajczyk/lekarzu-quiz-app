@@ -1576,7 +1576,7 @@ Odpowiedz w formacie:
   }
 
   async getAllTestChatGPTCoverage() {
-    // SENIORSKIE ROZWIĄZANIE: Proste i efektywne
+    // PRAWDZIWIE SENIORSKIE ROZWIĄZANIE: Użyj już załadowanej bazy pytań!
     if (this.supabaseConfig.enabled) {
       try {
         const controller = new AbortController();
@@ -1597,38 +1597,22 @@ Odpowiedz w formacie:
           const data = await response.json();
           console.log('📋 Wszystkie question_id z Supabase:', data.map(item => item.question_id));
           
-          // SENIORSKIE ROZWIĄZANIE: Sprawdź które pytania należą do którego testu
+          // PRAWDZIWIE SENIORSKIE: Sprawdź w głównej bazie pytań (już załadowanej!)
           const testCounts = {};
-          const tests = this.getAvailableTests();
           
-          for (const test of tests) {
-            // Załaduj pytania testu (tylko raz)
-            try {
-              await this.loadTestQuestions(test.id);
-              console.log(`📚 Załadowano pytania testu: ${test.id}`);
-              
-              // Sprawdź które pytania z Supabase są w tym teście
-              let count = 0;
-              for (const item of data) {
-                const questionId = item.question_id;
-                // Usuń prefix q_ jeśli istnieje
-                const cleanId = questionId.startsWith('q_') ? questionId.replace('q_', '') : questionId;
-                
-                // Sprawdź czy pytanie jest w załadowanym teście
-                const found = this.testQuestions.find(q => q.id === cleanId);
-                if (found) {
-                  count++;
-                  console.log(`✅ Pytanie ${cleanId} znalezione w teście ${test.id}`);
-                }
-              }
-              
-              if (count > 0) {
-                testCounts[test.id] = count;
-                console.log(`📊 Test ${test.id}: ${count} odpowiedzi ChatGPT`);
-              }
-              
-            } catch (error) {
-              console.log(`❌ Nie udało się załadować testu: ${test.id}`, error);
+          for (const item of data) {
+            const questionId = item.question_id;
+            // Usuń prefix q_ jeśli istnieje
+            const cleanId = questionId.startsWith('q_') ? questionId.replace('q_', '') : questionId;
+            
+            // Znajdź pytanie w głównej bazie
+            const question = this.questions.find(q => q.id === cleanId);
+            if (question && question.test) {
+              const testId = question.test;
+              testCounts[testId] = (testCounts[testId] || 0) + 1;
+              console.log(`✅ Pytanie ${cleanId} → test ${testId}`);
+            } else {
+              console.log(`❌ Pytanie ${cleanId} nie znalezione w głównej bazie`);
             }
           }
           
