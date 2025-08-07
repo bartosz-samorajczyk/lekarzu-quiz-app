@@ -102,9 +102,11 @@
   
   .test-stats .stat-row {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
     margin-bottom: 4px;
     font-size: 12px;
+    gap: 8px;
   }
   
   .test-stats .stat-row:last-child {
@@ -114,11 +116,15 @@
   .test-stats .stat-label {
     color: #666;
     font-weight: 500;
+    text-align: right;
+    min-width: 60px;
   }
   
   .test-stats .stat-value {
     color: var(--primary);
     font-weight: bold;
+    text-align: left;
+    min-width: 30px;
   }
   
   .subtitle {
