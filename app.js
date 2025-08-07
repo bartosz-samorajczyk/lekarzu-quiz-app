@@ -2000,7 +2000,7 @@ Odpowiedz w formacie:
     if (!app) return;
     
     app.innerHTML = `
-      <div class="container">
+      <div class="container login-container">
         <div class="login-card">
           <div class="logo-container">
             <img src="assets/lekarzu-quiz-app-logo.png" alt="Lekarzu Quiz App" class="app-logo">
@@ -2019,12 +2019,6 @@ Odpowiedz w formacie:
               </svg>
               Zaloguj przez Google
             </button>
-            
-            <div class="login-info">
-              <p>Twoje dane są bezpieczne</p>
-              <p>Synchronizacja w chmurze</p>
-              <p>Dostęp z każdego urządzenia</p>
-            </div>
           </div>
         </div>
       </div>
